@@ -1,12 +1,7 @@
 <template>
   <div>
-    <HeaderComponent/>
-    <div class="products_content_header">
-      <div class="products_content_header_color">
-        <p>PRODUCT</p>
-        <p>Home / Product</p>
-      </div>
-    </div>
+    <active-page-template page="PRODUCT" />
+
     <div class="product_container">
       <div class="product_info">
         <div>
@@ -72,17 +67,13 @@
         </div>
       </div>
     </div>
-    <FooterComponent/>
   </div>
 </template>
 
 <script>
-import HeaderComponent from "@/components/pages/header/HeaderComponent.vue";
-import FooterComponent from "@/components/pages/footer/FooterComponent.vue";
 
 export default {
   name: "ProductPage",
-  components: {FooterComponent, HeaderComponent},
 
   data() {
     return {
@@ -104,26 +95,6 @@ export default {
 </script>
 
 <style>
-.products_content_header {
-  background-image: url("../../../assets/logos/content_header_img.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  height: 255px;
-}
-
-.products_content_header_color {
-  width: 100%;
-  height: 100%;
-  background-color: #2E5058;
-  opacity: 0.8;
-  color: white;
-  font-size: 25px;
-  font-weight: 700;
-  text-align: center;
-  padding: 80px 4%;
-}
-
 .product_container {
   padding: 3% 13%;
 }

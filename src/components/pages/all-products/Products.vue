@@ -1,10 +1,7 @@
 <template>
   <div class="product_page">
-    <div class="products_content_header">
-      <div class="products_content_header_color">
-        <p>PRODUCTS</p>
-      </div>
-    </div>
+
+    <active-page-template page="PRODUCTS" />
 
     <div class="product_content">
       <div class="grid_content">
@@ -36,8 +33,11 @@
 </template>
 
 <script>
+import ActivePageTemplate from "@/components/pages/active-page-template.vue";
+
 export default {
   name: "AllProductsPage",
+  components: {ActivePageTemplate},
 
   data() {
     return {
@@ -117,26 +117,6 @@ export default {
 
 .three-cards-per-row .card-product--card {
   width: 30%;
-}
-
-.products_content_header {
-  background-image: url("../../../assets/logos/content_header_img.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  height: 255px;
-}
-
-.products_content_header_color {
-  width: 100%;
-  height: 100%;
-  background-color: #2E5058;
-  opacity: 0.8;
-  color: white;
-  font-size: 25px;
-  font-weight: 700;
-  text-align: center;
-  padding: 80px 4%;
 }
 
 .product_content {

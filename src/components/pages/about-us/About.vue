@@ -1,10 +1,7 @@
 <template>
   <div>
-    <div class="about_content_header">
-      <div class="about_content_header_color">
-        <p>ABOUT US</p>
-      </div>
-    </div>
+    <active-page-template page="ABOUT US" />
+
     <div class="about_content">
       <div class="about_part">
         <div>
@@ -98,8 +95,11 @@
 
 <script>
 
+import ActivePageTemplate from "@/components/pages/active-page-template.vue";
+
 export default {
-  name: "AboutPage"
+  name: "AboutPage",
+  components: {ActivePageTemplate}
 }
 </script>
 

@@ -1,10 +1,7 @@
 <template>
   <div class="contact_page">
-    <div class="contact_content_header">
-      <div class="contact_content_header_color">
-        <p>CONTACT US</p>
-      </div>
-    </div>
+    <active-page-template page="CONTACTS" />
+
     <div class="contact_content">
       <div style="margin: 0 auto; width: 92%">
         <iframe class="map" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
@@ -55,33 +52,15 @@
 </template>
 
 <script>
+import ActivePageTemplate from "@/components/pages/active-page-template.vue";
+
 export default {
   name: "ContactPage",
+  components: {ActivePageTemplate},
 }
 </script>
 
 <style>
-
-.contact_content_header {
-  background-image: url("../../../assets/logos/content_header_img.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  height: 255px;
-}
-
-.contact_content_header_color {
-  width: 100%;
-  height: 100%;
-  background-color: #2E5058;
-  opacity: 0.8;
-  color: white;
-  font-size: 25px;
-  font-weight: 700;
-  text-align: center;
-  padding: 80px 4%;
-}
-
 .map{
   width: 100%;
   height: 600px;

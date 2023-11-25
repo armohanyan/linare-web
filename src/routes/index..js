@@ -12,10 +12,10 @@ import About from "@/components/admin/pages/About.vue";
 import Contact from "@/components/admin/pages/Contact.vue";
 import Testimonials from "@/components/admin/pages/Testimonials.vue";
 import LandingPage from "../components/pages/landing/LandingPage.vue";
-import AboutPage from "../components/pages/about-us/AboutPage.vue";
-import ContactPage from "../components/pages/contact-us/ContactPage.vue";
-import AllProductsPage from "../components/pages/all-products/AllProductsPage.vue";
-import ProductPage from "../components/pages/product/ProductPage.vue";
+import AboutPage from "../components/pages/about-us/About.vue";
+import ContactPage from "../components/pages/contact-us/Contacts.vue";
+import AllProductsPage from "../components/pages/all-products/Products.vue";
+import ProductPage from "../components/pages/product/Product.vue";
 
 const routes = [
   {
@@ -180,33 +180,33 @@ const router = new VueRouter({
   routes
 });
 
-router.beforeEach((to, from, next) => {
-
-  if(to.matched.some(record => record.meta.requiresAdmin)) {
-    new AccountService().getCurrent().then(({ data }) => {
-      if (data.data.currentAccount.role === "superAdmin"){
-        next();
-      } else {
-        next({
-          name: 'home',
-        });
-      }
-    }).catch(() => {
-      next({
-        path: '/admin/sign-in',
-      });
-    });
-  } else if(to.matched.some(record => record.meta.requiresAuth)) {
-    new AccountService().getCurrent().then(() => {
-      next();
-    }).catch(() => {
-      next({
-        path: '/admin/sign-in',
-      });
-    });
-  } else {
-    next();
-  }
-});
+// router.beforeEach((to, from, next) => {
+//
+//   if(to.matched.some(record => record.meta.requiresAdmin)) {
+//     new AccountService().getCurrent().then(({ data }) => {
+//       if (data.data.currentAccount.role === "superAdmin"){
+//         next();
+//       } else {
+//         next({
+//           name: 'home',
+//         });
+//       }
+//     }).catch(() => {
+//       next({
+//         path: '/admin/sign-in',
+//       });
+//     });
+//   } else if(to.matched.some(record => record.meta.requiresAuth)) {
+//     new AccountService().getCurrent().then(() => {
+//       next();
+//     }).catch(() => {
+//       next({
+//         path: '/admin/sign-in',
+//       });
+//     });
+//   } else {
+//     next();
+//   }
+// });
 
 export default router;
