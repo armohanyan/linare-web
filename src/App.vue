@@ -1,12 +1,13 @@
 <template>
   <div id="app">
-    <HeaderComponent v-if="ignoreHeaderAndFooter" />
+    <HeaderComponent v-if="isRouteBelongsToUser" />
+    <admin-header-component v-if="!isRouteBelongsToUser" />
 
     <back-to-top-button></back-to-top-button>
 
     <router-view></router-view>
 
-    <FooterComponent v-if="ignoreHeaderAndFooter" />
+    <FooterComponent v-if="isRouteBelongsToUser" />
   </div>
 </template>
 
@@ -14,16 +15,17 @@
 import BackToTopButton from "@/components/pages/backToTopButton/BackToTopButton.vue";
 import FooterComponent from "./components/pages/footer/FooterComponent.vue";
 import HeaderComponent from "./components/pages/header/HeaderComponent.vue";
+import AdminHeaderComponent from "@/components/admin/AdminHeaderComponent.vue";
 
 export default {
   name: 'App',
-  components: {FooterComponent, HeaderComponent, BackToTopButton },
+  components: {AdminHeaderComponent, FooterComponent, HeaderComponent, BackToTopButton },
   computed: {
     getCurrentUser() {
       return this.$store.getters.getCurrentUser;
     },
 
-    ignoreHeaderAndFooter() {
+    isRouteBelongsToUser() {
       return !!(this.$route.meta && this.$route.meta.userRoute);
 
     }
