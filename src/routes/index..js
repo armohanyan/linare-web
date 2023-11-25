@@ -3,7 +3,6 @@ import LoginComponent from '@/components/authentication/LoginComponent';
 import RegisterComponent from '@/components/authentication/RegisterComponent';
 import VerifyEmail from '@/components/authentication/VerifyEmail';
 import ResetPassword from '@/components/authentication/ResetPassword';
-import AccountService from '@/services/AccountService';
 import Dashboard from "@/components/admin/Dashboard.vue";
 import NotFound from "@/app/NotFound.vue";
 import Categories from "@/components/admin/pages/Categories.vue";
