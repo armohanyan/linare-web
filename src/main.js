@@ -12,8 +12,8 @@ import VueEventBus from  "vue-event-bus"
 import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 import '@fortawesome/fontawesome-free/css/all.css';
 import VueMaterial from 'vue-material'
-import 'vue-material/dist/vue-material.min.css'
-import 'vue-material/dist/theme/default.css'
+// import 'vue-material/dist/vue-material.min.css'
+// import 'vue-material/dist/theme/default.css'
 
 Vue.use(VueMaterial)
 Vue.use(require('vue-cookies'))

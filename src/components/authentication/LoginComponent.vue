@@ -132,9 +132,9 @@
       <div v-if="isShowVerifyEmail">
         <b-button variant="primary" @click="onVerifyEmail()">Verify account</b-button>
       </div>
-      <router-link :to="'/sign-up'" class="text-primary btn">Sign up</router-link>
+      <router-link :to="'/admin/sign-up'" class="text-primary btn">Sign up</router-link>
       <p>
-        <router-link :to="'/on-reset-password'" class="text-primary btn">Forgot Password</router-link>
+        <router-link :to="'/admin/on-reset-password'" class="text-primary btn">Forgot Password</router-link>
       </p>
     </div>
 

@@ -131,7 +131,7 @@
           <b-button type="submit" variant="primary">Submit</b-button>
         </div>
       </b-form>
-      <router-link :to="'/sign-in'">Sign in</router-link>
+      <router-link to="/admin/sign-in">Sign in</router-link>
     </div>
     <div v-if="showSuccessScreen">
       <b-row class="mb-3">

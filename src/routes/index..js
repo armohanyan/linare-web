@@ -1,13 +1,9 @@
 import VueRouter from 'vue-router';
-import PostComponent from '@/components/body/PostComponent.vue';
-import CreatePostComponent from '@/components/body/CreatePostComponent.vue';
 import LoginComponent from '@/components/authentication/LoginComponent';
 import RegisterComponent from '@/components/authentication/RegisterComponent';
 import VerifyEmail from '@/components/authentication/VerifyEmail';
 import ResetPassword from '@/components/authentication/ResetPassword';
 import AccountService from '@/services/AccountService';
-import UpdatePostComponent from '@/components/body/UpdatePostComponent';
-import SinglePost from '@/components/body/SinglePost';
 import Dashboard from "@/components/admin/Dashboard.vue";
 import NotFound from "@/app/NotFound.vue";
 import Categories from "@/components/admin/pages/Categories.vue";
@@ -15,6 +11,11 @@ import Products from "@/components/admin/pages/Products.vue";
 import About from "@/components/admin/pages/About.vue";
 import Contact from "@/components/admin/pages/Contact.vue";
 import Testimonials from "@/components/admin/pages/Testimonials.vue";
+import LandingPage from "../components/pages/landing/LandingPage.vue";
+import AboutPage from "../components/pages/about-us/AboutPage.vue";
+import ContactPage from "../components/pages/contact-us/ContactPage.vue";
+import AllProductsPage from "../components/pages/all-products/AllProductsPage.vue";
+import ProductPage from "../components/pages/product/ProductPage.vue";
 
 const routes = [
   {
@@ -23,104 +24,154 @@ const routes = [
     component: NotFound
   },
   {
-    path: '/sign-in',
+    path: '/admin/sign-in',
     name: 'sign-in',
-    component: LoginComponent
+    component: LoginComponent,
+    meta: {
+      requiresAuth: false,
+      userRoute: false
+    }
   },
   {
-    path: '/sign-up',
+    path: '/admin/sign-up',
     name: 'sign-up',
     component: RegisterComponent,
     meta: {
-      requiresAuth: false
+      requiresAuth: false,
+      userRoute: false
     }
   },
   {
-    path: '/verify-email', // query email and token
+    path: '/admin/verify-email', // query email and token
     name: 'verify-email',
     component: VerifyEmail,
-    meta: {
-      requiresAuth: false
+    meta:{
+      requiresAuth: false,
+      userRoute: false
     }
   },
   {
-    path: '/on-reset-password',
+    path: '/admin/on-reset-password',
     name: 'on-reset-password',
     component: ResetPassword,
     meta: {
-      requiresAuth: false
+      requiresAuth: false,
+      userRoute: false
     }
   },
   {
     path: '/admin/dashboard',
     component: Dashboard,
-    name: 'adminDashboard'
+    name: 'adminDashboard',
+    meta: {
+       requiresAuth: true,
+       userRoute: false
+    }
   },
   {
     path: '/admin/dashboard/categories',
     component: Categories,
-    name: 'adminDashboardCategories'
+    name: 'adminDashboardCategories',
+    meta: {
+      requiresAuth: true,
+      userRoute: false
+    }
   },
   {
     path: '/admin/dashboard/products',
     component: Products,
-    name: 'adminDashboardProducts'
+    name: 'adminDashboardProducts',
+    meta: {
+      requiresAuth: true,
+      userRoute: false
+    }
   },
   {
     path: '/admin/dashboard/about',
     component: About,
-    name: 'adminDashboardAbout'
+    name: 'adminDashboardAbout',
+    meta: {
+      requiresAuth: true,
+      userRoute: false
+    }
   },
   {
     path: '/admin/dashboard/contact',
     component: Contact,
-    name: 'adminDashboardContact'
+    name: 'adminDashboardContact',
+    meta: {
+      requiresAuth: true,
+      userRoute: false
+    }
   },
   {
     path: '/admin/dashboard/testimonials',
     component: Testimonials,
-    name: 'adminDashboardTestimonials'
+    name: 'adminDashboardTestimonials',
+    meta: {
+      requiresAuth: true,
+      userRoute: false
+    }
   },
   {
     path: '/reset-password',
     name: 'reset-password',
     component: ResetPassword,
     meta: {
-      requiresAuth: false
+      requiresAuth: false,
+      userRoute: false
     }
   },
+
   {
     path: '/',
     name: 'home',
-    component: PostComponent,
+    component: LandingPage,
     meta: {
-      requiresAuth: true
+      requiresAuth: false,
+      userRoute: true
     }
   },
+
   {
-    path: '/create',
-    name: 'create',
-    component: CreatePostComponent,
+    path: '/about-us',
+    name: 'about-us',
+    component: AboutPage,
     meta: {
-      requiresAuth: true
+      requiresAuth: false,
+      userRoute: true
     }
   },
+
   {
-    path: '/update/:id',
-    name: 'update-post',
-    component: UpdatePostComponent,
+    path: '/contacts',
+    name: 'contacts',
+    component: ContactPage,
     meta: {
-      requiresAdmin: true
+      requiresAuth: false,
+      userRoute: true
     }
   },
+
   {
-    path: '/show/:id',
-    name: 'show',
-    component: SinglePost,
+    path: '/all-products',
+    name: 'products',
+    component: AllProductsPage,
     meta: {
-      requiresAuth: true
+      requiresAuth: false,
+      userRoute: true
     }
-  }
+  },
+
+  {
+    path: '/product',
+    name: 'product',
+    component: ProductPage,
+    meta: {
+      requiresAuth: false,
+      userRoute: true
+    }
+  },
 
 ];
 
@@ -142,7 +193,7 @@ router.beforeEach((to, from, next) => {
       }
     }).catch(() => {
       next({
-        path: '/sign-in',
+        path: '/admin/sign-in',
       });
     });
   } else if(to.matched.some(record => record.meta.requiresAuth)) {
@@ -150,7 +201,7 @@ router.beforeEach((to, from, next) => {
       next();
     }).catch(() => {
       next({
-        path: '/sign-in',
+        path: '/admin/sign-in',
       });
     });
   } else {

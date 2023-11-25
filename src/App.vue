@@ -1,29 +1,31 @@
 <template>
   <div id="app">
-    <div v-if="getCurrentUser" class="d-flex">
-      <admin-header-component/>
+    <HeaderComponent v-if="ignoreHeaderAndFooter" />
 
-      <div class="admin-section pt-3 pl-3">
-        <router-view></router-view>
-      </div>
-    </div>
+    <back-to-top-button></back-to-top-button>
 
-    <div v-else>
-      <router-view></router-view>
-    </div>
+    <router-view></router-view>
+
+    <FooterComponent v-if="ignoreHeaderAndFooter" />
   </div>
 </template>
 
 <script>
-
-import AdminHeaderComponent from "@/components/admin/AdminHeaderComponent.vue";
+import BackToTopButton from "@/components/pages/backToTopButton/BackToTopButton.vue";
+import FooterComponent from "./components/pages/footer/FooterComponent.vue";
+import HeaderComponent from "./components/pages/header/HeaderComponent.vue";
 
 export default {
   name: 'App',
-  components: { AdminHeaderComponent },
+  components: {FooterComponent, HeaderComponent, BackToTopButton },
   computed: {
     getCurrentUser() {
       return this.$store.getters.getCurrentUser;
+    },
+
+    ignoreHeaderAndFooter() {
+      return !!(this.$route.meta && this.$route.meta.userRoute);
+
     }
   },
 
@@ -35,4 +37,7 @@ export default {
 </script>
 
 <style>
+*{
+  font-family: ui-monospace;
+}
 </style>

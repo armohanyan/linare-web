@@ -31,10 +31,10 @@
         </div>
       </b-form-group>
       <div>
-        <router-link :to="'/sign-in'" class="text-primary btn">Sign in</router-link>
+        <router-link to="/admin/sign-in" class="text-primary btn">Sign in</router-link>
       </div>
       <div>
-        <router-link :to="'/sign-up'" class="text-primary btn">Sign up</router-link>
+        <router-link :to="'/admin/sign-up'" class="text-primary btn">Sign up</router-link>
       </div>
     </div>
 
@@ -127,7 +127,7 @@
         <b-button variant="primary" @click="onSubmitResetPassword">Reset</b-button>
       </div>
       <div>
-        <router-link :to="'/sign-in'" class="text-primary btn">Sign in</router-link>
+        <router-link to="/sign-in" class="text-primary btn">Sign in</router-link>
       </div>
     </div>
   </b-container>

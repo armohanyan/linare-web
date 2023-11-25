@@ -1,0 +1,734 @@
+<template>
+  <div>
+
+    <div class="landing_slide">
+      <b-carousel
+          id="carousel-fade"
+          style="text-shadow: 0 0 2px #000"
+          fade
+          indicators
+          img-width="100%"
+          :interval="3000"
+          controls
+      >
+        <b-carousel-slide v-for="(item, index) in introCarousel" :key="index">
+          <template #img>
+            <img
+                class="d-block img-fluid w-100"
+                :src="item.src"
+                alt="image slot"
+                style="height: 900px; object-fit: cover"
+            >
+          </template>
+          <div class="text_content">
+            <div class="slide-left">
+              <p>{{ item.title }}</p>
+            </div>
+          </div>
+        </b-carousel-slide>
+      </b-carousel>
+    </div>
+
+    <div class="partners_part">
+      <div v-for="(partner, index) in partners" :key="index">
+        <img class="partner_img"  src="../../../assets/logos/logo1.png" alt="Logo"/>
+      </div>
+    </div>
+
+    <div class="products">
+      <h1 class="products_heading">Products</h1>
+
+      <div class="card-carousel-wrapper">
+        <div class="card-carousel--nav__left" @click="moveCarousel(-1)"></div>
+        <div class="card-carousel">
+          <div class="card-carousel--overflow-container">
+            <div class="card-carousel-cards" :style="{ transform: 'translateX(' + currentOffset + 'px)'}">
+              <div class="card-carousel--card" v-for="item in items" :key="item.id">
+                <img class="card-carousel-img" :src="item.image" alt=""/>
+
+                <button v-b-modal="'modal-center-' + item.id" class="quick_view">Quick View</button>
+                <div class="card-carousel--card--footer">
+                  <p>{{ item.name }}</p>
+                  <p class="price" v-for="(price, index) in item.price" :key="price" :class="index">{{ price }}</p>
+                </div>
+
+                <b-modal :id="'modal-center-' + item.id">
+                  <div class="modal_content">
+                    <img class="modal_img" :src="item.image" alt=""/>
+                    <div class="modal_info">
+                      <p class="modal_img_name">{{ item.name }}</p>
+                      <p class="modal_desc">{{ item.desc }}</p>
+                      <p class="modal_price" v-for="(price) in item.price" :key="price">{{ price }}</p>
+
+                      <div style="display: flex; gap: 30px; align-items: center">
+                        <p class="types">Type</p>
+                        <p class="modal_type">{{ item.type }}</p>
+                      </div>
+                      <p class="full_details">View full details ></p>
+                    </div>
+                  </div>
+                </b-modal>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-carousel--nav__right" @click="moveCarousel(1)"></div>
+      </div>
+    </div>
+
+    <div class="about">
+      <div class="icons_part">
+        <img style="width: 45px; height: 45px" src="../../../assets/icons/helpline_icon.png" alt=""/>
+        <div>
+          <p>24/7 helpline</p>
+          <p>Care till the end</p>
+        </div>
+      </div>
+      <div class="icons_part">
+        <img style="width: 60px; height: 60px" src="../../../assets/icons/truck_icon.png" alt=""/>
+        <div>
+          <p>Free Shipping</p>
+          <p>For orders over $50</p>
+        </div>
+      </div>
+      <div class="icons_part">
+        <img style="width: 50px; height: 50px" src="../../../assets/icons/discount_icon.png" alt=""/>
+        <div>
+          <p>Official Discounts</p>
+          <p>Save big on next product</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact_us">
+      <h1 class="contact_us_heading">Welcome To Our Support. We're Here To Help.</h1>
+      <p class="contact_us_text">ALWAYS ON YOUR SIDE WHEN YOU NEED HELP</p>
+
+      <div class="contact_us_info">
+        <img class="phone_icon" src="../../../assets/icons/phone_icon.png" alt=""/>
+        <div class="info_text">
+          <div class="info_text_column">
+            <div>
+              <p>Contact Us</p>
+              <h2 class="info_heading">Have Any Doubts?</h2>
+            </div>
+            <div>
+              <p>This Number Is Toll Free</p>
+              <p>0000 - 1234 - 56789</p>
+            </div>
+          </div>
+          <button class="know_more">Know More</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</template>
+<script>
+
+const introCarousel = [
+  {
+    src: 'https://www.niso.com.tr/wp-content/uploads/2023/03/hardware_SD.jpg',
+    title: 'Rigorous Standards, Unwavering Quality'
+  },
+  {
+    src: 'https://www.aamc.org/sites/default/files/styles/scale_and_crop_1200_x_666/public/workforce-feature.jpg__992x558_q85_crop-smart_subsampling-2_upscale.jpg?itok=xrYKAvV0',
+    title: 'Meeting and Exceeding Industry Standards'
+  },
+  {
+    src: 'https://img.freepik.com/premium-photo/doctor-hold-icon-health-electronic-medical-record-interface-digital-healthcare-network_34200-712.jpg',
+    title: 'Protection with Comfort in Mind'
+  }
+]
+
+const partners = [
+  {
+    src: '../../../assets/logos/logo1.png',
+  },
+  {
+    src: '../../../assets/logos/logo1.png',
+  },
+  {
+    src: '../../../assets/logos/logo1.png',
+  },
+  {
+    src: '../../../assets/logos/logo1.png',
+  }
+]
+
+export default {
+  name: "LandingPage",
+  data() {
+    return {
+      currentOffset: 0,
+      windowSize: 3,
+      paginationFactor: 220,
+      partners,
+      items: [
+        {
+          id: 1,
+          name: 'N99 Face Mask',
+          image: 'https://meds-theme.myshopify.com/cdn/shop/collections/shop-26.jpg?v=1591863371&width=535',
+          price: ["Rs. 329.00"],
+          desc: '\n' +
+              'The N99 face mask is a high-performance respiratory protective device designed to filter out 99% of airborne particles, including dust, pollutants, and microorganisms.',
+          type: "Personal Care"
+        },
+        {
+          id: 2,
+          name: 'Ear Thermometer',
+          image: 'https://meds-theme.myshopify.com/cdn/shop/products/shop-11_b1ce8946-cef2-41db-a40e-d5bd87ba611a.jpg?v=1590486085&width=535',
+          price: ["Rs. 6.98"],
+          desc: "The ear thermometer is a compact and user-friendly medical instrument that provides a quick and non-invasive way to measure body temperature.",
+          type: "Health Care"
+        }
+      ],
+      introCarousel
+    }
+  },
+  computed: {
+
+    atEndOfList() {
+      return this.currentOffset <= (this.paginationFactor * -1) * (this.items.length - this.windowSize);
+    },
+
+    atHeadOfList() {
+      return this.currentOffset === 0;
+    }
+  },
+
+  methods: {
+    moveCarousel(direction) {
+      console.log(direction)
+      if (direction === 1 && !this.atEndOfList) {
+        this.currentOffset -= this.paginationFactor;
+      } else if (direction === -1 && !this.atHeadOfList) {
+        this.currentOffset += this.paginationFactor;
+      }
+    },
+  }
+}
+</script>
+
+<style>
+.sr-only {
+  display: none;
+}
+
+.text_content {
+  width: 100%;
+}
+
+.carousel-caption {
+  position: absolute;
+  right: unset !important;
+  top: 22% !important;
+  left: 15% !important;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  color: #fff;
+  text-align: start !important;
+  width: 25% !important;
+}
+
+.img-fluid {
+  object-fit: cover;
+  height: 700px;
+}
+
+.slide-left {
+  width: 100%;
+  animation: 3s slide-left;
+  text-align: center;
+}
+
+.slide-left > p {
+  font-size: 65px;
+  text-align: center;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+@keyframes slide-left {
+  from {
+    margin-left: 100%;
+  }
+  to {
+    margin-left: 0;
+  }
+}
+
+.carousel-control-prev, .carousel-control-next {
+  opacity: 1 !important;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  background-color: #2490EB;
+  border-radius: 3px;
+  height: 2.5rem !important;
+  width: 2.5rem !important;
+}
+
+.read_more_btn {
+  background-color: #2490EB;
+  color: white;
+  border: none;
+  padding: 3%;
+  border-radius: 5px;
+  font-weight: 500;
+  margin-top: 4%;
+}
+
+.modal_info {
+  margin-top: 3%;
+  width: 59%;
+}
+
+.read_more_btn:hover {
+  background-color: #14457B;
+}
+
+.partners_part {
+  background-color: #14457B;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.products {
+  padding: 3%;
+  text-align: center;
+}
+
+.card-carousel-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0 40px;
+  color: #666a73;
+}
+
+.card-carousel {
+  display: flex;
+  justify-content: center;
+  width: 78%;
+}
+
+.card-carousel--overflow-container {
+  overflow: hidden;
+}
+
+.card-carousel--nav__left, .card-carousel--nav__right {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-top: 2px solid #42b883;
+  border-right: 2px solid #42b883;
+  cursor: pointer;
+  margin: 0 20px;
+  transition: transform 150ms linear;
+}
+
+.card-carousel--nav__left[disabled], .card-carousel--nav__right[disabled] {
+  opacity: 0.2;
+  border-color: black;
+}
+
+.card-carousel--nav__left {
+  transform: rotate(-135deg);
+}
+
+.card-carousel--nav__left:active {
+  transform: rotate(-135deg) scale(0.9);
+}
+
+.card-carousel--nav__right {
+  transform: rotate(45deg);
+}
+
+.card-carousel--nav__right:active {
+  transform: rotate(45deg) scale(0.9);
+}
+
+.card-carousel-cards {
+  display: flex;
+  transition: transform 150ms ease-out;
+  transform: translatex(0px);
+}
+
+.card-carousel-cards .card-carousel--card {
+  cursor: pointer;
+  box-shadow: 0 4px 15px 0 rgba(40, 44, 53, 0.06), 0 2px 2px 0 rgba(40, 44, 53, 0.08);
+  background-color: #fff;
+  border-radius: 4px;
+  z-index: 3;
+  margin: 0 10px 2px;
+}
+
+.card-carousel-cards .card-carousel--card:first-child {
+  margin-left: 0;
+}
+
+.card-carousel-cards .card-carousel--card:last-child {
+  margin-right: 0;
+}
+
+.card-carousel-img {
+  vertical-align: bottom;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  transition: opacity 150ms linear;
+  user-select: none;
+  width: 280px;
+}
+
+.card-carousel-cards .card-carousel--card img:hover {
+  opacity: 0.5;
+}
+
+.card-carousel-cards .card-carousel--card--footer {
+  padding: 10%;
+  background-color: #86BFEB;
+  border-top: 0;
+}
+
+.card-carousel-cards .card-carousel--card--footer p {
+  padding: 3px 0;
+  margin: 0 0 2px;
+  font-size: 19px;
+  font-weight: 500;
+  color: #FFFFFF;
+  user-select: none;
+}
+
+.card-carousel-cards .card-carousel--card--footer p.price {
+  font-size: 15px;
+  font-weight: 500;
+  padding: 4px;
+  margin-left: 4px;
+  color: #FFFFFF;
+}
+
+.partner_img{
+  width: 200px;
+}
+
+.products_heading {
+  color: #2490EB;
+  font-size: 40px;
+  padding-bottom: 2%;
+}
+
+.about {
+  background-color: #86BFEB;
+  padding: 2%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.icons_part {
+  display: flex;
+  gap: 20px;
+  color: #FFFFFF;
+  font-weight: 500;
+}
+
+.icons_part > div > p {
+  margin: 0;
+}
+
+.contact_us {
+  padding: 3%;
+  text-align: center;
+}
+
+.contact_us_heading {
+  color: #1C8DEA;
+  font-weight: 500;
+}
+
+.contact_us_text {
+  color: #949494;
+  font-weight: 500;
+  padding-top: 1%;
+  font-size: 20px;
+}
+
+.contact_us_info {
+  padding: 2%;
+  border: 2px solid #C7C7C7;
+  width: 35%;
+  border-radius: 15px;
+  margin: 4% auto 0;
+  display: flex;
+  gap: 30px;
+}
+
+.info_text {
+  text-align: start;
+  color: #3F3F3F;
+}
+
+.info_text_column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: 500;
+  padding-bottom: 7%;
+}
+
+.info_text > div > div > p {
+  margin: 0;
+}
+
+.know_more {
+  background-color: #2490EB;
+  color: #ffffff;
+  border: none;
+  padding: 0.7%;
+  border-radius: 5px;
+  font-weight: 500;
+  position: absolute;
+  margin-top: 0.5%;
+  width: 10%;
+}
+
+.quick_view {
+  width: 100%;
+  border-radius: unset;
+  background-color: #2490EB;
+  color: white;
+  padding: 3% 0;
+  transform: translate(0%, 0%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border: none;
+}
+
+.card-carousel--card:hover .quick_view {
+  opacity: 1;
+}
+
+.modal-dialog {
+  max-width: 50% !important;
+}
+
+.modal-footer {
+  display: none !important;
+}
+
+.modal_img {
+  width: 45%;
+}
+
+.modal_content {
+  display: flex;
+  gap: 20px;
+}
+
+.modal_img_name {
+  color: #2490EB;
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 10%;
+}
+
+.modal_price {
+  font-size: 22px;
+  color: #2490EB;
+  font-weight: 500;
+}
+
+.modal_desc {
+  color: #9EA7A8;
+  font-weight: 500;
+  margin-bottom: 4%;
+}
+
+.types {
+  color: #2490EB;
+  font-weight: 500;
+  font-size: 17px;
+}
+
+.modal_type {
+  color: #A2A2A2;
+}
+
+.full_details {
+  color: #575757;
+  margin-top: 3%;
+}
+
+.modal-body {
+  padding-bottom: 5% !important;
+  padding-top: 0 !important;
+}
+
+.modal-header {
+  border-bottom: unset !important;
+}
+
+.close {
+  border: none;
+  background-color: #2490EB;
+  color: white;
+  border-radius: 3px;
+  cursor: pointer;
+  width: 25px;
+  text-align: center;
+}
+
+.phone_icon {
+  height: 70px;
+  width: 70px;
+}
+
+@media only screen and (max-width: 1635px) {
+  .slide-left > p {
+    font-size: 40px;
+  }
+}
+
+@media only screen and (max-width: 1315px) {
+  .modal_content {
+    flex-direction: column;
+    overflow-y: auto;
+    max-height: 373px;
+  }
+
+  .modal_img {
+    width: 55%;
+    margin: 0 auto;
+  }
+
+  .modal_info {
+    width: 100%;
+    padding-left: 3%;
+  }
+
+  .modal_img_name {
+    margin-bottom: 4%;
+  }
+
+  .carousel-caption {
+    width: 50% !important;
+  }
+}
+
+@media only screen and (max-width: 1195px) {
+  .phone_icon {
+    height: 55px;
+    width: 55px;
+  }
+
+  .info_heading {
+    font-size: 22px;
+  }
+
+  .info_text_column {
+    font-size: 17px;
+  }
+}
+
+@media only screen and (max-width: 1065px) {
+  .partner_img {
+    width: 150px;
+  }
+}
+
+@media only screen and (max-width: 920px) {
+  .know_more {
+    width: 15%;
+  }
+
+  .contact_us_info {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .phone_icon {
+    height: 45px;
+    width: 45px;
+  }
+}
+
+@media only screen and (max-width: 885px) {
+  .contact_us_info {
+    padding: 2% 7%;
+    width: 100%;
+    flex-direction: unset;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .know_more {
+    width: auto;
+    padding: 1.5% 8%;
+  }
+
+  .contact_us {
+    padding: 7% 4%;
+  }
+
+  .img-fluid {
+    height: 550px !important;
+  }
+}
+
+@media only screen and (max-width: 815px) {
+  .modal-dialog {
+    max-width: 100% !important;
+  }
+
+  .modal_content {
+    max-height: 450px;
+  }
+}
+
+@media only screen and (max-width: 655px) {
+  .slide-left > p {
+    font-size: 30px;
+    margin-top: 8%;
+  }
+}
+
+@media only screen and (max-width: 495px) {
+  .slide-left > p {
+    font-size: 25px;
+    max-height: 20%;
+  }
+
+  .carousel-caption {
+    width: 70% !important;
+  }
+
+  .about{
+    row-gap: 20px;
+  }
+
+  .contact_us{
+    padding: 10% 4%;
+  }
+
+  .contact_us_heading{
+    font-size: 25px;
+  }
+
+  .contact_us_text{
+    font-size: 17px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .partner_img{
+    width: 130px;
+  }
+}
+</style>
