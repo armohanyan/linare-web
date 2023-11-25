@@ -211,7 +211,7 @@ export default {
       new AuthService().signIn(this.form)
                        .then(({ data }) => {
                          this.$store.dispatch('setCurrentUser', data.data.user);
-                         this.$router.push({ name: 'home' });
+                         this.$router.push({ name: 'adminDashboard' });
                        })
                        .catch((err) => {
                          const data = err.response.data;

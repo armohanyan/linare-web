@@ -1,16 +1,26 @@
 <template>
   <div id="app">
-     <header-component v-if="getCurrentUser"/>
+    <div v-if="getCurrentUser" class="d-flex">
+      <admin-header-component/>
+
+      <div class="admin-section pt-3 pl-3">
+        <router-view></router-view>
+      </div>
+    </div>
+
+    <div v-else>
       <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
-import HeaderComponent from './components/header/HeaderComponent.vue';
+
+import AdminHeaderComponent from "@/components/admin/AdminHeaderComponent.vue";
 
 export default {
   name: 'App',
-  components: { HeaderComponent },
+  components: { AdminHeaderComponent },
   computed: {
     getCurrentUser() {
       return this.$store.getters.getCurrentUser;

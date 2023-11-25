@@ -53,6 +53,31 @@
           </b-form-invalid-feedback>
         </b-form-group>
 
+        <!-- phone -->
+        <b-form-group
+            id="phone"
+            label="Phone"
+            label-for="phone"
+            class="mt-3"
+        >
+          <b-form-input
+              id="phone"
+              v-model="$v.form.phone.$model"
+              :state="validateState('phone')"
+              type="phone"
+              placeholder="phone"
+          ></b-form-input>
+
+          <b-form-invalid-feedback id="phone">
+            <span v-if="!$v.form.phone.required">
+              This is a required field.
+            </span>
+            <span v-else-if="!$v.form.phone.minLength">
+              Must be at least 9 characters
+            </span>
+          </b-form-invalid-feedback>
+        </b-form-group>
+
         <!-- email -->
         <b-form-group id="email" label="email" label-for="email" class="mt-3">
           <b-form-input
@@ -138,7 +163,7 @@
         <em class="font-weight-bold">Resend email token <span v-if="isDisableResendButton">{{
             currentTimer
           }}</span></em>
-        <p>
+        <p>>
           <b-button v-if="!isDisableResendButton" size="sm" variant="primary" @click="resendToken()">Resend</b-button>
           <b-button v-if="isDisableResendButton" disabled size="sm">Resend</b-button>
         </p>
@@ -163,6 +188,7 @@ export default {
         password: '',
         firstName: '',
         lastName: '',
+        phone: ''
       },
       isDisableResendButton: true,
       currentTimer: '',
@@ -196,6 +222,10 @@ export default {
       lastName: {
         required,
         minLength: minLength(3),
+      },
+      phone: {
+        required,
+        minLength: minLength(9),
       },
     },
   },
