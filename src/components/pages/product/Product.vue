@@ -7,63 +7,29 @@
         <div>
           <div class="slider">
             <div class="slides" :style="{ transform: 'translateX(' + -currentIndex * 100 + '%)' }">
-              <div v-for="(image, index) in images" :key="index" class="slide">
+              <div v-for="(image, index) in product.images" :key="index" class="slide">
                 <img :src="image" alt="Slide" style="width: 100%;">
               </div>
             </div>
           </div>
           <div class="thumbnail-container">
-            <img v-for="(image, index) in images" :key="index" :src="image" alt="Thumbnail" @click="changeSlide(index)"
+            <img v-for="(image, index) in product.images" :key="index" :src="image" alt="Thumbnail" @click="changeSlide(index)"
                  class="thumbnail" :class="{ active: index === currentIndex }">
           </div>
         </div>
         <div class="product_content_info">
-          <p class="product_img_name">N99 Face Mask</p>
-          <p class="product_desc">The N99 face mask is a high-performance respiratory protective device designed to
-            filter out 99% of airborne particles, including dust, pollutants, and microorganisms.</p>
-          <p class="product_price">Rs. 329.00</p>
+          <p class="product_img_name">{{ product.title }}</p>
+          <p class="product_desc">{{ product.shortDescription }}</p>
+          <p class="product_price">{{ product.price }}</p>
           <div style="display: flex; gap: 30px; align-items: center">
-            <p class="product_type_text">Type</p>
-            <p class="product_type">Personal Care</p>
+            <p v-for="(category, index) in product.categories"  :key="index"  class="product_type_text">{{ category  }}</p>
           </div>
         </div>
       </div>
       <div style="margin-top: 5%">
         <button class="desc_btn">Description</button>
-        <div class="desc_content">
-          <p>
-            Everyday life for humans includes the use of medications. In order to monitor their health and take
-            precautions, there are numerous products available. For the purpose of assessing a patient's health, certain
-            things are used in hospitals
-          </p>
-          <p class="desc_heading">
-            Blood Pressure Monitor:
-          </p>
-          <p>
-            One of the numerous measures that are crucial for keeping track of your health is your blood pressure. This
-            blood pressure monitor is fully automated; you only need to press the start button to receive accurate
-            readings in under a minute. Seniors may use the large LCD panel with ease because of its crisp reading
-            capabilities and easy readability for people with poor vision
-          </p>
-          <p class="desc_heading">
-            Features:
-          </p>
-          <ul>
-            <li>Fully Automatic</li>
-            <li>accurate and reliable</li>
-            <li>Get your readings on a large LCD screen.</li>
-            <li>turn off automatically after 30 seconds of inactivity.</li>
-          </ul>
-          <p class="desc_heading">
-            Benefits:
-          </p>
-          <ul>
-            <li>Rapid confirmation of the diagnosis of hypertension</li>
-            <li>Check your blood pressure outside of a hospital to see whether it changes.</li>
-            <li>Reduced medication use in the white coat effect</li>
-            <li>Improved adherence to drug therapy</li>
-            <li>improves the prediction of cardiovascular prognosis.</li>
-          </ul>
+        <div>
+          {{  product.description }}
         </div>
       </div>
     </div>
@@ -72,8 +38,13 @@
 
 <script>
 
+// import ProductsService from "../../../services/ProductsService";
+
+import ActivePageTemplate from "../active-page-template.vue";
+
 export default {
   name: "ProductPage",
+  components: {ActivePageTemplate},
 
   data() {
     return {
@@ -83,13 +54,37 @@ export default {
         'https://meds-theme.myshopify.com/cdn/shop/files/img22.2.jpg?v=1682492559&width=1946',
         'https://meds-theme.myshopify.com/cdn/shop/files/img22.3.jpg?v=1682492559&width=1946'
       ],
+      product: {
+        id: 0,
+        title: 'test',
+        shortDescription: 'test',
+        description: 'test',
+        images: [],
+        categories: ['category'],
+        price: ''
+      },
       currentIndex: 0,
     };
+  },
+  mounted() {
+    this.getProducts()
   },
   methods: {
     changeSlide(index) {
       this.currentIndex = index;
     },
+
+    async getProducts() {
+      const id = this.$route.params.id
+
+      if (id) {
+        // const data = await new ProductsService().getProduct(id)
+        // console.log(data)
+        // this.product = data.product || {}
+
+        this.product.images = this.images
+      }
+    }
   },
 }
 </script>

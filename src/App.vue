@@ -1,17 +1,18 @@
 <template>
   <div id="app">
     <HeaderComponent v-if="isRouteBelongsToUser" />
-    <admin-header-component v-if="!isRouteBelongsToUser" />
+    <admin-header-component  v-if="!isNotFound  && !isRouteBelongsToUser" />
 
     <back-to-top-button></back-to-top-button>
 
     <router-view></router-view>
 
-    <FooterComponent v-if="isRouteBelongsToUser" />
+    <FooterComponent v-if=" isRouteBelongsToUser" />
   </div>
 </template>
 
 <script>
+
 import BackToTopButton from "@/components/pages/backToTopButton/BackToTopButton.vue";
 import FooterComponent from "./components/pages/footer/FooterComponent.vue";
 import HeaderComponent from "./components/pages/header/HeaderComponent.vue";
@@ -25,8 +26,13 @@ export default {
       return this.$store.getters.getCurrentUser;
     },
 
+    isNotFound() {
+      return this.$route.name ==='NotFound'
+    },
+
     isRouteBelongsToUser() {
-      return !!(this.$route.meta && this.$route.meta.userRoute);
+      console.log(this.$route)
+      return !!( this.$route.name !=='NotFound' &&  this.$route.meta && this.$route.meta.userRoute);
 
     }
   },

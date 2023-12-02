@@ -29,8 +29,8 @@
       </b-carousel>
     </div>
 
-    <div class="partners_part">
-      <div v-for="(partner, index) in partners" :key="index">
+    <div  v-if="collaborators.length" class="partners_part">
+      <div v-for="(collaborator, index) in collaborators" :key="index">
         <img class="partner_img"  src="../../../assets/logos/logo1.png" alt="Logo"/>
       </div>
     </div>
@@ -43,26 +43,26 @@
         <div class="card-carousel">
           <div class="card-carousel--overflow-container">
             <div class="card-carousel-cards" :style="{ transform: 'translateX(' + currentOffset + 'px)'}">
-              <div class="card-carousel--card" v-for="item in items" :key="item.id">
-                <img class="card-carousel-img" :src="item.image" alt=""/>
+              <div class="card-carousel--card" v-for="product in products" :key="product.id">
+                <img class="card-carousel-img" :src="product.images[0]" alt=""/>
 
-                <button v-b-modal="'modal-center-' + item.id" class="quick_view">Quick View</button>
+                <button v-b-modal="'modal-center-' + product.id" class="quick_view">Quick View</button>
                 <div class="card-carousel--card--footer">
-                  <p>{{ item.name }}</p>
-                  <p class="price" v-for="(price, index) in item.price" :key="price" :class="index">{{ price }}</p>
+                  <p>{{ product.title }}</p>
+                  <p class="price">{{ product.price }}</p>
                 </div>
 
-                <b-modal :id="'modal-center-' + item.id">
+                <b-modal :id="'modal-center-' + product.id">
                   <div class="modal_content">
-                    <img class="modal_img" :src="item.image" alt=""/>
+                    <img class="modal_img" :src="product.images[0]" alt=""/>
                     <div class="modal_info">
-                      <p class="modal_img_name">{{ item.name }}</p>
-                      <p class="modal_desc">{{ item.desc }}</p>
-                      <p class="modal_price" v-for="(price) in item.price" :key="price">{{ price }}</p>
+                      <p class="modal_img_name">{{ product.title }}</p>
+                      <p class="modal_desc">{{ product.shortDescription }}</p>
+                      <p class="modal_price">{{ product.price }}</p>
 
                       <div style="display: flex; gap: 30px; align-items: center">
-                        <p class="types">Type</p>
-                        <p class="modal_type">{{ item.type }}</p>
+                        <p class="types">Categories</p>
+                        <p  v-for="(category, index) in product.categories" :key="index" class="modal_type">{{ product.category }}</p>
                       </div>
                       <p class="full_details">View full details ></p>
                     </div>
@@ -113,8 +113,8 @@
               <h2 class="info_heading">Have Any Doubts?</h2>
             </div>
             <div>
-              <p>This Number Is Toll Free</p>
-              <p>0000 - 1234 - 56789</p>
+              <p>{{ contacts.phone_1 }}</p>
+              <p>{{ contacts.phone_2 }}</p>
             </div>
           </div>
           <button class="know_more">Know More</button>
@@ -125,6 +125,9 @@
   </div>
 </template>
 <script>
+
+import ContactsService from "../../../services/ContactsService";
+import CollaboratorsService from "../../../services/CollaboratorsService";
 
 const introCarousel = [
   {
@@ -164,30 +167,38 @@ export default {
       windowSize: 3,
       paginationFactor: 220,
       partners,
-      items: [
+      collaborators: [],
+      products: [
         {
           id: 1,
-          name: 'N99 Face Mask',
-          image: 'https://meds-theme.myshopify.com/cdn/shop/collections/shop-26.jpg?v=1591863371&width=535',
-          price: ["Rs. 329.00"],
-          desc: '\n' +
-              'The N99 face mask is a high-performance respiratory protective device designed to filter out 99% of airborne particles, including dust, pollutants, and microorganisms.',
-          type: "Personal Care"
+          title: 'N99 Face Mask',
+          images: ['https://meds-theme.myshopify.com/cdn/shop/collections/shop-26.jpg?v=1591863371&width=535'],
+          price: "Rs. 329.00",
+          shortDescription: 'The N99 face mask is a high-performance respiratory protective device designed to filter out 99% of airborne particles, including dust, pollutants, and microorganisms.',
+          categories: ["Personal Care"]
         },
         {
-          id: 2,
-          name: 'Ear Thermometer',
-          image: 'https://meds-theme.myshopify.com/cdn/shop/products/shop-11_b1ce8946-cef2-41db-a40e-d5bd87ba611a.jpg?v=1590486085&width=535',
-          price: ["Rs. 6.98"],
-          desc: "The ear thermometer is a compact and user-friendly medical instrument that provides a quick and non-invasive way to measure body temperature.",
-          type: "Health Care"
-        }
+          id: 1,
+          title: 'N99 Face Mask',
+          images: ['https://meds-theme.myshopify.com/cdn/shop/collections/shop-26.jpg?v=1591863371&width=535'],
+          price: "Rs. 329.00",
+          shortDescription: 'The N99 face mask is a high-performance respiratory protective device designed to filter out 99% of airborne particles, including dust, pollutants, and microorganisms.',
+          categories: ["Personal Care"]
+        },
       ],
-      introCarousel
+      introCarousel,
+      contacts: {
+        phone_1: '111111111',
+        phone_2: '222222222',
+        email: 'test@gmail.com',
+        address: 'Yerevan',
+        facebook: 'facebook',
+        instagram: 'instagram',
+      }
     }
   },
-  computed: {
 
+  computed: {
     atEndOfList() {
       return this.currentOffset <= (this.paginationFactor * -1) * (this.items.length - this.windowSize);
     },
@@ -197,15 +208,33 @@ export default {
     }
   },
 
+  mounted() {
+    this.getProducts()
+  },
+
   methods: {
     moveCarousel(direction) {
-      console.log(direction)
       if (direction === 1 && !this.atEndOfList) {
         this.currentOffset -= this.paginationFactor;
       } else if (direction === -1 && !this.atHeadOfList) {
         this.currentOffset += this.paginationFactor;
       }
     },
+
+    async getProducts() {
+      // const products = await new ProductsService().get()
+      // this.products = products.data.products
+    },
+
+    async getContacts() {
+      const contacts = await new ContactsService().get()
+      this.contacts = contacts.data.contacts
+    },
+
+    async getCollaborators() {
+      const collaborators = await new CollaboratorsService().get()
+      this.collaborators = collaborators.data.collaborators
+    }
   }
 }
 </script>

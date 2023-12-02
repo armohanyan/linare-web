@@ -14,24 +14,22 @@
             <img class="contact_form_icon" src="../../../assets/contact/contact_phone.png" alt="">
             <div>
               <p class="contact_content_heading">Phone</p>
-              <p class="contact_content_text">Toll-Free: 0000 - 123 - 456789</p>
-              <p class="contact_content_text">Fax: 0000 - 123 - 456789</p>
+              <p class="contact_content_text">{{ this.contacts.phone_1 }}</p>
+              <p class="contact_content_text">{{ this.contacts.phone_2 }}</p>
             </div>
           </div>
           <div class="contact_content_icon">
             <img class="contact_form_icon" src="../../../assets/contact/contact_email.png" alt="">
             <div>
               <p class="contact_content_heading">Email</p>
-              <p class="contact_content_text">mail@linare.com</p>
-              <p class="contact_content_text">support@linare.com</p>
+              <p class="contact_content_text">{{ this.contacts.email }}</p>
             </div>
           </div>
           <div class="contact_content_icon">
             <img class="contact_form_icon" src="../../../assets/contact/contact_address.png" alt="">
             <div>
               <p class="contact_content_heading">Address</p>
-              <p class="contact_content_text">No: 58 A, East Madison Street</p>
-              <p class="contact_content_text">Baltimore, MD, USA 4508</p>
+              <p class="contact_content_text">{{ this.contacts.address }}</p>
             </div>
           </div>
         </div>
@@ -39,12 +37,12 @@
         <div class="contact_form">
           <p class="contact_form_heading">Contact Form</p>
           <div class="forms">
-            <input class="contact_form_inputs" placeholder="Name"/>
-            <input class="contact_form_inputs" placeholder="Email"/>
-            <input class="contact_form_inputs" placeholder="Phone Number"/>
-            <textarea style="height: 280px" class="contact_form_inputs" placeholder="Comment"/>
+            <input class="contact_form_inputs" placeholder="Name" disabled/>
+            <input class="contact_form_inputs" placeholder="Email" disabled/>
+            <input class="contact_form_inputs" placeholder="Phone Number" disabled/>
+            <textarea style="height: 280px" class="contact_form_inputs" placeholder="Comment" disabled/>
           </div>
-          <button class="contact_send_btn">Send</button>
+          <button class="contact_send_btn" disabled>Send</button>
         </div>
       </div>
     </div>
@@ -53,13 +51,37 @@
 
 <script>
 import ActivePageTemplate from "@/components/pages/active-page-template.vue";
+import ContactsService from "../../../services/ContactsService";
 
 export default {
   name: "ContactPage",
-  components: {ActivePageTemplate},
+  components: { ActivePageTemplate },
+
+  data() {
+    return {
+      contacts: {
+        phone_1: '111111111',
+        phone_2: '222222222',
+        email: 'test@gmail.com',
+        address: 'Yerevan',
+        facebook: 'facebook',
+        instagram: 'instagram',
+      }
+    }
+  },
+
+   mounted() {
+     this.getContacts()
+   },
+
+   methods: {
+    async getContacts() {
+      const contacts = await new ContactsService().get()
+      this.contacts = contacts.data.contacts
+    }
+  }
 }
 </script>
-
 <style>
 .map{
   width: 100%;

@@ -25,7 +25,6 @@ class AccountService {
 
   get() {
     return new Promise((resolve, reject) => {
-      console.log(url, 'url')
       axios.get(`${url}current`, {
         withCredentials: true
       })

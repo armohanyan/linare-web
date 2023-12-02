@@ -12,8 +12,8 @@ import Contact from "@/components/admin/pages/Contact.vue";
 import Testimonials from "@/components/admin/pages/Testimonials.vue";
 import LandingPage from "../components/pages/landing/LandingPage.vue";
 import AboutPage from "../components/pages/about-us/About.vue";
-import ContactPage from "../components/pages/contact-us/Contacts.vue";
-import AllProductsPage from "../components/pages/all-products/Products.vue";
+import ContactPage from "../components/pages/contacts/Contacts.vue";
+import AllProductsPage from "../components/pages/products/Products.vue";
 import ProductPage from "../components/pages/product/Product.vue";
 
 const routes = [
@@ -153,7 +153,7 @@ const routes = [
   },
 
   {
-    path: '/all-products',
+    path: '/products',
     name: 'products',
     component: AllProductsPage,
     meta: {
@@ -163,7 +163,7 @@ const routes = [
   },
 
   {
-    path: '/product',
+    path: `/product/:id`,
     name: 'product',
     component: ProductPage,
     meta: {

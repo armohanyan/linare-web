@@ -5,13 +5,14 @@
         <img style="width: 100px" src="../../../assets/logos/med_logo.png" alt=""/>
         <div class="contact_social_icons">
           <div class="contact_icons">
-            <img src="../../../assets/social/facebook.png" alt=""/>
+            <a :href="contacts.facebook" target="_blank">
+              <img src="../../../assets/social/facebook.png" alt=""/>
+            </a>
           </div>
           <div class="contact_icons">
-            <img src="../../../assets/social/instagram.png" alt=""/>
-          </div>
-          <div class="contact_icons">
-            <img src="../../../assets/social/telegram.png" alt=""/>
+            <a :href="contacts.instagram" target="_blank">
+              <img src="../../../assets/social/instagram.png" alt=""/>
+            </a>
           </div>
         </div>
       </div>
@@ -19,15 +20,19 @@
         <h3>Contact Us</h3>
         <div class="text_icons">
           <img class="contact_icon" src="../../../assets/contact/contact_phone.png" alt=""/>
-          <span>+123 - 456 - 789</span>
+          <span>{{ contacts.phone_1 }}</span>
+        </div>
+        <div class="text_icons">
+          <img class="contact_icon" src="../../../assets/contact/contact_phone.png" alt=""/>
+          <span>{{ contacts.phone_2 }}</span>
         </div>
         <div class="text_icons">
           <img src="../../../assets/contact/contact_email.png" alt=""/>
-          <span>info@linare.com</span>
+          <span>{{ contacts.email }}</span>
         </div>
         <div class="text_icons">
           <img class="contact_icon" src="../../../assets/contact/contact_location.png" alt=""/>
-          <span>Armenia, Yerevan</span>
+          <span>{{ contacts.address }}</span>
         </div>
       </div>
     </div>
@@ -37,8 +42,33 @@
 </template>
 
 <script>
+import ContactsService from "../../../services/ContactsService";
+
 export default {
-  name: "FooterComponent"
+  name: "FooterComponent",
+  data() {
+    return {
+      contacts: {
+        phone_1: '111111111',
+        phone_2: '222222222',
+        email: 'test@gmail.com',
+        address: 'Yerevan',
+        facebook: 'https://www.facebook.com/',
+        instagram: 'instagram',
+      }
+    }
+  },
+
+  mounted() {
+    this.getContacts()
+  },
+
+  methods: {
+    async getContacts() {
+      const contacts = await new ContactsService().get()
+      this.contacts = contacts.data.contacts
+    }
+  }
 }
 </script>
 

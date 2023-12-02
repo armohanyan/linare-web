@@ -35,7 +35,7 @@ const  tabs = [
   },
   {
     label: 'PRODUCTS',
-    path: '/all-products'
+    path: '/products'
   },
   {
     label: 'ABOUT US',

@@ -65,30 +65,19 @@
         </div>
       </div>
     </div>
-    <div class="testimonials">
+    <div v-if="testimonials.length" class="testimonials">
       <p class="testimonials_heading">Our Clients Happy To Say About Us</p>
       <div class="testimonials_content">
-        <div class="testimonials_desc">
-          <p>I recently underwent a diagnostic procedure using Linare's medical machine, and I couldn't be
-            more impressed. The process was quick, comfortable, and the results were delivered promptly. Knowing that
-            advanced technology like this is available in healthcare is reassuring and gives me confidence in the
-            medical care I receive.</p>
-          <h5>Dr. John Martin</h5>
-        </div>
-        <div class="testimonials_desc">
-          <p>Integrating Linare's medical machine into our facility was seamless. The team provided
-            excellent support throughout the process, ensuring that our staff was trained and comfortable with the
-            technology. The efficiency and accuracy of the machine have significantly enhanced our patient care.</p>
-          <h5>Dr. Emily Johnson</h5>
+        <div v-for="(testimonial, index) in testimonials" :key="index" class="testimonials_desc">
+          <p>{{ testimonial.comment }}</p>
+          <h5>{{ testimonial.position }}</h5>
         </div>
       </div>
     </div>
-    <div class="partners">
-      <img class="about_partner_img" src="../../../assets/logos/logo1.png" alt=""/>
-      <img class="about_partner_img" src="../../../assets/logos/logo2.png" alt=""/>
-      <img class="about_partner_img" src="../../../assets/logos/logo3.png" alt=""/>
-      <img class="about_partner_img" src="../../../assets/logos/logo4.png" alt=""/>
-      <img class="about_partner_img" src="../../../assets/logos/logo5.png" alt=""/>
+    <div  v-if="collaborators.length" class="partners">
+      <div v-for="(collaborator, index) in collaborators" :key="index">
+        <img class="about_partner_img" src="../../../assets/logos/logo1.png" alt=""/>
+      </div>
     </div>
   </div>
 </template>
@@ -96,10 +85,35 @@
 <script>
 
 import ActivePageTemplate from "@/components/pages/active-page-template.vue";
+import TestimonialsService from "../../../services/TestimonialsService";
+import CollaboratorsService from "../../../services/CollaboratorsService";
 
 export default {
   name: "AboutPage",
-  components: {ActivePageTemplate}
+  components: {ActivePageTemplate},
+  data() {
+    return {
+      testimonials: [],
+      collaborators: []
+    }
+  },
+
+  mounted() {
+    this.getTestimonials()
+    this.getCollaborators()
+  },
+
+  methods: {
+    async getTestimonials() {
+      const testimonials = await new TestimonialsService().get()
+      this.testimonials = testimonials.data.testimonials
+    },
+
+    async getCollaborators() {
+      const collaborators = await new CollaboratorsService().get()
+      this.collaborators = collaborators.data.collaborators
+    }
+  }
 }
 </script>
 
