@@ -5,16 +5,16 @@ import VerifyEmail from '@/components/authentication/VerifyEmail';
 import ResetPassword from '@/components/authentication/ResetPassword';
 import Dashboard from "@/components/admin/Dashboard.vue";
 import NotFound from "@/app/NotFound.vue";
-import Categories from "@/components/admin/pages/Categories.vue";
-import Products from "@/components/admin/pages/Products.vue";
-import About from "@/components/admin/pages/About.vue";
-import Contact from "@/components/admin/pages/Contact.vue";
-import Testimonials from "@/components/admin/pages/Testimonials.vue";
 import LandingPage from "../components/pages/landing/LandingPage.vue";
 import AboutPage from "../components/pages/about-us/About.vue";
 import ContactPage from "../components/pages/contacts/Contacts.vue";
 import AllProductsPage from "../components/pages/products/Products.vue";
 import ProductPage from "../components/pages/product/Product.vue";
+import Products from "../components/admin/pages/Products.vue";
+import About from "../components/pages/about-us/About.vue";
+import Categories from "../components/admin/pages/Categories.vue";
+import Testimonials from "../components/admin/pages/Testimonials.vue";
+import Contacts from "../components/admin/pages/Contacts.vue";
 
 const routes = [
   {
@@ -96,7 +96,7 @@ const routes = [
   },
   {
     path: '/admin/dashboard/contact',
-    component: Contact,
+    component: Contacts,
     name: 'adminDashboardContact',
     meta: {
       requiresAuth: true,
