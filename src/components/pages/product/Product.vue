@@ -9,7 +9,7 @@
             <div class="slides" :style="{ transform: 'translateX(' + -currentIndex * 100 + '%)' }">
               <div v-for="(image, index) in product.images" :key="index" class="slide">
                 <img :src="image" alt="Slide" style="width: 100%;">
-              </div>
+                </div>
             </div>
           </div>
           <div class="thumbnail-container">
@@ -22,7 +22,7 @@
           <p class="product_desc">{{ product.shortDescription }}</p>
           <p class="product_price">{{ product.price }}</p>
           <div style="display: flex; gap: 30px; align-items: center">
-            <p v-for="(category, index) in product.categories"  :key="index"  class="product_type_text">{{ category  }}</p>
+            <p v-for="(category, index) in product.categories"  :key="index"  class="product_type_text">{{ category.name  }}</p>
           </div>
         </div>
       </div>
@@ -41,6 +41,7 @@
 // import ProductsService from "../../../services/ProductsService";
 
 import ActivePageTemplate from "../active-page-template.vue";
+import ProductsService from "../../../services/ProductsService";
 
 export default {
   name: "ProductPage",
@@ -78,12 +79,12 @@ export default {
       const id = this.$route.params.id
 
       if (id) {
-        // const data = await new ProductsService().getProduct(id)
-        // console.log(data)
-        // this.product = data.product || {}
-
-        this.product.images = this.images
+        const data = await new ProductsService().getProduct(id)
+        console.log(data)
+        this.product = data.data || {}
       }
+
+      console.log(this.products)
     }
   },
 }

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'api/products';
+const url = process.env.VUE_APP_SERVER_URL + '/products';
 
 class ProductsService {
 

@@ -62,7 +62,7 @@
 
                       <div style="display: flex; gap: 30px; align-items: center">
                         <p class="types">Categories</p>
-                        <p  v-for="(category, index) in product.categories" :key="index" class="modal_type">{{ product.category }}</p>
+                        <p  v-for="(category, index) in product.categories" :key="index" class="modal_type">{{ category.name }}</p>
                       </div>
                       <p class="full_details">View full details ></p>
                     </div>
@@ -128,6 +128,7 @@
 
 import ContactsService from "../../../services/ContactsService";
 import CollaboratorsService from "../../../services/CollaboratorsService";
+import ProductsService from "../../../services/ProductsService";
 
 const introCarousel = [
   {
@@ -209,6 +210,8 @@ export default {
   },
 
   mounted() {
+    this.getContacts()
+    this.getCollaborators()
     this.getProducts()
   },
 
@@ -222,8 +225,8 @@ export default {
     },
 
     async getProducts() {
-      // const products = await new ProductsService().get()
-      // this.products = products.data.products
+      const products = await new ProductsService().get()
+      this.products = products.data.products
     },
 
     async getContacts() {

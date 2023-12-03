@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'api/contacts';
+const url = process.env.VUE_APP_SERVER_URL + '/contacts';
 
 class ContactsService {
 
@@ -53,6 +53,15 @@ class ContactsService {
           .catch(err => reject(err));
     });
   }
+
+  customerSendEmail(body) {
+        return new Promise((resolve, reject) => {
+            axios.post(url + '/send-email', body, {withCredentials: true})
+                .then(res => resolve(res.data))
+                .catch(err => reject(err));
+        });
+    }
+
 }
 
 export default ContactsService;

@@ -37,12 +37,12 @@
         <div class="contact_form">
           <p class="contact_form_heading">Contact Form</p>
           <div class="forms">
-            <input class="contact_form_inputs" placeholder="Name" disabled/>
-            <input class="contact_form_inputs" placeholder="Email" disabled/>
-            <input class="contact_form_inputs" placeholder="Phone Number" disabled/>
-            <textarea style="height: 280px" class="contact_form_inputs" placeholder="Comment" disabled/>
+            <input  v-model="customerMessage.name" type="text" class="contact_form_inputs" placeholder="Name"/>
+            <input v-model="customerMessage.email" type="email" class="contact_form_inputs" placeholder="Email" required/>
+            <input v-model="customerMessage.phone" type="text" class="contact_form_inputs" placeholder="Phone Number"/>
+            <textarea  v-model="customerMessage.comment" style="height: 280px" class="contact_form_inputs" placeholder="Comment" required/>
           </div>
-          <button class="contact_send_btn" disabled>Send</button>
+          <button class="contact_send_btn" @click="onClickSendEmail">Send</button>
         </div>
       </div>
     </div>
@@ -66,6 +66,13 @@ export default {
         address: 'Yerevan',
         facebook: 'facebook',
         instagram: 'instagram',
+      },
+
+      customerMessage: {
+        name: '',
+        email: '',
+        phone: '',
+        comment: ''
       }
     }
   },
@@ -78,7 +85,20 @@ export default {
     async getContacts() {
       const contacts = await new ContactsService().get()
       this.contacts = contacts.data.contacts
-    }
+    },
+
+     onClickSendEmail() {
+        if (!(this.customerMessage.email || this.customerMessage.comment)) return
+
+        new ContactsService().customerSendEmail(this.customerMessage)
+
+       this.customerMessage = {
+         name: '',
+         email: '',
+         phone: '',
+         comment: ''
+       }
+     }
   }
 }
 </script>

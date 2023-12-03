@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'api/testimonials';
+const url = process.env.VUE_APP_SERVER_URL + '/testimonials';
 
 class TestimonialsService {
 

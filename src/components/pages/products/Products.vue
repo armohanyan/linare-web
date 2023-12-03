@@ -34,6 +34,7 @@
 
 <script>
 import ActivePageTemplate from "@/components/pages/active-page-template.vue";
+import ProductsService from "../../../services/ProductsService";
 
 export default {
   name: "AllProductsPage",
@@ -63,14 +64,19 @@ export default {
     }
   },
 
+
+  mounted() {
+    this.getProducts()
+  },
+
   methods: {
     toggleGrid(gridType) {
       this.currentGridClass = gridType;
     },
 
     async getProducts() {
-      // const products = await new ProductsService().get()
-      // this.products = products.data.products
+      const products = await new ProductsService().get()
+      this.products = products.data.products
     }
   },
 

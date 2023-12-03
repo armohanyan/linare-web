@@ -230,10 +230,12 @@ export default {
   font-size: 15px;
   padding: 3%;
   color: #5A6268;
+  margin-top: 5px;
 }
 
 .testimonials_content {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   margin-top: 3%;
 }
