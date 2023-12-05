@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = process.env.VUE_APP_SERVER_URL + '/collaborators';
+const url = process.env.VUE_APP_SERVER_URL + '/categories';
 
 class CategoriesService {
 

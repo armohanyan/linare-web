@@ -5,13 +5,15 @@
 
     <div class="product_content">
       <div class="grid_content">
-        <div style="width: 13%;">
-          <b-dropdown id="dropdown-1" text="Sort by" class="m-md-2">
-            <b-dropdown-item style="border-bottom: 1px solid #9A9A9A;">Price, low to high</b-dropdown-item>
-            <b-dropdown-item style="border-bottom: 1px solid #9A9A9A;">Price, high to low</b-dropdown-item>
-            <b-dropdown-item style="border-bottom: 1px solid #9A9A9A;">Alphabetically, A-Z</b-dropdown-item>
-            <b-dropdown-item>Alphabetically, Z-A</b-dropdown-item>
-          </b-dropdown>
+        <div style="width: 28%;">
+          <div class="d-flex justify-content-between">
+            <div>
+              Filter by category
+            </div>
+            <div>
+              <categories-tree-select @onChangeValue="onChangeCategory" />
+            </div>
+          </div>
         </div>
         <div class="grid_part">
           <button class="grids" @click="toggleGrid('two-cards-per-row')"><img src="@/assets/grid/2_vertical_grid.png" alt=""/></button>
@@ -27,6 +29,10 @@
             <p class="product-price">{{ product.price }}</p>
           </div>
         </div>
+
+        <div v-if="!products.length">
+          Products not found
+        </div>
       </div>
     </div>
   </div>
@@ -35,10 +41,11 @@
 <script>
 import ActivePageTemplate from "@/components/pages/active-page-template.vue";
 import ProductsService from "../../../services/ProductsService";
+import CategoriesTreeSelect from "../../categories-tree-select.vue";
 
 export default {
   name: "AllProductsPage",
-  components: {ActivePageTemplate},
+  components: {CategoriesTreeSelect, ActivePageTemplate},
 
   data() {
     return {
@@ -77,6 +84,19 @@ export default {
     async getProducts() {
       const products = await new ProductsService().get()
       this.products = products.data.products
+    },
+
+    async getProductsFiltertedByCategory(categoryName) {
+      const products = await new ProductsService().get({ category: categoryName })
+      this.products = products.data.products
+    },
+
+    onChangeCategory(value ) {
+      if (value) {
+        this.getProductsFiltertedByCategory(value)
+      } else {
+        this.getProducts()
+      }
     }
   },
 

@@ -4,9 +4,9 @@ const url = process.env.VUE_APP_SERVER_URL + '/products';
 
 class ProductsService {
 
-  get() {
+  get(params) {
     return new Promise((resolve, reject) => {
-      axios.get(url)
+      axios.get(url, { params: params })
           .then(res => resolve(res.data))
           .catch(err => reject(err));
     });
