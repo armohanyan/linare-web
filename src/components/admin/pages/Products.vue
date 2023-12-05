@@ -74,10 +74,10 @@ export default {
         boxTwo: ''
       },
       items: [
-        {Name: 2, Price: 'Two', Description: 'Moose', Action: ''},
-        {Name: 1, Price: 'Three', Description: 'Dog', Action: ''},
-        {Name: 3, Price: 'Four', Description: 'Cat',  Action: ''},
-        {Name: 4, Price: 'One', Description: 'Mouse', Action: ''}
+        {Name: "N99 Face Mask", Price: 'Rs. 329.00', Description: 'N99 Face Mask', Action: ''},
+        {Name: "Ear Thermometer", Price: 'Rs. 6.98', Description: 'Ear Thermometer', Action: ''},
+        {Name: "Velit PPE Kit", Price: 'Rs.167.00', Description: 'Velit PPE Kit',  Action: ''},
+        {Name: "Wet Wipes", Price: 'Rs. 90.87', Description: 'Wet Wipes', Action: ''}
       ],
       fields: [
         {key: 'Name', sortable: true},

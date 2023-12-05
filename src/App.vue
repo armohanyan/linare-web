@@ -5,7 +5,7 @@
 
     <back-to-top-button></back-to-top-button>
 
-    <router-view></router-view>
+    <router-view v-if="isRouteBelongsToUser" ></router-view>
 
     <FooterComponent v-if=" isRouteBelongsToUser" />
   </div>

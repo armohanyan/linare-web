@@ -15,9 +15,6 @@ class TestimonialsService {
   post(formData) {
     return new Promise((resolve, reject) => {
       axios.post(url, formData,{
-        headers: {
-          "Content-Type": "multipart/form-data"
-        },
         withCredentials: true
       },
         { withCredentials: true })
@@ -32,9 +29,6 @@ class TestimonialsService {
         url,
         formData,
         {
-          headers: {
-            "Content-Type": "multipart/form-data"
-          },
           withCredentials: true
         }
       )
@@ -45,7 +39,7 @@ class TestimonialsService {
 
   delete(id) {
     return new Promise((resolve, reject) => {
-      axios.delete(url, {
+      axios.delete(url  + '/' + id, {
         data: { id },
         withCredentials: true
       })

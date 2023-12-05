@@ -17,21 +17,14 @@ export default {
   data() {
     return {
       value: null,
-      options: [
-        {
-          key: 'test',
-          name: 'test'
-        },
-        {
-          key: 'test 1',
-          name: 'test 1',
-        }
-      ],
+      options: [],
     }
   },
   watch: {
     value: function () {
-      this.$emit('onChangeValue', this.value)
+      const category = this.options.find(el => el.name === this.value)
+
+      this.$emit('onChangeValue', category)
     }
   },
 
@@ -42,9 +35,12 @@ export default {
     normalizer(node) {
       return {
         id: node.key,
-        label: node.name,
-        children: node.subOptions,
+        label: node.name
       }
+    },
+
+    chooseCategory(val) {
+      this.value = val
     },
 
     async getCategories() {
@@ -53,7 +49,8 @@ export default {
       this.options = data.map(el => {
         return {
           key: el.name,
-          name: el.name
+          name: el.name,
+          data: el
         }
       })
     }

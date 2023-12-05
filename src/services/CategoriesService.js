@@ -12,12 +12,9 @@ class CategoriesService {
     });
   }
 
-  post(formData) {
+  post(body) {
     return new Promise((resolve, reject) => {
-      axios.post(url, formData,{
-            headers: {
-              "Content-Type": "multipart/form-data"
-            },
+      axios.post(url, body,{
             withCredentials: true
           },
           { withCredentials: true })
@@ -26,15 +23,12 @@ class CategoriesService {
     });
   }
 
-  put(formData) {
+  put(body) {
     return new Promise((resolve, reject) => {
       axios.put(
-          url,
-          formData,
+          url + '/' + body.id ,
+          body,
           {
-            headers: {
-              "Content-Type": "multipart/form-data"
-            },
             withCredentials: true
           }
       )
@@ -45,8 +39,7 @@ class CategoriesService {
 
   delete(id) {
     return new Promise((resolve, reject) => {
-      axios.delete(url, {
-        data: { id },
+      axios.delete(url + '/' + id, {
         withCredentials: true
       })
           .then(res => resolve(res.data))

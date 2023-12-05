@@ -26,15 +26,12 @@ class ContactsService {
     });
   }
 
-  put(formData) {
+  put(body) {
     return new Promise((resolve, reject) => {
       axios.put(
           url,
-          formData,
+          body,
           {
-            headers: {
-              "Content-Type": "multipart/form-data"
-            },
             withCredentials: true
           }
       )

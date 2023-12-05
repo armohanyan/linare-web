@@ -93,7 +93,7 @@ export default {
 
     onChangeCategory(value ) {
       if (value) {
-        this.getProductsFiltertedByCategory(value)
+        this.getProductsFiltertedByCategory(value.name)
       } else {
         this.getProducts()
       }
