@@ -24,9 +24,6 @@ class ProductsService {
   post(formData) {
     return new Promise((resolve, reject) => {
       axios.post(url, formData,{
-            headers: {
-              "Content-Type": "multipart/form-data"
-            },
             withCredentials: true
           },
           { withCredentials: true })
@@ -38,12 +35,9 @@ class ProductsService {
   put(formData) {
     return new Promise((resolve, reject) => {
       axios.put(
-          url,
+          url + '/' + formData.id,
           formData,
           {
-            headers: {
-              "Content-Type": "multipart/form-data"
-            },
             withCredentials: true
           }
       )
@@ -54,8 +48,7 @@ class ProductsService {
 
   delete(id) {
     return new Promise((resolve, reject) => {
-      axios.delete(url, {
-        data: { id },
+      axios.delete(url + '/' + id, {
         withCredentials: true
       })
           .then(res => resolve(res.data))

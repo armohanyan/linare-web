@@ -97,7 +97,7 @@ export default {
     async updateTestimonial() {
       if (!this.testimonial.id) return
 
-      if (this.testimonial.name) return
+      if (!this.testimonial.name) return
 
       await new TestimonialsService().put(this.testimonial)
 

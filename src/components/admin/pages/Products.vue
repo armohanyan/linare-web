@@ -1,95 +1,149 @@
 <template>
-<div class="admin_product_page">
-  <div class="admin_add_delete_products">
-    <tree-select-component/>
-    <b-button @click="showMsgBoxTwo" variant="danger">Delete</b-button>
-    <b-button v-b-modal.modal-center variant="primary">Add Product</b-button>
-    <div class="product_modal">
-      <b-modal style="width: 40% !important;" id="modal-center" centered title="Add Product">
-        <div class="create_products_modal">
-          <div class="create_products">
-            <label>Product Name</label>
-            <input type="text" class="product_inputs "/>
-          </div>
-          <div class="create_products">
-            <label>Product Price</label>
-            <input type="text" class="product_inputs"/>
-          </div>
-          <div class="create_products">
-            <label>Product Description</label>
-            <input type="text" class="product_inputs"/>
+<div>
+    <div>
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="card admin_products_content">
+            <div class="card-body admin_products">
+
+              <input type="file" class="form-control mb-3">
+
+              <input v-model="product.title" class="form-control mb-3" type="text" placeholder="Name">
+
+              <input v-model="product.price" class="form-control mb-3" type="text" placeholder="Price">
+
+              <input v-model="product.shortDescription" class="form-control mb-3" type="text" placeholder="Short Description">
+
+              <div class="form-group products_text">
+                <textarea v-model="product.description" class="form-control testimonial_message" placeholder="Description"></textarea>
+              </div>
+
+              <div class="mt-2">
+                Select Categories
+
+                <treeselect  v-model="product.categories"  :multiple="true" :options="categoriesOptions"/>
+              </div>
+
+              <div class="d-flex justify-content-end mt-3">
+                <button v-if="!product.id" class="btn btn-primary add_testimonials" @click="createProduct()">Add Product</button>
+                <button v-if="product.id" class="btn btn-primary add_testimonials" @click="updateProduct()">Update Product</button>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-end">
+            </div>
           </div>
         </div>
-      </b-modal>
-    </div>
-  </div>
-  <b-table
-      id="table-transition-example"
-      :items="items"
-      :fields="fields"
-      striped
-      small
-      primary-key="Name"
-      :tbody-transition-props="transProps"
-  >
-    <template v-slot:cell(Action)="data">
-      <img v-b-modal="'modal-center-' + data.item.Name" v-if="data.value === ''" src="@/assets/admin_panel/edit.png"
-           alt="Icon" width="20" height="20"
-           style="cursor: pointer; margin-right: 10%"/>
-      <img @click="showMsgBoxTwo" v-if="data.value === ''" src="@/assets/admin_panel/delete.png"
-           alt="Icon" width="20" height="20" style="cursor: pointer"/>
-      <div class="product_modal">
-        <b-modal style="width: 40% !important;" :id="'modal-center-' + data.item.Name" centered title="Edit Product">
-          <div class="create_products_modal">
-            <div class="create_products">
-              <label>Product Name</label>
-              <input type="text" class="product_inputs "/>
-            </div>
-            <div class="create_products">
-              <label>Product Price</label>
-              <input type="text" class="product_inputs"/>
-            </div>
-            <div class="create_products">
-              <label>Product Description</label>
-              <input type="text" class="product_inputs"/>
-            </div>
-          </div>
-        </b-modal>
       </div>
-    </template>
-  </b-table>
+    </div>
+
+  <div class="mt-2">
+    <products
+        v-if="refresh"
+        admin
+        @selectProduct="chooseProduct"
+        @deleteProduct="deleteProduct"
+    />
+  </div>
 </div>
 </template>
 
 <script>
-
-import TreeSelectComponent from "@/components/tree-select-component.vue";
+import Products from "../../pages/products/Products.vue";
+import ProductsService from "../../../services/ProductsService";
+import Treeselect from "@riophae/vue-treeselect";
+import CategoriesService from "../../../services/CategoriesService";
 
 export default {
-  components: {TreeSelectComponent},
+  components: {Treeselect, Products},
   data() {
     return {
-      transProps: {
-        name: 'flip-list',
-        boxTwo: ''
+      categoriesOptions: [],
+      refresh: true,
+      product: {
+        title: "",
+        images: ["https://meds-theme.myshopify.com/cdn/shop/collections/shop-26.jpg?v=1591863371&width=535"],
+        price: "",
+        description: "",
+        shortDescription: "",
+        categories: []
       },
-      items: [
-        {Name: "N99 Face Mask", Price: 'Rs. 329.00', Description: 'N99 Face Mask', Action: ''},
-        {Name: "Ear Thermometer", Price: 'Rs. 6.98', Description: 'Ear Thermometer', Action: ''},
-        {Name: "Velit PPE Kit", Price: 'Rs.167.00', Description: 'Velit PPE Kit',  Action: ''},
-        {Name: "Wet Wipes", Price: 'Rs. 90.87', Description: 'Wet Wipes', Action: ''}
-      ],
-      fields: [
-        {key: 'Name', sortable: true},
-        {key: 'Price', sortable: true},
-        {key: 'Description', sortable: true},
-        {key: 'Type', sortable: true},
-        {key: 'Action', sortable: true}
-      ]
+      products: []
     };
   },
 
+  mounted() {
+    this.getCategories()
+  },
+
   methods: {
+    async getCategories() {
+      const { data } = await new CategoriesService().get()
+
+      this.categoriesOptions = data.map(el => {
+        return {
+          id: el.name,
+          label: el.name,
+          data: el
+        }
+      })
+    },
+
+    async createProduct() {
+      console.log(this.product)
+      if (!this.product.title) return
+
+      this.refresh = false
+      await new ProductsService().post(this.product)
+
+      this.product = {
+        title: "",
+        images: ["https://meds-theme.myshopify.com/cdn/shop/collections/shop-26.jpg?v=1591863371&width=535"],
+        price: "",
+        shortDescription: "",
+        description: "",
+        categories: []
+      }
+
+      this.refresh = true
+    },
+
+    async deleteProduct(id) {
+
+      if (!id) return
+      this.refresh = false
+
+      await new ProductsService().delete(id)
+
+      this.refresh = true
+    },
+
+    chooseProduct(product) {
+      this.product = {...product, categories: product.categories.map(el => el.name)}
+    },
+
+    async updateProduct() {
+      console.log(this.product)
+      if (!this.product.id) return
+
+      if (!this.product.title) return
+
+      this.refresh = false
+
+      await new ProductsService().put(this.product)
+
+      this.product = {
+        title: "",
+        images: ["https://meds-theme.myshopify.com/cdn/shop/collections/shop-26.jpg?v=1591863371&width=535"],
+        price: "",
+        description: "",
+        shortDescription: "",
+        categories: []
+      }
+
+      this.refresh = true
+    },
+
     showMsgBoxTwo() {
       this.boxTwo = ''
       this.$bvModal.msgBoxConfirm('Please confirm that you want to delete everything.', {

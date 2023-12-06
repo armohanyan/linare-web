@@ -8,13 +8,13 @@ import NotFound from "@/app/NotFound.vue";
 import LandingPage from "../components/pages/landing/LandingPage.vue";
 import AboutPage from "../components/pages/about-us/About.vue";
 import ContactPage from "../components/pages/contacts/Contacts.vue";
-import AllProductsPage from "../components/pages/products/Products.vue";
 import ProductPage from "../components/pages/product/Product.vue";
-import Products from "../components/admin/pages/Products.vue";
-import About from "../components/pages/about-us/About.vue";
+import AdminProducts from "../components/admin/pages/Products.vue";
 import Categories from "../components/admin/pages/Categories.vue";
 import Testimonials from "../components/admin/pages/Testimonials.vue";
 import Contacts from "../components/admin/pages/Contacts.vue";
+import Partners from "../components/admin/pages/Partners.vue";
+import Products from "../components/pages/products/Products.vue";
 
 const routes = [
   {
@@ -78,17 +78,8 @@ const routes = [
   },
   {
     path: '/admin/dashboard/products',
-    component: Products,
+    component: AdminProducts,
     name: 'adminDashboardProducts',
-    meta: {
-      requiresAuth: true,
-      userRoute: false
-    }
-  },
-  {
-    path: '/admin/dashboard/about',
-    component: About,
-    name: 'adminDashboardAbout',
     meta: {
       requiresAuth: true,
       userRoute: false
@@ -107,6 +98,15 @@ const routes = [
     path: '/admin/dashboard/testimonials',
     component: Testimonials,
     name: 'adminDashboardTestimonials',
+    meta: {
+      requiresAuth: true,
+      userRoute: false
+    }
+  },
+  {
+    path: '/admin/dashboard/partners',
+    component: Partners,
+    name: 'adminDashboardPartners',
     meta: {
       requiresAuth: true,
       userRoute: false
@@ -155,7 +155,7 @@ const routes = [
   {
     path: '/products',
     name: 'products',
-    component: AllProductsPage,
+    component: Products,
     meta: {
       requiresAuth: false,
       userRoute: true

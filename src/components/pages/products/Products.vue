@@ -1,9 +1,9 @@
 <template>
   <div class="product_page">
 
-    <active-page-template page="PRODUCTS" />
+    <active-page-template  v-if="!admin" page="PRODUCTS" />
 
-    <div class="product_content">
+    <div class="product_content" :class="admin ? 'p-3' : ''">
       <div class="grid_content">
         <div style="width: 28%;">
           <div class="d-flex justify-content-between">
@@ -23,6 +23,10 @@
       </div>
       <div class="product_cards"  :class="currentGridClass">
         <div class="card-product--card" v-for="product in products" :key="product.id">
+          <div  v-if="admin" class="d-flex justify-content-end">
+            <img class="test_close_icon" src="@/assets/icons/test_close.png" alt="" @click="deleteProduct(product.id)"/>
+            <button @click="chooseProduct(product)">edit</button>
+          </div>
           <a :href="'/product/' + product.id"><img class="card-product-img" :src="product.images[0]" alt=""/></a>
           <div class="card-product--card--footer">
             <p>{{ product.title }}</p>
@@ -44,29 +48,18 @@ import ProductsService from "../../../services/ProductsService";
 import CategoriesTreeSelect from "../../categories-tree-select.vue";
 
 export default {
-  name: "AllProductsPage",
+  name: "Products",
   components: {CategoriesTreeSelect, ActivePageTemplate},
 
+  props: {
+    admin: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
-      products: [
-        {
-          id: 1,
-          title: 'N99 Face Mask',
-          image: ['https://meds-theme.myshopify.com/cdn/shop/collections/shop-26.jpg?v=1591863371&width=535'],
-          price: "Rs. 329.00",
-          shortDescription: 'The N99 face mask is a high-performance respiratory protective device designed to filter out 99% of airborne particles, including dust, pollutants, and microorganisms.',
-          categories: ["Personal Care"]
-        },
-        {
-          id: 1,
-          title: 'N99 Face Mask',
-          image: ['https://meds-theme.myshopify.com/cdn/shop/collections/shop-26.jpg?v=1591863371&width=535'],
-          price: "Rs. 329.00",
-          shortDescription: 'The N99 face mask is a high-performance respiratory protective device designed to filter out 99% of airborne particles, including dust, pollutants, and microorganisms.',
-          categories: ["Personal Care"]
-        },
-      ],
+      products: [],
       currentGridClass: 'product_cards',
     }
   },
@@ -97,7 +90,15 @@ export default {
       } else {
         this.getProducts()
       }
-    }
+    },
+
+    chooseProduct(product) {
+      this.$emit('selectProduct', product)
+    },
+
+    deleteProduct(id) {
+      this.$emit('deleteProduct', id)
+    },
   },
 
 }

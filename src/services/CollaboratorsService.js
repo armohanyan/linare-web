@@ -15,9 +15,6 @@ class ContactsService {
   post(formData) {
     return new Promise((resolve, reject) => {
       axios.post(url, formData,{
-            headers: {
-              "Content-Type": "multipart/form-data"
-            },
             withCredentials: true
           },
           { withCredentials: true })
@@ -32,9 +29,6 @@ class ContactsService {
           url,
           formData,
           {
-            headers: {
-              "Content-Type": "multipart/form-data"
-            },
             withCredentials: true
           }
       )
@@ -45,8 +39,7 @@ class ContactsService {
 
   delete(id) {
     return new Promise((resolve, reject) => {
-      axios.delete(url, {
-        data: { id },
+      axios.delete(url + '/' + id, {
         withCredentials: true
       })
           .then(res => resolve(res.data))

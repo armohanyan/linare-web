@@ -30,6 +30,12 @@
             <li class="lists"><img style="width: 24px; height: 24px" src="@/assets/dashboard/testimonials.png" alt=""/><label
                 class="link_texts" :class="{ hideMenuList: hideList }">Testimonials</label></li>
           </router-link>
+
+          <router-link to="/admin/dashboard/partners" :class="{ selected: selectedIndex === 5 }"
+                       @click="selectItem(5)">
+            <li class="lists"><img style="width: 24px; height: 24px" src="@/assets/dashboard/testimonials.png" alt=""/><label
+                class="link_texts" :class="{ hideMenuList: hideList }">Partners</label></li>
+          </router-link>
         </ul>
         <span class="cross-icon" @click="hideMenu"><i class="fas fa-times"></i></span>
       </div>

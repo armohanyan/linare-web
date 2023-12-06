@@ -21,8 +21,8 @@
           <p class="product_img_name">{{ product.title }}</p>
           <p class="product_desc">{{ product.shortDescription }}</p>
           <p class="product_price">{{ product.price }}</p>
-          <div style="display: flex; gap: 30px; align-items: center">
-            <p v-for="(category, index) in product.categories"  :key="index"  class="product_type_text">{{ category.name  }}</p>
+          <div style="display: flex; gap: 10px; align-items: center">
+            Categories: <div v-for="(category, index) in product.categories"  :key="index"  class="product_type_text">{{ category.name  }} <span v-if="index !== product.categories.length - 1">,</span></div>
           </div>
         </div>
       </div>
