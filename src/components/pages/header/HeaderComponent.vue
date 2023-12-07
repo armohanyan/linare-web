@@ -4,7 +4,9 @@
 
     <div class="menu_items">
       <div v-for="tab in tabs" :key="tab.value">
-        <a :href="tab.path" class="menu_item">{{ tab.label }}</a>
+        <router-link :to="tab.path" class="menu_item">
+          {{ tab.label }}
+        </router-link>
       </div>
     </div>
     <div>

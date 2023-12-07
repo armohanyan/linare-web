@@ -38,7 +38,7 @@
     <div class="products">
       <h1 class="products_heading">Products</h1>
 
-      <div class="card-carousel-wrapper">
+      <div v-if="products.length" class="card-carousel-wrapper">
         <div class="card-carousel--nav__left" @click="moveCarousel(-1)"></div>
         <div class="card-carousel">
           <div class="card-carousel--overflow-container">
@@ -73,6 +73,9 @@
           </div>
         </div>
         <div class="card-carousel--nav__right" @click="moveCarousel(1)"></div>
+      </div>
+      <div v-else>
+        No data to show
       </div>
     </div>
 
@@ -169,32 +172,15 @@ export default {
       paginationFactor: 220,
       partners,
       collaborators: [],
-      products: [
-        {
-          id: 1,
-          title: 'N99 Face Mask',
-          images: ['https://meds-theme.myshopify.com/cdn/shop/collections/shop-26.jpg?v=1591863371&width=535'],
-          price: "Rs. 329.00",
-          shortDescription: 'The N99 face mask is a high-performance respiratory protective device designed to filter out 99% of airborne particles, including dust, pollutants, and microorganisms.',
-          categories: ["Personal Care"]
-        },
-        {
-          id: 1,
-          title: 'N99 Face Mask',
-          images: ['https://meds-theme.myshopify.com/cdn/shop/collections/shop-26.jpg?v=1591863371&width=535'],
-          price: "Rs. 329.00",
-          shortDescription: 'The N99 face mask is a high-performance respiratory protective device designed to filter out 99% of airborne particles, including dust, pollutants, and microorganisms.',
-          categories: ["Personal Care"]
-        },
-      ],
       introCarousel,
+      products: [],
       contacts: {
-        phone_1: '111111111',
-        phone_2: '222222222',
-        email: 'test@gmail.com',
-        address: 'Yerevan',
-        facebook: 'facebook',
-        instagram: 'instagram',
+        phone_1: '',
+        phone_2: '',
+        email: '',
+        address: '',
+        facebook: '',
+        instagram: '',
       }
     }
   },
@@ -231,7 +217,9 @@ export default {
 
     async getContacts() {
       const contacts = await new ContactsService().get()
-      this.contacts = contacts.data.contacts
+      if (contacts.data?.contacts) {
+        this.contacts = contacts.data.contacts
+      }
     },
 
     async getCollaborators() {

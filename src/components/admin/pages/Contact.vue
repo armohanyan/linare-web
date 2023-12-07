@@ -5,12 +5,11 @@
         <div class="card admin_forms">
           <div class="card-body">
             <h2 class="card-title admin_contact_form_heading">Contact Form</h2>
-            <form>
               <div class="mb-3">
                 <input type="number" class="form-control admin_contact_form_inputs" placeholder="Phone Number">
               </div>
               <div class="mb-3">
-                <input type="number" class="form-control admin_contact_form_inputs" placeholder="Fax - Phone Number">
+                <input type="number" class="form-control admin_contact_form_inputs" placeholder="Phone Number 2">
               </div>
               <div class="mb-3">
                 <input type="email" class="form-control admin_contact_form_inputs" placeholder="Email">
@@ -21,7 +20,6 @@
               <div class="d-flex justify-content-end">
                 <button type="submit" class="btn btn-primary admin_contact_send_btn">Send</button>
               </div>
-            </form>
           </div>
         </div>
       </div>

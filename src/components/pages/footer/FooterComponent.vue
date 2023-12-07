@@ -49,12 +49,12 @@ export default {
   data() {
     return {
       contacts: {
-        phone_1: '111111111',
-        phone_2: '222222222',
-        email: 'test@gmail.com',
-        address: 'Yerevan',
-        facebook: 'https://www.facebook.com/',
-        instagram: 'instagram',
+        phone_1: '',
+        phone_2: '',
+        email: '',
+        address: '',
+        facebook: '',
+        instagram: '',
       }
     }
   },
@@ -66,7 +66,10 @@ export default {
   methods: {
     async getContacts() {
       const contacts = await new ContactsService().get()
-      this.contacts = contacts.data.contacts
+
+      if (contacts?.data?.contacts) {
+        this.contacts = contacts?.data?.contacts
+      }
     }
   }
 }

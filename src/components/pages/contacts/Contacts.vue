@@ -60,12 +60,12 @@ export default {
   data() {
     return {
       contacts: {
-        phone_1: '111111111',
-        phone_2: '222222222',
-        email: 'test@gmail.com',
-        address: 'Yerevan',
-        facebook: 'facebook',
-        instagram: 'instagram',
+        phone_1: '',
+        phone_2: '',
+        email: '',
+        address: '',
+        facebook: '',
+        instagram: '',
       },
 
       customerMessage: {

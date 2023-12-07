@@ -15,6 +15,7 @@ import Testimonials from "../components/admin/pages/Testimonials.vue";
 import Contacts from "../components/admin/pages/Contacts.vue";
 import Partners from "../components/admin/pages/Partners.vue";
 import Products from "../components/pages/products/Products.vue";
+import AccountService from "../services/AccountService";
 
 const routes = [
   {
@@ -179,33 +180,32 @@ const router = new VueRouter({
   routes
 });
 
-// router.beforeEach((to, from, next) => {
-//
-//   if(to.matched.some(record => record.meta.requiresAdmin)) {
-//     new AccountService().getCurrent().then(({ data }) => {
-//       if (data.data.currentAccount.role === "superAdmin"){
-//         next();
-//       } else {
-//         next({
-//           name: 'home',
-//         });
-//       }
-//     }).catch(() => {
-//       next({
-//         path: '/admin/sign-in',
-//       });
-//     });
-//   } else if(to.matched.some(record => record.meta.requiresAuth)) {
-//     new AccountService().getCurrent().then(() => {
-//       next();
-//     }).catch(() => {
-//       next({
-//         path: '/admin/sign-in',
-//       });
-//     });
-//   } else {
-//     next();
-//   }
-// });
+router.beforeEach((to, from, next) => {
+  if(to.matched.some(record => record.meta.requiresAdmin)) {
+    new AccountService().getCurrent().then(({ data }) => {
+      if (data.data.currentAccount.role === "superAdmin"){
+        next();
+      } else {
+        next({
+          name: 'home',
+        });
+      }
+    }).catch(() => {
+      next({
+        path: '/admin/sign-in',
+      });
+    });
+  } else if(to.matched.some(record => record.meta.requiresAuth)) {
+    new AccountService().getCurrent().then(() => {
+      next();
+    }).catch(() => {
+      next({
+        path: '/admin/sign-in',
+      });
+    });
+  } else {
+    next();
+  }
+});
 
 export default router;

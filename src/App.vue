@@ -5,7 +5,7 @@
 
     <back-to-top-button></back-to-top-button>
 
-    <router-view v-if="isRouteBelongsToUser" ></router-view>
+    <router-view v-if="isRouteBelongsToUser || isNotFound" ></router-view>
 
     <FooterComponent v-if=" isRouteBelongsToUser" />
   </div>
@@ -22,10 +22,6 @@ export default {
   name: 'App',
   components: {AdminHeaderComponent, FooterComponent, HeaderComponent, BackToTopButton },
   computed: {
-    getCurrentUser() {
-      return this.$store.getters.getCurrentUser;
-    },
-
     isNotFound() {
       return this.$route.name ==='NotFound'
     },

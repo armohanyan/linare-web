@@ -6,7 +6,7 @@
     <div class="product_content" :class="admin ? 'p-3' : ''">
       <div class="grid_content">
         <div style="width: 28%;">
-          <div class="d-flex justify-content-between">
+          <div class="d-flex justify-content-between align-items-center">
             <div>
               Filter by category
             </div>
@@ -21,7 +21,7 @@
           <button class="grids" @click="toggleGrid"><img style="width: 24px" src="@/assets/grid/4_vertical_grid.png" alt=""/></button>
         </div>
       </div>
-      <div class="product_cards"  :class="currentGridClass">
+      <div class="product_cards" :class="currentGridClass">
         <div class="card-product--card" v-for="product in products" :key="product.id">
           <div  v-if="admin" class="d-flex justify-content-end">
             <img class="test_close_icon" src="@/assets/icons/test_close.png" alt="" @click="deleteProduct(product.id)"/>

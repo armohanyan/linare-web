@@ -1,45 +1,47 @@
 <template>
   <div class="menu-wrapper">
     <div class="sidebar-header">
-      <div class="sideBar" :class="{ showMenu: showMenu, widthChange: hideList }">
-        <div class="sidebar_images" :class="{ 'images': hideList }">
-          <img :class="{ 'hide-logo': hideList }" class="sidebar_img" src="@/assets/logos/sidebar-logo.png" alt=""/>
-          <img src="@/assets/dashboard/menu.png" alt="" id="desktop" @click="toggleMenuList" />
-          <img src="@/assets/dashboard/menu.png" alt=""  id="mobile" @click="showMenu" />
-        </div>
-        <ul style="padding-top: 4%; padding-left: 0" :class="{ 'show-icons-only': hideList }">
-          <router-link to="/admin/dashboard" :class="{ selected: selectedIndex === 0 }" @click="selectItem(0)">
-            <li class="lists"><img style="width: 24px; height: 24px" src="@/assets/dashboard/dashboard.png" alt=""/><label
-                class="link_texts" :class="{ hideMenuList: hideList }">Dashboard</label></li>
-          </router-link>
-          <router-link to="/admin/dashboard/categories" :class="{ selected: selectedIndex === 1 }"
-                       @click="selectItem(1)">
-            <li class="lists"><img style="width: 24px; height: 24px" src="@/assets/dashboard/categories.png" alt=""/><label
-                class="link_texts" :class="{ hideMenuList: hideList }">Categories</label></li>
-          </router-link>
-          <router-link to="/admin/dashboard/products" :class="{ selected: selectedIndex === 2 }" @click="selectItem(2)">
-            <li class="lists"><img style="width: 24px; height: 24px" src="@/assets/dashboard/product.png" alt=""/><label
-                class="link_texts" :class="{ hideMenuList: hideList }">Products</label></li>
-          </router-link>
-          <router-link to="/admin/dashboard/contact" :class="{ selected: selectedIndex === 4 }" @click="selectItem(4)">
-            <li class="lists"><img style="width: 24px; height: 24px" src="@/assets/dashboard/contact.png" alt=""/><label
-                class="link_texts" :class="{ hideMenuList: hideList }">Contact</label></li>
-          </router-link>
-          <router-link to="/admin/dashboard/testimonials" :class="{ selected: selectedIndex === 5 }"
-                       @click="selectItem(5)">
-            <li class="lists"><img style="width: 24px; height: 24px" src="@/assets/dashboard/testimonials.png" alt=""/><label
-                class="link_texts" :class="{ hideMenuList: hideList }">Testimonials</label></li>
-          </router-link>
+      <div v-if="getCurrentUser">
+        <div class="sideBar" :class="{ showMenu: showMenu, widthChange: hideList }">
+          <div class="sidebar_images" :class="{ 'images': hideList }">
+            <img :class="{ 'hide-logo': hideList }" class="sidebar_img" src="@/assets/logos/sidebar-logo.png" alt=""/>
+            <img src="@/assets/dashboard/menu.png" alt="" id="desktop" @click="toggleMenuList" />
+            <img src="@/assets/dashboard/menu.png" alt=""  id="mobile" @click="showMenu" />
+          </div>
+          <ul style="padding-top: 4%; padding-left: 0" :class="{ 'show-icons-only': hideList }">
+            <router-link to="/admin/dashboard" :class="{ selected: selectedIndex === 0 }" @click="selectItem(0)">
+              <li class="lists"><img style="width: 24px; height: 24px" src="@/assets/dashboard/dashboard.png" alt=""/><label
+                  class="link_texts" :class="{ hideMenuList: hideList }">Dashboard</label></li>
+            </router-link>
+            <router-link to="/admin/dashboard/categories" :class="{ selected: selectedIndex === 1 }"
+                         @click="selectItem(1)">
+              <li class="lists"><img style="width: 24px; height: 24px" src="@/assets/dashboard/categories.png" alt=""/><label
+                  class="link_texts" :class="{ hideMenuList: hideList }">Categories</label></li>
+            </router-link>
+            <router-link to="/admin/dashboard/products" :class="{ selected: selectedIndex === 2 }" @click="selectItem(2)">
+              <li class="lists"><img style="width: 24px; height: 24px" src="@/assets/dashboard/product.png" alt=""/><label
+                  class="link_texts" :class="{ hideMenuList: hideList }">Products</label></li>
+            </router-link>
+            <router-link to="/admin/dashboard/contact" :class="{ selected: selectedIndex === 4 }" @click="selectItem(4)">
+              <li class="lists"><img style="width: 24px; height: 24px" src="@/assets/dashboard/contact.png" alt=""/><label
+                  class="link_texts" :class="{ hideMenuList: hideList }">Contact</label></li>
+            </router-link>
+            <router-link to="/admin/dashboard/testimonials" :class="{ selected: selectedIndex === 5 }"
+                         @click="selectItem(5)">
+              <li class="lists"><img style="width: 24px; height: 24px" src="@/assets/dashboard/testimonials.png" alt=""/><label
+                  class="link_texts" :class="{ hideMenuList: hideList }">Testimonials</label></li>
+            </router-link>
 
-          <router-link to="/admin/dashboard/partners" :class="{ selected: selectedIndex === 5 }"
-                       @click="selectItem(5)">
-            <li class="lists"><img style="width: 24px; height: 24px" src="@/assets/dashboard/testimonials.png" alt=""/><label
-                class="link_texts" :class="{ hideMenuList: hideList }">Partners</label></li>
-          </router-link>
-        </ul>
-        <span class="cross-icon" @click="hideMenu"><i class="fas fa-times"></i></span>
+            <router-link to="/admin/dashboard/partners" :class="{ selected: selectedIndex === 5 }"
+                         @click="selectItem(5)">
+              <li class="lists"><img style="width: 24px; height: 24px" src="@/assets/dashboard/testimonials.png" alt=""/><label
+                  class="link_texts" :class="{ hideMenuList: hideList }">Partners</label></li>
+            </router-link>
+          </ul>
+          <span class="cross-icon" @click="hideMenu"><i class="fas fa-times"></i></span>
+        </div>
+        <div class="backdrop" @click="hideMenu" :class="{ showBackdrop: showBackdrop }"></div>
       </div>
-      <div class="backdrop" @click="hideMenu" :class="{ showBackdrop: showBackdrop }"></div>
       <div class="content">
         <router-view></router-view>
       </div>
@@ -57,6 +59,11 @@ export default {
       selectedIndex: null,
       menuItems: ["Dashboard", "Categories", "Products", "Contact", "Testimonials"],
     };
+  },
+  computed: {
+    getCurrentUser() {
+      return this.$store.getters.getCurrentUser;
+    }
   },
   methods: {
     showMenu() {
