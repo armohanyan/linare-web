@@ -5,8 +5,8 @@
       <b-form @submit="onSubmit">
         <!-- firstname -->
         <b-form-group
-            id="firstname"
-            label="firstname"
+            id="Firstname"
+            label="Firstname"
             label-for="firstname"
             class="mt-3"
         >
@@ -15,7 +15,7 @@
               v-model="$v.form.firstName.$model"
               :state="validateState('firstName')"
               type="text"
-              placeholder="firstname"
+              placeholder="Firstname"
           ></b-form-input>
 
           <b-form-invalid-feedback id="firstname">
@@ -31,7 +31,7 @@
         <!-- lastname -->
         <b-form-group
             id="lastname"
-            label="lastname"
+            label="Lastname"
             label-for="lastname"
             class="mt-3"
         >
@@ -40,7 +40,7 @@
               v-model="$v.form.lastName.$model"
               :state="validateState('lastName')"
               type="text"
-              placeholder="lastname"
+              placeholder="Lastname"
           ></b-form-input>
 
           <b-form-invalid-feedback id="lastname">
@@ -65,7 +65,7 @@
               v-model="$v.form.phone.$model"
               :state="validateState('phone')"
               type="phone"
-              placeholder="phone"
+              placeholder="Phone"
           ></b-form-input>
 
           <b-form-invalid-feedback id="phone">
@@ -81,11 +81,11 @@
         <!-- email -->
         <b-form-group id="email" label="email" label-for="email" class="mt-3">
           <b-form-input
-              id="email"
+              id="Email"
               v-model="$v.form.email.$model"
               :state="validateState('email')"
               type="text"
-              placeholder="email"
+              placeholder="Email"
           ></b-form-input>
 
           <b-form-invalid-feedback id="email">
@@ -100,7 +100,7 @@
 
         <!-- password -->
         <b-form-group
-            id="password"
+            id="Password"
             label="Password"
             label-for="password"
             class="mt-3"
@@ -163,7 +163,7 @@
         <em class="font-weight-bold">Resend email token <span v-if="isDisableResendButton">{{
             currentTimer
           }}</span></em>
-        <p>>
+        <p>
           <b-button v-if="!isDisableResendButton" size="sm" variant="primary" @click="resendToken()">Resend</b-button>
           <b-button v-if="isDisableResendButton" disabled size="sm">Resend</b-button>
         </p>

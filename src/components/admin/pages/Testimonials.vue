@@ -7,10 +7,10 @@
 
             <input type="file" class="form-control mb-3">
 
-            <input v-model="testimonial.position" class="form-control mb-3" type="text" placeholder="Name">
+            <input v-model="testimonial.position" class="form-control mb-3" type="text" placeholder="Position">
 
             <div class="form-group testimonials_text">
-              <textarea v-model="testimonial.comment" class="form-control testimonial_message" placeholder="Testimonials"></textarea>
+              <textarea v-model="testimonial.comment" class="form-control testimonial_message" placeholder="Comment"></textarea>
             </div>
           </div>
 

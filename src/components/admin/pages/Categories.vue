@@ -11,7 +11,7 @@
             <input v-model="category.name" class="form-control mb-3" type="text" placeholder="Name">
 
             <div class="form-group testimonials_text">
-              <textarea  v-model="category.description" class="form-control testimonial_message" placeholder="Testimonials"></textarea>
+              <textarea  v-model="category.description" class="form-control testimonial_message" placeholder="Description"></textarea>
             </div>
           </div>
 

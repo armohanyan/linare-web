@@ -1,6 +1,8 @@
 <template>
   <header class="header">
-    <a class="menu_item" href="/"><img style="width: 100px" src="../../../assets/logos/med_logo.png" alt="" /></a>
+    <router-link to="/" class="menu_item">
+      <img style="width: 100px" src="../../../assets/logos/med_logo.png" alt="Logo" />
+    </router-link>
 
     <div class="menu_items">
       <div v-for="tab in tabs" :key="tab.value">
@@ -9,6 +11,7 @@
         </router-link>
       </div>
     </div>
+
     <div>
       <div class="burger" @click="toggleMenu">
         <img v-if="!showMenu" class="menu_icon" src="../../../assets/icons/menu_icon.png" alt="" />
@@ -18,7 +21,9 @@
           <img v-if="showMenu" class="close_icon" src="../../../assets/icons/close_icon.png" alt="" @click="() => showMenu = false" />
           <div class="mt-2">
             <div v-for="tab in tabs" :key="tab.value" class="mt-3">
-              <a :href="tab.path" class="menu_item">{{ tab.label }}</a>
+              <router-link :to="tab.path" class="menu_item">
+                {{ tab.label }}
+              </router-link>
             </div>
           </div>
         </div>
@@ -44,7 +49,7 @@ const  tabs = [
     path: '/about-us'
   },
   {
-    label: 'CONTACT',
+    label: 'CONTACTS',
     path: '/contacts'
   }
 ]

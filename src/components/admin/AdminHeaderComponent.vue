@@ -24,7 +24,7 @@
             </router-link>
             <router-link to="/admin/dashboard/contact" :class="{ selected: selectedIndex === 4 }" @click="selectItem(4)">
               <li class="lists"><img style="width: 24px; height: 24px" src="@/assets/dashboard/contact.png" alt=""/><label
-                  class="link_texts" :class="{ hideMenuList: hideList }">Contact</label></li>
+                  class="link_texts" :class="{ hideMenuList: hideList }">Contacts</label></li>
             </router-link>
             <router-link to="/admin/dashboard/testimonials" :class="{ selected: selectedIndex === 5 }"
                          @click="selectItem(5)">

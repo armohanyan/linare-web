@@ -10,7 +10,7 @@
               </div>
 
               <div class="mb-3">
-                <input v-model="contacts.phone_2" type="text" class="form-control admin_contact_form_inputs" placeholder="Fax - Phone Number">
+                <input v-model="contacts.phone_2" type="text" class="form-control admin_contact_form_inputs" placeholder="Phone Number 2">
               </div>
 
               <div class="mb-3">
@@ -41,7 +41,6 @@
 </template>
 
 <script>
-import CategoriesService from "../../../services/CategoriesService";
 import ContactsService from "../../../services/ContactsService";
 
 export default {
@@ -79,7 +78,7 @@ export default {
     },
 
     async createContact() {
-      await new CategoriesService().post(this.category)
+      await new ContactsService().post(this.category)
 
       this.getContacts()
     }
