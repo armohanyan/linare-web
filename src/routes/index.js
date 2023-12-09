@@ -16,6 +16,7 @@ import Contacts from "../components/admin/pages/Contacts.vue";
 import Partners from "../components/admin/pages/Partners.vue";
 import Products from "../components/pages/products/Products.vue";
 import AccountService from "../services/AccountService";
+// import AccountService from "../services/AccountService";
 
 const routes = [
   {

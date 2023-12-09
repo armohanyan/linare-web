@@ -26,11 +26,15 @@
       <div class="testimonials_content">
         <div class="testimonials_desc" v-for="item in partners" :key="item.id">
           <div class="d-flex justify-content-end">
-            <img class="test_close_icon" src="@/assets/icons/test_close.png" alt="" @click="deletePartners(item.id)"/>
-            <button @click="choosePartner(item)">edit</button>
+            <button class="icon_btn" @click="deletePartners(item.id)">
+              <img class="test_close_icon" src="@/assets/admin_panel/delete.png" alt="" />
+            </button>
+            <button class="icon_btn" @click="choosePartner(item)">
+              <img class="test_close_icon" src="@/assets/admin_panel/edit.png" alt="" />
+            </button>
           </div>
           <div class="testimonial_img_name">
-            <img class="testimonial_img" :src="item.src" alt=""/>
+            <img class="testimonial_img" :src="item.logo" alt=""/>
             <h5>{{ item.name}}</h5>
           </div>
           <p>{{ item.description }}</p>
@@ -49,7 +53,7 @@ export default {
   data() {
     return {
       partner: {
-        logo: '',
+        logo: 'https://i.pinimg.com/originals/b7/1f/d1/b71fd13f1ebd496a3bd546284aaa0ad8.jpg',
         name: '',
         description: ''
       },
@@ -74,7 +78,7 @@ export default {
       await new CollaboratorsService().post(this.partner)
 
       this.partner = {
-          logo: '',
+          logo: 'https://i.pinimg.com/originals/b7/1f/d1/b71fd13f1ebd496a3bd546284aaa0ad8.jpg',
           name: '',
           description: ''
       }
@@ -99,11 +103,10 @@ export default {
 
       if (!this.partner.name) return
 
-      console.log(this.partner)
       await new CollaboratorsService().put(this.partner)
 
       this.partner = {
-        logo: '',
+        logo: 'https://i.pinimg.com/originals/b7/1f/d1/b71fd13f1ebd496a3bd546284aaa0ad8.jpg',
         name: '',
         description: ''
       }
@@ -116,6 +119,11 @@ export default {
 </script>
 
 <style scoped>
+
+.btn-primary{
+  background-color: #2490EB !important;
+}
+
 .testimonials_page_content {
   padding: 2%;
 }
@@ -170,8 +178,14 @@ export default {
   margin-bottom: 4%;
 }
 
-.test_close_icon{
-  width: 25px;
-  cursor: pointer;
+.icon_btn{
+  border: none;
+  background: none;
 }
+
+.test_close_icon{
+  width: 30px;
+  height: 30px;
+}
+
 </style>

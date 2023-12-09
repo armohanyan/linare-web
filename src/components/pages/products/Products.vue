@@ -1,31 +1,43 @@
 <template>
   <div class="product_page">
 
-    <active-page-template  v-if="!admin" page="PRODUCTS" />
+    <active-page-template v-if="!admin" page="PRODUCTS"/>
 
     <div class="product_content" :class="admin ? 'p-3' : ''">
       <div class="grid_content">
-        <div style="width: 28%;">
-          <div class="d-flex justify-content-between align-items-center">
-            <div>
+        <div class="filter_products">
+          <div class="filter_category_text">
+            <p class="filter_text">
               Filter by category
-            </div>
+            </p>
             <div>
-              <categories-tree-select @onChangeValue="onChangeCategory" />
+              <categories-tree-select @onChangeValue="onChangeCategory"/>
             </div>
           </div>
         </div>
         <div class="grid_part">
-          <button class="grids" @click="toggleGrid('two-cards-per-row')"><img src="@/assets/grid/2_vertical_grid.png" alt=""/></button>
-          <button class="grids"  @click="toggleGrid('three-cards-per-row')"><img src="@/assets/grid/3_vertical_grid.png" alt=""/></button>
-          <button class="grids" @click="toggleGrid"><img style="width: 24px" src="@/assets/grid/4_vertical_grid.png" alt=""/></button>
+          <button class="grids" @click="toggleGrid('two-cards-per-row')">
+            <img src="@/assets/grid/2_vertical_grid.png" alt=""/>
+          </button>
+          <button class="grids" @click="toggleGrid('three-cards-per-row')">
+            <img src="@/assets/grid/3_vertical_grid.png" alt=""/>
+          </button>
+          <button class="grids" @click="toggleGrid">
+            <img style="width: 24px" src="@/assets/grid/4_vertical_grid.png" alt=""/>
+          </button>
         </div>
       </div>
       <div class="product_cards" :class="currentGridClass">
         <div class="card-product--card" v-for="product in products" :key="product.id">
-          <div  v-if="admin" class="d-flex justify-content-end">
-            <img class="test_close_icon" src="@/assets/icons/test_close.png" alt="" @click="deleteProduct(product.id)"/>
-            <button @click="chooseProduct(product)">edit</button>
+          <div v-if="admin" class="d-flex justify-content-end">
+            <div class="d-flex justify-content-end gap-2">
+              <button class="icon_btn" @click="deleteProduct(product.id)">
+                <img class="test_close_icon" src="@/assets/admin_panel/delete.png" alt="" />
+              </button>
+              <button class="icon_btn" @click="chooseProduct(product)">
+                <img class="test_close_icon" src="@/assets/admin_panel/edit.png" alt="" />
+              </button>
+            </div>
           </div>
           <a :href="'/product/' + product.id"><img class="card-product-img" :src="product.images[0]" alt=""/></a>
           <div class="card-product--card--footer">
@@ -80,11 +92,11 @@ export default {
     },
 
     async getProductsFiltertedByCategory(categoryName) {
-      const products = await new ProductsService().get({ category: categoryName })
+      const products = await new ProductsService().get({category: categoryName})
       this.products = products.data.products
     },
 
-    onChangeCategory(value ) {
+    onChangeCategory(value) {
       if (value) {
         this.getProductsFiltertedByCategory(value.name)
       } else {
@@ -129,17 +141,8 @@ export default {
   justify-content: space-between;
 }
 
-.grid_icon1_btn {
-  background-color: #2490EB;
-  border: none;
-  border-radius: 5px 0 0 5px;
-}
-
-.grid_icon2_btn {
-  border: none;
-  background-color: #ffffff;
-  border-radius: 0 5px 5px 0;
-  padding: 4% 7%;
+.filter_products {
+  width: 450px;
 }
 
 .grids {
@@ -147,6 +150,13 @@ export default {
   background-color: #2490EB;
   padding: 5%;
   border-radius: 5px;
+}
+
+.filter_text {
+  font-size: 17px;
+  font-weight: 600;
+  color: #2490EB;
+  margin-bottom: 0;
 }
 
 .grid_part {
@@ -157,7 +167,7 @@ export default {
   justify-content: flex-end;
 }
 
-.btn-group > .btn, .show > .btn-secondary.dropdown-toggle {
+.btn-group > .btn {
   background-color: #2490EB !important;
   border: none !important;
   padding: 11% 31%;
@@ -167,22 +177,10 @@ export default {
   font-weight: 600;
 }
 
-.dropdown-item {
-  padding: 6% 8% !important;
-  color: #9A9A9A !important;
-  font-weight: 500 !important;
-}
-
-.dropdown-menu {
-  padding: 0 !important;
-}
-
-.dropdown-menu.show {
-  border-radius: 8px;
-  will-change: transform;
-  border: none;
-  box-shadow: 0 0 10px #1a1a1a26;
-  margin-top: 8%;
+.filter_category_text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .card-product--card {
@@ -236,20 +234,39 @@ export default {
   margin-top: 6%;
 }
 
-.grid_btns{
-  width: 15%;
-  text-align: center;
+.icon_btn{
+  border: none;
+  background: none;
+}
+
+.test_close_icon{
+  width: 30px;
+  height: 30px;
 }
 
 @media only screen and (max-width: 1245px) {
-  .product_content{
+  .product_content {
     padding: 3% 5%;
   }
 }
 
 @media only screen and (max-width: 1020px) {
-  .grid_part, .grid_btns{
+  .grid_part{
     display: none;
   }
 }
+
+@media only screen and (max-width: 510px) {
+  .filter_category_text {
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    row-gap: 10px;
+  }
+
+  .grid_content{
+    padding: 3%;
+  }
+}
+
 </style>

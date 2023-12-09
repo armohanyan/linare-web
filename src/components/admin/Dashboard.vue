@@ -104,13 +104,13 @@ export default {
 }
 
 .dashboard_content {
-  width: 25%;
+  width: 400px;
 }
 
 .dashboard_items {
   box-shadow: 0 8px 24px 0 rgba(140, 149, 159, 0.2);
   padding: 10% 2%;
-  width: 100%;
+  width: 400px;
 }
 
 .dashboard_img {
@@ -138,5 +138,15 @@ export default {
 .dashboard_items_name{
   font-size: 24px;
   font-weight: 600;
+}
+
+@media (max-width: 450px) {
+  .dashboard_content {
+    width:300px;
+  }
+
+  .dashboard_items {
+    width: 300px;
+  }
 }
 </style>

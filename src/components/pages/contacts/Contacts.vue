@@ -35,14 +35,16 @@
         </div>
 
         <div class="contact_form">
-          <p class="contact_form_heading">Contact Form</p>
+          <p class="contact_form_heading">Contacts</p>
           <div class="forms">
             <input  v-model="customerMessage.name" type="text" class="contact_form_inputs" placeholder="Name"/>
             <input v-model="customerMessage.email" type="email" class="contact_form_inputs" placeholder="Email" required/>
             <input v-model="customerMessage.phone" type="text" class="contact_form_inputs" placeholder="Phone Number"/>
             <textarea  v-model="customerMessage.comment" style="height: 280px" class="contact_form_inputs" placeholder="Comment" required/>
           </div>
-          <button class="contact_send_btn" @click="onClickSendEmail">Send</button>
+          <div class="contact_btn">
+            <button class="contact_send_btn" @click="onClickSendEmail">Send</button>
+          </div>
         </div>
       </div>
     </div>
@@ -102,6 +104,7 @@ export default {
   }
 }
 </script>
+
 <style>
 .map{
   width: 100%;
@@ -190,6 +193,11 @@ export default {
 
 .contact_form{
   width: 60%;
+}
+
+.contact_btn{
+  display: flex;
+  justify-content: flex-end;
 }
 
 @media only screen and (max-width: 1430px) {

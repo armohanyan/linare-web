@@ -5,21 +5,21 @@
         <div class="card admin_forms">
           <div class="card-body">
             <h2 class="card-title admin_contact_form_heading">Contact Form</h2>
-              <div class="mb-3">
-                <input v-model="contacts.phone_1" type="text" class="form-control admin_contact_form_inputs" placeholder="Phone Number">
-              </div>
+            <div class="mb-3">
+              <input v-model="contacts.phone_1" type="text" class="form-control admin_contact_form_inputs" placeholder="Phone Number">
+            </div>
 
-              <div class="mb-3">
-                <input v-model="contacts.phone_2" type="text" class="form-control admin_contact_form_inputs" placeholder="Phone Number 2">
-              </div>
+            <div class="mb-3">
+              <input v-model="contacts.phone_2" type="text" class="form-control admin_contact_form_inputs" placeholder="Phone Number 2">
+            </div>
 
-              <div class="mb-3">
-                <input v-model="contacts.email" type="email" class="form-control admin_contact_form_inputs" placeholder="Email">
-              </div>
+            <div class="mb-3">
+              <input v-model="contacts.email" type="email" class="form-control admin_contact_form_inputs" placeholder="Email">
+            </div>
 
-              <div class="mb-3">
-                <input v-model="contacts.address" type="text" class="form-control admin_contact_form_inputs" placeholder="Address">
-              </div>
+            <div class="mb-3">
+              <input v-model="contacts.address" type="text" class="form-control admin_contact_form_inputs" placeholder="Address">
+            </div>
 
             <div class="mb-3">
               <input v-model="contacts.facebook" type="text" class="form-control admin_contact_form_inputs" placeholder="Facebook">
@@ -29,10 +29,10 @@
               <input v-model="contacts.instagram" type="text" class="form-control admin_contact_form_inputs" placeholder="Instagram">
             </div>
 
-              <div class="d-flex justify-content-end">
-                <button  v-if="contacts.id" type="button" class="btn btn-primary admin_contact_send_btn"  @click="updateContacts">Update</button>
-                <button v-if="!contacts.id" type="button" class="btn btn-primary admin_contact_send_btn" @click="createContact">Create</button>
-              </div>
+            <div class="d-flex justify-content-end">
+              <button  v-if="contacts.id" type="button" class="btn btn-primary admin_contact_send_btn"  @click="updateContacts">Update</button>
+              <button v-if="!contacts.id" type="button" class="btn btn-primary admin_contact_send_btn" @click="createContact">Create</button>
+            </div>
           </div>
         </div>
       </div>

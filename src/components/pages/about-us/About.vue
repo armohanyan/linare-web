@@ -69,8 +69,11 @@
       <p class="testimonials_heading">Our Clients Happy To Say About Us</p>
       <div class="testimonials_content">
         <div v-for="(testimonial, index) in testimonials" :key="index" class="testimonials_desc">
+          <div class="testimonial_img_name">
+            <img class="testimonial_img" :src="testimonial.avatar" alt=""/>
+            <h5>{{ testimonial.position}}</h5>
+          </div>
           <p>{{ testimonial.comment }}</p>
-          <h5>{{ testimonial.position }}</h5>
         </div>
       </div>
     </div>
@@ -176,6 +179,19 @@ export default {
 .services {
   padding: 3% 13%;
   background-color: #F4F6F9;
+}
+
+.testimonial_img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50px;
+  object-fit: cover;
+}
+
+.testimonial_img_name {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 4%;
 }
 
 .services_heading, .testimonials_heading {

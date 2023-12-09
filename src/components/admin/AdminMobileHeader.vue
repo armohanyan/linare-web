@@ -1,13 +1,18 @@
 <template>
-  <div class="menu-wrapper">
-    <AdminMobileHeader class="admin_mobile_header"/>
+  <header class="admin_header">
+    <div class="d-flex justify-content-between">
+      <img style="width: 100px" src="../../assets/logos/linare_logo.png" alt="Logo"/>
+      <img src="@/assets/icons/menu_icon.png" alt="" class="adminMobileIcon" @click="toggleMenuList"/>
+    </div>
+
     <div class="sidebar-header">
-      <div v-if="getCurrentUser" class="sidebar_hide">
-        <div class="sideBar" :class="{ showMenu: showMenu, widthChange: hideList }">
+      <div class="sidebar_hide">
+        <div class="admin_sideBar" :class="{ showAdminMenu: showAdminMenu, widthChange: hideList }">
           <div class="sidebar_images" :class="{ 'images': hideList }">
             <img :class="{ 'hide-logo': hideList }" class="sidebar_img" src="@/assets/logos/linare_white.png" alt=""/>
-            <img src="@/assets/dashboard/menu.png" alt="" id="desktop" @click="toggleMenuList"/>
-            <img src="@/assets/dashboard/menu.png" alt="" id="mobile" @click="toggleMenuList"/>
+            <img src="@/assets/dashboard/menu.png" alt="" id="adminDesktop" @click="toggleMenuList"/>
+            <img src="@/assets/dashboard/menu.png" alt="" id="adminDesktop" @click="toggleMenuList"/>
+            <img src="@/assets/dashboard/menu.png" alt="" id="adminMobile" @click="toggleMenuList"/>
           </div>
           <ul style="padding-top: 4%; padding-left: 0" :class="{ 'show-icons-only': hideList }">
             <router-link to="/admin/dashboard" :class="{ selected: selectedIndex === 0 }" @click="selectItem(0)">
@@ -50,20 +55,44 @@
         </div>
       </div>
       <div class="backdrop" @click="hideMenu" :class="{ showBackdrop: showBackdrop }"></div>
-      <div class="content">
-        <router-view></router-view>
-      </div>
     </div>
-  </div>
+
+  </header>
 </template>
 
 <script>
-import AdminMobileHeader from "@/components/admin/AdminMobileHeader.vue";
 
+const tabs = [
+  {
+    label: 'Dashboard',
+    path: '/admin/dashboard'
+  },
+  {
+    label: 'Categories',
+    path: '/admin/dashboard/categories'
+  },
+  {
+    label: 'Products',
+    path: '/admin/dashboard/products'
+  },
+  {
+    label: 'Contacts',
+    path: '/admin/dashboard/contact'
+  },
+  {
+    label: 'Testimonials',
+    path: '/admin/dashboard/testimonials'
+  },
+  {
+    label: 'Partners',
+    path: '/admin/dashboard/partners'
+  },
+]
 export default {
-  components: {AdminMobileHeader},
+  name: "AdminMobileHeader",
   data() {
     return {
+      tabs: tabs,
       showBackdrop: false,
       isMenuVisible: false,
       hideList: false,
@@ -71,34 +100,38 @@ export default {
       menuItems: ["Dashboard", "Categories", "Products", "Contacts", "Testimonials", "Partners"],
     };
   },
-  computed: {
-    getCurrentUser() {
-      return this.$store.getters.getCurrentUser;
-    }
-  },
   methods: {
-    showMenu() {
-      this.isMenuVisible = true;
-      this.hideList = false;
-      this.showBackdrop = true;
+    showAdminMenu() {
+        this.isMenuVisible = true;
+        this.hideList = false;
+        this.showBackdrop = true;
+      },
+    toggleMenuList() {
+      this.showAdminMenu = !this.showAdminMenu;
+      this.showBackdrop = this.showAdminMenu; // Show backdrop when menu is open
     },
     hideMenu() {
-      this.isMenuVisible = false;
+      this.showAdminMenu = false;
       this.showBackdrop = false;
     },
-    toggleMenuList() {
-      this.hideList = !this.hideList;
-    },
     selectItem(index) {
-      this.selectedIndex = index;
-      this.isMenuVisible = false;
+        this.selectedIndex = index;
+        this.isMenuVisible = false;
+      },
     },
-  },
 };
 </script>
 
 <style scoped>
 
+.admin_header {
+  display: none;
+  padding: 2% 2%;
+  background-color: #FFFFFF;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 .hide-logo {
   height: 85% !important;
 }
@@ -127,7 +160,6 @@ a {
 }
 
 .sidebar_images {
-  margin-top: 5px;
   justify-content: space-between;
   display: flex;
   padding: 0 4%;
@@ -139,15 +171,19 @@ a {
   row-gap: 25px;
 }
 
+.adminMobileIcon {
+  display: block; /* Ensure the mobile icon is initially visible */
+}
+
 .lists {
   list-style: none;
   display: flex;
   gap: 20px;
-  align-items: center;
   border-radius: 0 !important;
+  align-items: center;
 }
 
-.sideBar {
+.admin_sideBar {
   position: relative;
   z-index: 20;
   height: 100vh;
@@ -157,16 +193,16 @@ a {
   transition: 0.3s ease-in-out;
 }
 
-.sideBar.widthChange {
+.admin_sideBar .widthChange {
   width: 120px;
   text-align: center;
 }
 
 .sidebar_img {
-  width: 35%;
+  width: 50%;
 }
 
-.sideBar li {
+.admin_sideBar li {
   padding: 20px 20px 20px 30px;
   transition: 0.3s ease-in-out;
 }
@@ -175,11 +211,11 @@ li label .hideMenuList {
   display: none;
 }
 
-.sideBar li i {
+.admin_sideBar li i {
   margin-right: 8px;
 }
 
-.sideBar li:hover {
+.admin_sideBar li:hover {
   background-color: #14457B;
   border-radius: 10px;
 }
@@ -188,25 +224,20 @@ li label .hideMenuList {
   background-color: #0092ff;
 }
 
-.sideBar span {
+.admin_sideBar span {
   position: absolute;
   color: #ffffff;
   top: 20px;
   right: 20px;
 }
 
-.sideBar .cross-icon {
+.admin_sideBar .cross-icon {
   display: none;
   color: #001629;
 }
 
 .sidebar-header {
   display: flex;
-}
-
-.content {
-  width: 100%;
-  height: 100vh;
 }
 
 header {
@@ -219,14 +250,8 @@ header {
   align-items: center;
 }
 
-#desktop {
-  cursor: pointer;
-}
-
-
-#mobile {
+#adminMobile {
   display: none;
-  cursor: pointer;
 }
 
 .menu-button div:nth-child(1) {
@@ -264,9 +289,9 @@ header h1 {
   color: #0092ff;
 }
 
-.sideBar.showMenu {
+.admin_sideBar.showAdminMenu {
   left: 0;
-  padding-top: 5%;
+  padding-top: 2%;
 }
 
 ::-webkit-scrollbar {
@@ -281,37 +306,24 @@ header h1 {
   background: #0092ff;
 }
 
-.admin_mobile_header {
-  display: none;
-}
-
-@media (max-width: 910px) {
-  .sideBar {
-    display: none;
-  }
-
-  .admin_mobile_header {
-    display: block;
-  }
-}
-
 @media (max-width: 900px) {
-  #desktop {
+  #adminDesktop {
     display: none;
   }
 
-  #mobile {
+  #adminMobile {
     display: block;
   }
 
-  .sideBar {
+
+  .admin_sideBar {
     position: absolute;
     width: 30%;
     top: 0;
     left: -100%;
   }
 
-  .sideBar .cross-icon {
+  .admin_sideBar .cross-icon {
     display: block;
   }
 
@@ -330,27 +342,39 @@ header h1 {
 }
 
 @media (max-width: 700px) {
-  .sideBar {
+  .admin_sideBar {
     width: 40%;
   }
 }
 
-@media (max-width: 400px) {
-  .sideBar {
-    width: 60%;
+@media (max-width: 600px) {
+  .admin_sideBar {
+    width: 55%;
   }
+}
+
+@media (max-width: 450px) {
+  .admin_sideBar {
+    width: 100%;
+  }
+
+  .sidebar_img{
+    height: 65px;
+    width: 45%;
+  }
+}
+
+
+@media (max-width: 400px) {
 
   header h1 {
     font-size: 20px;
   }
 
-  #mobile {
-    height: 25px;
-  }
 }
 
 @media (max-width: 320px) {
-  .sideBar {
+  .admin_sideBar {
     width: 80%;
   }
 }

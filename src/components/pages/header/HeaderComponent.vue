@@ -1,9 +1,8 @@
 <template>
   <header class="header">
     <router-link to="/" class="menu_item">
-      <img style="width: 100px" src="../../../assets/logos/med_logo.png" alt="Logo" />
+      <img style="width: 100px" src="../../../assets/logos/linare_logo.png" alt="Logo"/>
     </router-link>
-
     <div class="menu_items">
       <div v-for="tab in tabs" :key="tab.value">
         <router-link :to="tab.path" class="menu_item">
@@ -12,13 +11,14 @@
       </div>
     </div>
 
-    <div>
+    <div class="menu_burger">
       <div class="burger" @click="toggleMenu">
-        <img v-if="!showMenu" class="menu_icon" src="../../../assets/icons/menu_icon.png" alt="" />
+        <img v-if="!showMenu" class="menu_icon" src="../../../assets/icons/menu_icon.png" alt=""/>
       </div>
       <transition name="fade">
         <div v-if="showMenu" class="mobile_menu">
-          <img v-if="showMenu" class="close_icon" src="../../../assets/icons/close_icon.png" alt="" @click="() => showMenu = false" />
+          <img v-if="showMenu" class="close_icon" src="../../../assets/icons/close_icon.png" alt=""
+               @click="() => showMenu = false"/>
           <div class="mt-2">
             <div v-for="tab in tabs" :key="tab.value" class="mt-3">
               <router-link :to="tab.path" class="menu_item">
@@ -35,7 +35,7 @@
 
 <script>
 
-const  tabs = [
+const tabs = [
   {
     label: 'HOME',
     path: '/'
@@ -116,6 +116,10 @@ export default {
   background-color: #F4F6F9;
 }
 
+.menu_burger {
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
   .menu_items {
     display: none;
@@ -125,16 +129,22 @@ export default {
     display: block;
   }
 
-  .close_icon{
+  .close_icon {
     position: absolute;
     z-index: 9999;
     top: 3%;
+    width: 30px;
+    height: 30px;
   }
 
   .mobile_menu {
     display: flex;
     flex-direction: column;
     text-align: center;
+  }
+
+  .menu_burger {
+    display: block;
   }
 }
 </style>

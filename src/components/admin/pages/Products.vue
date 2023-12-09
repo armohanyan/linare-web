@@ -1,8 +1,8 @@
 <template>
 <div>
     <div>
-      <div class="row justify-content-center">
-        <div class="col-lg-6">
+      <div class="d-flex justify-content-center mt-5">
+        <div class="admin_products col-lg-6">
           <div class="card admin_products_content">
             <div class="card-body admin_products">
 
@@ -90,32 +90,35 @@ export default {
     },
 
     async createProduct() {
-      console.log(this.product)
-      if (!this.product.title) return
+      try {
+        if (!this.product.title) return
 
-      this.refresh = false
-      await new ProductsService().post(this.product)
+        this.refresh = false
+        await new ProductsService().post(this.product)
 
-      this.product = {
-        title: "",
-        images: ["https://meds-theme.myshopify.com/cdn/shop/collections/shop-26.jpg?v=1591863371&width=535"],
-        price: "",
-        shortDescription: "",
-        description: "",
-        categories: []
+        this.product = {
+          title: "",
+          images: ["https://meds-theme.myshopify.com/cdn/shop/collections/shop-26.jpg?v=1591863371&width=535"],
+          price: "",
+          shortDescription: "",
+          description: "",
+          categories: []
+        }
+      } finally {
+        this.refresh = true
       }
 
-      this.refresh = true
     },
 
     async deleteProduct(id) {
+      try {
+        if (!id) return
+        this.refresh = false
 
-      if (!id) return
-      this.refresh = false
-
-      await new ProductsService().delete(id)
-
-      this.refresh = true
+        await new ProductsService().delete(id)
+      } finally {
+        this.refresh = true
+      }
     },
 
     chooseProduct(product) {
@@ -123,122 +126,46 @@ export default {
     },
 
     async updateProduct() {
-      console.log(this.product)
-      if (!this.product.id) return
+      try {
+        if (!this.product.id) return
 
-      if (!this.product.title) return
+        if (!this.product.title) return
 
-      this.refresh = false
+        this.refresh = false
 
-      await new ProductsService().put(this.product)
+        await new ProductsService().put(this.product)
 
-      this.product = {
-        title: "",
-        images: ["https://meds-theme.myshopify.com/cdn/shop/collections/shop-26.jpg?v=1591863371&width=535"],
-        price: "",
-        description: "",
-        shortDescription: "",
-        categories: []
+        this.product = {
+          title: "",
+          images: ["https://meds-theme.myshopify.com/cdn/shop/collections/shop-26.jpg?v=1591863371&width=535"],
+          price: "",
+          description: "",
+          shortDescription: "",
+          categories: []
+        }
+
+      } finally {
+        this.refresh = true
       }
-
-      this.refresh = true
     },
-
-    showMsgBoxTwo() {
-      this.boxTwo = ''
-      this.$bvModal.msgBoxConfirm('Please confirm that you want to delete everything.', {
-        title: 'Please Confirm',
-        size: 'sm',
-        buttonSize: 'sm',
-        okVariant: 'danger',
-        okTitle: 'Delete',
-        cancelTitle: 'Cancel',
-        footerClass: 'p-2',
-        hideHeaderClose: false,
-        centered: true
-      })
-          .then(value => {
-            this.boxTwo = value
-          })
-          .catch(err => {
-            console.log(err)
-          })
-    }
   }
 };
 </script>
 
 <style>
-.admin_add_delete_products{
-  display: flex;
-  gap: 20px;
+
+.btn-primary{
+  background-color: #2490EB !important;
 }
 
-.admin_product_page{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-top: 10%;
-  row-gap: 20px;
-}
+@media (max-width: 910px) {
+  .admin_products{
+    width: 85%;
+  }
 
-.create_products_modal{
-  display: flex;
-  flex-direction: column;
-  row-gap: 20px;
-}
-
-.create_products{
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.product_inputs{
-  border: none;
-  border-bottom: 1px solid #C7C7C7;
-  background-color: #F4F4F4;
-  padding: 2%;
-}
-
-table#table-transition-example .flip-list-move {
-  transition: transform 1s !important;
-}
-
-.table {
-  width: 50% !important;
-}
-
-.table-sm > :not(caption) > * > * {
-  padding: 1rem 2rem !important;
-}
-
-thead > tr {
-  background-color: #2490EB;
-  color: white;
-}
-
-.modal-dialog-centered {
-  justify-content: center !important;
-}
-
-.modal-footer {
-  display: flex !important;
-}
-
-.close {
-  border: none;
-  background: no-repeat;
-  font-size: 25px;
-}
-
-.modal-sm {
-  max-width: 330px !important;
-}
-
-.modal-body{
-  padding: 2rem !important;
+  .card-body{
+    width: 100%;
+  }
 }
 
 </style>

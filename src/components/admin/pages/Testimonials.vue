@@ -25,12 +25,16 @@
     <div class="testimonials">
       <div class="testimonials_content">
         <div class="testimonials_desc" v-for="item in testimonials" :key="item.id">
-          <div class="d-flex justify-content-end">
-            <img class="test_close_icon" src="@/assets/icons/test_close.png" alt="" @click="deleteTestimonials(item.id)"/>
-            <button @click="chooseTestimonial(item)">edit</button>
+          <div class="d-flex justify-content-end gap-2">
+            <button class="icon_btn" @click="deleteTestimonials(item.id)">
+              <img class="test_close_icon" src="@/assets/admin_panel/delete.png" alt="" />
+            </button>
+            <button class="icon_btn" @click="chooseTestimonial(item)">
+              <img class="test_close_icon" src="@/assets/admin_panel/edit.png" alt="" />
+            </button>
           </div>
           <div class="testimonial_img_name">
-            <img class="testimonial_img" :src="item.src" alt=""/>
+            <img class="testimonial_img" :src="item.avatar" alt=""/>
             <h5>{{ item.position}}</h5>
           </div>
           <p>{{ item.comment }}</p>
@@ -49,7 +53,7 @@ export default {
   data() {
     return {
       testimonial: {
-        images: [],
+        avatar: 'https://i.pinimg.com/originals/b7/1f/d1/b71fd13f1ebd496a3bd546284aaa0ad8.jpg',
         position: '',
         comment: ''
       },
@@ -74,9 +78,9 @@ export default {
       await new TestimonialsService().post(this.testimonial)
 
       this.testimonial = {
-        images: [],
-            position: '',
-            comment: ''
+        avatar: 'https://i.pinimg.com/originals/b7/1f/d1/b71fd13f1ebd496a3bd546284aaa0ad8.jpg',
+        position: '',
+        comment: ''
       }
 
       await this.getTestimonials()
@@ -102,7 +106,7 @@ export default {
       await new TestimonialsService().put(this.testimonial)
 
       this.testimonial = {
-        images: [],
+        avatar: 'https://i.pinimg.com/originals/b7/1f/d1/b71fd13f1ebd496a3bd546284aaa0ad8.jpg',
         position: '',
         comment: ''
       }
@@ -115,6 +119,11 @@ export default {
 </script>
 
 <style scoped>
+
+.btn-primary{
+  background-color: #2490EB !important;
+}
+
 .testimonials_page_content {
   padding: 2%;
 }
@@ -169,8 +178,14 @@ export default {
   margin-bottom: 4%;
 }
 
-.test_close_icon{
-  width: 25px;
-  cursor: pointer;
+.icon_btn{
+  border: none;
+  background: none;
 }
+
+.test_close_icon{
+  width: 30px;
+  height: 30px;
+}
+
 </style>

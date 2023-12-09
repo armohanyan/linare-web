@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div class="landing_slide">
       <b-carousel
           id="carousel-fade"
@@ -8,7 +7,7 @@
           fade
           indicators
           img-width="100%"
-          :interval="3000"
+          :interval="5000"
           controls
       >
         <b-carousel-slide v-for="(item, index) in introCarousel" :key="index">
@@ -230,8 +229,8 @@ export default {
 }
 </script>
 
-<style>
-.sr-only {
+<style scoped>
+>>> .sr-only {
   display: none;
 }
 
@@ -239,7 +238,7 @@ export default {
   width: 100%;
 }
 
-.carousel-caption {
+>>> .carousel-caption {
   position: absolute;
   right: unset !important;
   top: 22% !important;
@@ -263,10 +262,10 @@ export default {
 }
 
 .slide-left > p {
-  font-size: 65px;
+  font-size: 50px;
   text-align: center;
   font-weight: 500;
-  color: #FFFFFF;
+  color: black;
 }
 
 @keyframes slide-left {
@@ -278,34 +277,31 @@ export default {
   }
 }
 
-.carousel-control-prev, .carousel-control-next {
+>>> .carousel-control-prev {
   opacity: 1 !important;
 }
 
-.carousel-control-prev-icon, .carousel-control-next-icon {
+>>> .carousel-control-next {
+  opacity: 1 !important;
+}
+
+>>> .carousel-control-prev-icon {
   background-color: #2490EB;
   border-radius: 3px;
   height: 2.5rem !important;
   width: 2.5rem !important;
 }
 
-.read_more_btn {
+>>> .carousel-control-next-icon {
   background-color: #2490EB;
-  color: white;
-  border: none;
-  padding: 3%;
-  border-radius: 5px;
-  font-weight: 500;
-  margin-top: 4%;
+  border-radius: 3px;
+  height: 2.5rem !important;
+  width: 2.5rem !important;
 }
 
 .modal_info {
   margin-top: 3%;
   width: 59%;
-}
-
-.read_more_btn:hover {
-  background-color: #14457B;
 }
 
 .partners_part {
@@ -447,6 +443,7 @@ export default {
   padding: 2%;
   display: flex;
   flex-wrap: wrap;
+  row-gap: 15px;
   justify-content: space-evenly;
 }
 
@@ -534,11 +531,11 @@ export default {
   opacity: 1;
 }
 
-.modal-dialog {
+>>> .modal-dialog {
   max-width: 50% !important;
 }
 
-.modal-footer {
+>>> .modal-footer {
   display: none !important;
 }
 
@@ -585,16 +582,16 @@ export default {
   margin-top: 3%;
 }
 
-.modal-body {
+>>> .modal-body {
   padding-bottom: 5% !important;
   padding-top: 0 !important;
 }
 
-.modal-header {
+>>>.modal-header {
   border-bottom: unset !important;
 }
 
-.close {
+>>> .close {
   border: none;
   background-color: #2490EB;
   color: white;
@@ -636,7 +633,7 @@ export default {
     margin-bottom: 4%;
   }
 
-  .carousel-caption {
+  >>> .carousel-caption {
     width: 50% !important;
   }
 }
@@ -703,7 +700,7 @@ export default {
 }
 
 @media only screen and (max-width: 815px) {
-  .modal-dialog {
+  >>> .modal-dialog {
     max-width: 100% !important;
   }
 
@@ -729,8 +726,9 @@ export default {
     width: 70% !important;
   }
 
-  .about{
+  .about {
     row-gap: 20px;
+    padding:3%;
   }
 
   .contact_us{
@@ -739,6 +737,10 @@ export default {
 
   .contact_us_heading{
     font-size: 25px;
+  }
+
+  .contact_us_text{
+    display:none;
   }
 
   .contact_us_text{

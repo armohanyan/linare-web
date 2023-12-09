@@ -1,5 +1,5 @@
 <template>
-  <div class="categories_page mt-4 card-body w-50">
+  <div class="categories_page mt-4 card-body">
       <div class="col-md-6">
         <categories-tree-select  v-if="refresh" class="w-75" ref="categoriesRef" @onChangeValue="onChangeValue" />
       </div>
@@ -9,7 +9,6 @@
         </div>
           <div>
             <input v-model="category.name" class="form-control mb-3" type="text" placeholder="Name">
-
             <div class="form-group testimonials_text">
               <textarea  v-model="category.description" class="form-control testimonial_message" placeholder="Description"></textarea>
             </div>
@@ -95,11 +94,20 @@ export default {
 </script>
 
 <style>
+.btn-primary{
+  background-color: #2490EB !important;
+}
 
-.categories_name {
-  border: #a29b9b 1px solid;
+.categories_page{
+  margin: 0 auto;
+  border: 1px solid #DFDFDF;
   border-radius: 5px;
-  padding: 10px;
-  width: 480px;
+  width: 50%;
+}
+
+@media (max-width: 910px) {
+  .categories_page{
+    width: 85%;
+  }
 }
 </style>
