@@ -63,7 +63,7 @@ const routes = [
   {
     path: '/admin/dashboard',
     component: Dashboard,
-    name: 'adminDashboard',
+    name: 'admin-dashboard',
     meta: {
        requiresAuth: true,
        userRoute: false
@@ -72,7 +72,7 @@ const routes = [
   {
     path: '/admin/dashboard/categories',
     component: Categories,
-    name: 'adminDashboardCategories',
+    name: 'admin-categories',
     meta: {
       requiresAuth: true,
       userRoute: false
@@ -81,16 +81,16 @@ const routes = [
   {
     path: '/admin/dashboard/products',
     component: AdminProducts,
-    name: 'adminDashboardProducts',
+    name: 'admin-products',
     meta: {
       requiresAuth: true,
       userRoute: false
     }
   },
   {
-    path: '/admin/dashboard/contact',
+    path: '/admin/dashboard/contacts',
     component: Contacts,
-    name: 'adminDashboardContact',
+    name: 'admin-contacts',
     meta: {
       requiresAuth: true,
       userRoute: false
@@ -99,7 +99,7 @@ const routes = [
   {
     path: '/admin/dashboard/testimonials',
     component: Testimonials,
-    name: 'adminDashboardTestimonials',
+    name: 'admin-testimonials',
     meta: {
       requiresAuth: true,
       userRoute: false
@@ -108,7 +108,7 @@ const routes = [
   {
     path: '/admin/dashboard/partners',
     component: Partners,
-    name: 'adminDashboardPartners',
+    name: 'admin-partners',
     meta: {
       requiresAuth: true,
       userRoute: false

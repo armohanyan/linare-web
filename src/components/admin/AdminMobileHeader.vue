@@ -7,62 +7,22 @@
 
     <div class="sidebar-header">
       <div class="sidebar_hide">
-        <div class="admin_sideBar" :class="{ showAdminMenu: showAdminMenu, widthChange: hideList }">
-          <div class="sidebar_images" :class="{ 'images': hideList }">
+        <div class="admin_sideBar" :class="{ showAdminMenu: isMenuVisible }">
+          <div class="sidebar_images">
             <img :class="{ 'hide-logo': hideList }" class="sidebar_img" src="@/assets/logos/linare_white.png" alt=""/>
-            <img src="@/assets/dashboard/menu.png" alt="" id="adminDesktop" @click="toggleMenuList"/>
-            <img src="@/assets/dashboard/menu.png" alt="" id="adminDesktop" @click="toggleMenuList"/>
             <img src="@/assets/dashboard/menu.png" alt="" id="adminMobile" @click="toggleMenuList"/>
           </div>
-          <ul style="padding-top: 4%; padding-left: 0" :class="{ 'show-icons-only': hideList }">
-            <router-link to="/admin/dashboard" :class="{ selected: selectedIndex === 0 }" @click="selectItem(0)">
-              <li class="lists"><img style="width: 24px; height: 24px" src="@/assets/dashboard/dashboard.png"
-                                     alt=""/><label
-                  class="link_texts" :class="{ hideMenuList: hideList }">Dashboard</label></li>
-            </router-link>
-            <router-link to="/admin/dashboard/categories" :class="{ selected: selectedIndex === 1 }"
-                         @click="selectItem(1)">
-              <li class="lists"><img style="width: 24px; height: 24px" src="@/assets/dashboard/categories.png"
-                                     alt=""/><label
-                  class="link_texts" :class="{ hideMenuList: hideList }">Categories</label></li>
-            </router-link>
-            <router-link to="/admin/dashboard/products" :class="{ selected: selectedIndex === 2 }"
-                         @click="selectItem(2)">
-              <li class="lists"><img style="width: 24px; height: 24px" src="@/assets/dashboard/product.png"
-                                     alt=""/><label
-                  class="link_texts" :class="{ hideMenuList: hideList }">Products</label></li>
-            </router-link>
-            <router-link to="/admin/dashboard/contact" :class="{ selected: selectedIndex === 4 }"
-                         @click="selectItem(4)">
-              <li class="lists"><img style="width: 24px; height: 24px" src="@/assets/dashboard/contact.png"
-                                     alt=""/><label
-                  class="link_texts" :class="{ hideMenuList: hideList }">Contacts</label></li>
-            </router-link>
-            <router-link to="/admin/dashboard/testimonials" :class="{ selected: selectedIndex === 5 }"
-                         @click="selectItem(5)">
-              <li class="lists"><img style="width: 24px; height: 24px" src="@/assets/dashboard/testimonials.png"
-                                     alt=""/><label
-                  class="link_texts" :class="{ hideMenuList: hideList }">Testimonials</label></li>
-            </router-link>
-            <router-link to="/admin/dashboard/partners" :class="{ selected: selectedIndex === 5 }"
-                         @click="selectItem(6)">
-              <li class="lists"><img style="width: 24px; height: 24px" src="@/assets/dashboard/partner.png"
-                                     alt=""/><label
-                  class="link_texts" :class="{ hideMenuList: hideList }">Partners</label></li>
-            </router-link>
+          <ul style="padding-top: 4%; padding-left: 0" >
+            <li v-for="tab in tabs" :key="tab.name" class="lists" @click="navigate(tab.name, tab.path)">
+              <label class="link_texts">{{ tab.label }}</label>
+            </li>
 
-            <router-link to="/admin/dashboard/settings" :class="{ selected: selectedIndex === 5 }"
-                         @click="selectItem(7)">
-              <li class="lists"><label class="link_texts" :class="{ hideMenuList: hideList }" @click="logout">Settings</label></li>
-            </router-link>
-
-
-            <li class="lists"><label class="link_texts" :class="{ hideMenuList: hideList }" @click="logout">Logout</label></li>
+            <li class="lists" @click="logout">
+              <label class="link_texts">Logout</label>
+            </li>
           </ul>
-          <span class="cross-icon" @click="hideMenu"></span>
         </div>
       </div>
-      <div class="backdrop" @click="hideMenu" :class="{ showBackdrop: showBackdrop }"></div>
     </div>
 
   </header>
@@ -74,27 +34,43 @@ import AccountService from "../../services/AccountService";
 const tabs = [
   {
     label: 'Dashboard',
-    path: '/admin/dashboard'
+    path: '/admin/dashboard',
+    name: 'dashboard'
   },
   {
     label: 'Categories',
-    path: '/admin/dashboard/categories'
+    path: '/admin/dashboard/categories',
+    name: 'categories'
   },
   {
     label: 'Products',
-    path: '/admin/dashboard/products'
+    path: '/admin/dashboard/products',
+    name: 'products'
   },
   {
     label: 'Contacts',
-    path: '/admin/dashboard/contact'
+    path: '/admin/dashboard/contacts',
+    name: 'contacts'
   },
   {
     label: 'Testimonials',
-    path: '/admin/dashboard/testimonials'
+    path: '/admin/dashboard/testimonials',
+    name: 'testimonials'
   },
   {
     label: 'Partners',
-    path: '/admin/dashboard/partners'
+    path: '/admin/dashboard/partners',
+    name: 'partners'
+  },
+  {
+    label: 'Users',
+    path: '/admin/dashboard/users',
+    name: 'users'
+  },
+  {
+    label: 'Settings',
+    path: '/admin/dashboard/settings',
+    name: 'settings'
   },
 ]
 export default {
@@ -102,37 +78,30 @@ export default {
   data() {
     return {
       tabs: tabs,
-      showBackdrop: false,
       isMenuVisible: false,
-      hideList: false,
-      selectedIndex: null,
-      menuItems: ["Dashboard", "Categories", "Products", "Contacts", "Testimonials", "Partners"],
+      selectedTab: 'dashboard'
     };
   },
   methods: {
     showAdminMenu() {
-        this.isMenuVisible = true;
-        this.hideList = false;
-        this.showBackdrop = true;
-      },
+      this.isMenuVisible = true;
+    },
+
     toggleMenuList() {
-      this.showAdminMenu = !this.showAdminMenu;
-      this.showBackdrop = this.showAdminMenu; // Show backdrop when menu is open
+      this.isMenuVisible = !this.isMenuVisible;
     },
-    hideMenu() {
-      this.showAdminMenu = false;
-      this.showBackdrop = false;
+
+    navigate(name, path) {
+      this.$router.push({path})
+      this.isMenuVisible = false;
     },
+
     logout() {
       new AccountService().reset()
-      this.$router.push({ name: 'sign-in'})
+      this.$router.push({name: 'sign-in'})
       this.$store.dispatch('setCurrentUser', null);
-    },
-    selectItem(index) {
-        this.selectedIndex = index;
-        this.isMenuVisible = false;
-      },
-    },
+    }
+  }
 };
 </script>
 
@@ -218,7 +187,7 @@ a {
 }
 
 .admin_sideBar li {
-  padding: 20px 20px 20px 30px;
+  padding: 10px 15px;
   transition: 0.3s ease-in-out;
 }
 
