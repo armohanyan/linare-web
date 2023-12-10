@@ -5,11 +5,11 @@
       <img src="@/assets/icons/menu_icon.png" alt="" class="adminMobileIcon" @click="toggleMenuList"/>
     </div>
 
-    <div class="sidebar-header">
+    <div  v-if="getCurrentUser" class="sidebar-header">
       <div class="sidebar_hide">
         <div class="admin_sideBar" :class="{ showAdminMenu: isMenuVisible }">
           <div class="sidebar_images">
-            <img :class="{ 'hide-logo': hideList }" class="sidebar_img" src="@/assets/logos/linare_white.png" alt=""/>
+            <img class="sidebar_img" src="@/assets/logos/linare_white.png" alt=""/>
             <img src="@/assets/dashboard/menu.png" alt="" id="adminMobile" @click="toggleMenuList"/>
           </div>
           <ul style="padding-top: 4%; padding-left: 0" >
@@ -82,16 +82,19 @@ export default {
       selectedTab: 'dashboard'
     };
   },
+  computed: {
+    getCurrentUser() {
+      return this.$store.getters.getCurrentUser;
+    }
+  },
   methods: {
-    showAdminMenu() {
-      this.isMenuVisible = true;
-    },
-
     toggleMenuList() {
       this.isMenuVisible = !this.isMenuVisible;
     },
 
     navigate(name, path) {
+      this.selectedTab = name
+
       this.$router.push({path})
       this.isMenuVisible = false;
     },
