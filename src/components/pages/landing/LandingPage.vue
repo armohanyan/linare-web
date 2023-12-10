@@ -28,9 +28,9 @@
       </b-carousel>
     </div>
 
-    <div  v-if="collaborators.length" class="partners_part">
+    <div v-if="collaborators.length" class="partners_part">
       <div v-for="(collaborator, index) in collaborators" :key="index">
-        <img class="partner_img"  src="../../../assets/logos/logo1.png" alt="Logo"/>
+        <img class="partner_img" src="../../../assets/logos/logo1.png" alt="Logo"/>
       </div>
     </div>
 
@@ -61,12 +61,12 @@
 
                       <div style="display: flex; gap: 30px; align-items: center">
                         <p class="types">Categories</p>
-                        <p  v-for="(category, index) in product.categories" :key="index" class="modal_type">{{ category.name }}</p>
+                        <p v-for="(category, index) in product.categories" :key="index" class="modal_type">
+                          {{ category.name }}</p>
                       </div>
                       <router-link :to="'/product/' + product.id" class="text-primary btn p-0">
                         <p class="full_details">View full details</p>
                       </router-link>
-
 
                     </div>
                   </div>
@@ -83,25 +83,11 @@
     </div>
 
     <div class="about">
-      <div class="icons_part">
-        <img style="width: 45px; height: 45px" src="../../../assets/icons/helpline_icon.png" alt=""/>
+      <div class="icons_part" v-for="(item, index) in about" :key="index">
+        <i class="fa_icons" :class="['fas', item.class]"></i>
         <div>
-          <p>24/7 helpline</p>
-          <p>Care till the end</p>
-        </div>
-      </div>
-      <div class="icons_part">
-        <img style="width: 60px; height: 60px" src="../../../assets/icons/truck_icon.png" alt=""/>
-        <div>
-          <p>Free Shipping</p>
-          <p>For orders over $50</p>
-        </div>
-      </div>
-      <div class="icons_part">
-        <img style="width: 50px; height: 50px" src="../../../assets/icons/discount_icon.png" alt=""/>
-        <div>
-          <p>Official Discounts</p>
-          <p>Save big on next product</p>
+          <p>{{ item.text1 }}</p>
+          <p>{{ item.text2 }}</p>
         </div>
       </div>
     </div>
@@ -111,7 +97,7 @@
       <p class="contact_us_text">ALWAYS ON YOUR SIDE WHEN YOU NEED HELP</p>
 
       <div class="contact_us_info">
-        <img class="phone_icon" src="../../../assets/icons/phone_icon.png" alt=""/>
+        <i class="fa-solid fa-phone-volume"></i>
         <div class="info_text">
           <div class="info_text_column">
             <div>
@@ -139,30 +125,33 @@ import ProductsService from "../../../services/ProductsService";
 const introCarousel = [
   {
     src: 'https://www.niso.com.tr/wp-content/uploads/2023/03/hardware_SD.jpg',
-    title: 'Rigorous Standards, Unwavering Quality'
+    title: 'Your Journey to Better Health Starts Here'
   },
   {
     src: 'https://www.aamc.org/sites/default/files/styles/scale_and_crop_1200_x_666/public/workforce-feature.jpg__992x558_q85_crop-smart_subsampling-2_upscale.jpg?itok=xrYKAvV0',
-    title: 'Meeting and Exceeding Industry Standards'
+    title: 'Your Health, Our Priority'
   },
   {
     src: 'https://img.freepik.com/premium-photo/doctor-hold-icon-health-electronic-medical-record-interface-digital-healthcare-network_34200-712.jpg',
-    title: 'Protection with Comfort in Mind'
+    title: 'Rigorous Standards, Unwavering Quality'
   }
 ]
 
-const partners = [
+const about = [
   {
-    src: '../../../assets/logos/logo1.png',
+    class: "fa-hotel",
+    text1: "24/7 helpline",
+    text2: "Care till the end"
   },
   {
-    src: '../../../assets/logos/logo1.png',
+    class: "fa-truck-fast",
+    text1: "Free Shipping",
+    text2: "For orders over $50"
   },
   {
-    src: '../../../assets/logos/logo1.png',
-  },
-  {
-    src: '../../../assets/logos/logo1.png',
+    class: "fa-percent",
+    text1: "Official Discounts",
+    text2: "Save big on the next product"
   }
 ]
 
@@ -173,9 +162,9 @@ export default {
       currentOffset: 0,
       windowSize: 3,
       paginationFactor: 220,
-      partners,
       collaborators: [],
       introCarousel,
+      about,
       products: [],
       contacts: {
         phone_1: '',
@@ -272,7 +261,7 @@ export default {
   font-size: 50px;
   text-align: center;
   font-weight: 500;
-  color: black;
+  color: #14457B;
 }
 
 @keyframes slide-left {
@@ -317,6 +306,10 @@ export default {
   justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
+}
+
+.fa_icons {
+  font-size: 25px;
 }
 
 .products {
@@ -435,7 +428,7 @@ export default {
   color: #FFFFFF;
 }
 
-.partner_img{
+.partner_img {
   width: 200px;
 }
 
@@ -459,6 +452,7 @@ export default {
   gap: 20px;
   color: #FFFFFF;
   font-weight: 500;
+  align-items: center;
 }
 
 .icons_part > div > p {
@@ -490,6 +484,7 @@ export default {
   margin: 4% auto 0;
   display: flex;
   gap: 30px;
+  align-items: center;
 }
 
 .info_text {
@@ -594,7 +589,7 @@ export default {
   padding-top: 0 !important;
 }
 
->>>.modal-header {
+>>> .modal-header {
   border-bottom: unset !important;
 }
 
@@ -608,9 +603,8 @@ export default {
   text-align: center;
 }
 
-.phone_icon {
-  height: 70px;
-  width: 70px;
+.fa-phone-volume::before {
+  font-size: 35px;
 }
 
 @media only screen and (max-width: 1635px) {
@@ -646,11 +640,6 @@ export default {
 }
 
 @media only screen and (max-width: 1195px) {
-  .phone_icon {
-    height: 55px;
-    width: 55px;
-  }
-
   .info_heading {
     font-size: 22px;
   }
@@ -675,11 +664,6 @@ export default {
     flex-direction: column;
     align-items: center;
     gap: 10px;
-  }
-
-  .phone_icon {
-    height: 45px;
-    width: 45px;
   }
 }
 
@@ -729,34 +713,34 @@ export default {
     max-height: 20%;
   }
 
-  .carousel-caption {
-    width: 70% !important;
+  >>> .carousel-caption {
+    width: 73% !important;
   }
 
   .about {
     row-gap: 20px;
-    padding:3%;
+    padding: 3%;
   }
 
-  .contact_us{
+  .contact_us {
     padding: 10% 4%;
   }
 
-  .contact_us_heading{
+  .contact_us_heading {
     font-size: 25px;
   }
 
-  .contact_us_text{
-    display:none;
+  .contact_us_text {
+    display: none;
   }
 
-  .contact_us_text{
+  .contact_us_text {
     font-size: 17px;
   }
 }
 
 @media only screen and (max-width: 320px) {
-  .partner_img{
+  .partner_img {
     width: 130px;
   }
 }

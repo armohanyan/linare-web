@@ -1,6 +1,6 @@
 <template>
   <button v-if="showButton" @click="scrollToTop" id="back-to-top-btn">
-    <img src="../../../assets/icons/to_top.png" alt=""/>
+    <i class="fa-solid fa-chevron-up"></i>
   </button>
 </template>
 
@@ -36,9 +36,15 @@ export default {
   right: 20px;
   border: none;
   background-color: #2490EB;
-  height: 5%;
+  height: 50px;
+  width: 50px;
   z-index: 99999;
   border-radius: 5px;
-  padding: 0 0.5%;
+  padding: 5px 0.5% 0;
+}
+
+.fa-chevron-up::before {
+  color: white;
+  font-size: 20px;
 }
 </style>

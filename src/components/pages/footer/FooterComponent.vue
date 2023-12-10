@@ -19,25 +19,25 @@
       <div>
         <h3>Contact Us</h3>
         <div class="text_icons">
-          <img class="contact_icon" src="../../../assets/contact/contact_phone.png" alt=""/>
+          <i class="fa-solid fa-phone"></i>
           <span>{{ contacts.phone_1 }}</span>
         </div>
         <div class="text_icons">
-          <img class="contact_icon" src="../../../assets/contact/contact_phone.png" alt=""/>
+          <i class="fa-solid fa-phone"></i>
           <span>{{ contacts.phone_2 }}</span>
         </div>
         <div class="text_icons">
-          <img src="../../../assets/contact/contact_email.png" alt=""/>
+          <i class="fa-solid fa-envelope"></i>
           <span>{{ contacts.email }}</span>
         </div>
         <div class="text_icons">
-          <img class="contact_icon" src="../../../assets/contact/contact_location.png" alt=""/>
+          <i class="fa-solid fa-location-dot"></i>
           <span>{{ contacts.address }}</span>
         </div>
       </div>
     </div>
 
-    <hr />
+    <hr/>
   </footer>
 </template>
 
@@ -76,7 +76,7 @@ export default {
 </script>
 
 <style>
-.footer{
+.footer {
   background-color: #14457B;
   color: #FFFFFF;
   padding: 2% 12%;
@@ -110,18 +110,19 @@ export default {
   gap: 10px;
   margin-top: 25%;
 }
+
 @media only screen and (max-width: 550px) {
-  .footer{
+  .footer {
     padding: 4% 5%;
   }
 }
 
 @media only screen and (max-width: 455px) {
-  .contact_icons{
+  .contact_icons {
     padding: 7%;
   }
 
-  .contact_social_icons{
+  .contact_social_icons {
     gap: 10px;
   }
 }

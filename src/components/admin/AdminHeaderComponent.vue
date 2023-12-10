@@ -79,7 +79,9 @@ export default {
     return {
       tabs: tabs,
       isMenuVisible: false,
-      selectedTab: 'dashboard'
+      hideList: false,
+      selectedIndex: null,
+      menuItems: ["Dashboard", "Categories", "Products", "Contacts", "Testimonials", "Partners"],
     };
   },
   computed: {

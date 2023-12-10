@@ -1,6 +1,6 @@
 <template>
   <div class="contact_page">
-    <active-page-template page="CONTACTS" />
+    <active-page-template page="CONTACTS"/>
 
     <div class="contact_content">
       <div style="margin: 0 auto; width: 92%">
@@ -11,7 +11,9 @@
       <div class="contact_part">
         <div class="contact_info">
           <div class="contact_content_icon">
-            <img class="contact_form_icon" src="../../../assets/contact/contact_phone.png" alt="">
+            <div class="contact_form_icon">
+              <i class="fa-solid fa-phone"></i>
+            </div>
             <div>
               <p class="contact_content_heading">Phone</p>
               <p class="contact_content_text">{{ this.contacts.phone_1 }}</p>
@@ -19,14 +21,18 @@
             </div>
           </div>
           <div class="contact_content_icon">
-            <img class="contact_form_icon" src="../../../assets/contact/contact_email.png" alt="">
+            <div class="contact_form_icon">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
             <div>
               <p class="contact_content_heading">Email</p>
               <p class="contact_content_text">{{ this.contacts.email }}</p>
             </div>
           </div>
           <div class="contact_content_icon">
-            <img class="contact_form_icon" src="../../../assets/contact/contact_address.png" alt="">
+            <div class="contact_form_icon">
+              <i class="fa-solid fa-paper-plane"></i>
+            </div>
             <div>
               <p class="contact_content_heading">Address</p>
               <p class="contact_content_text">{{ this.contacts.address }}</p>
@@ -37,10 +43,12 @@
         <div class="contact_form">
           <p class="contact_form_heading">Contacts</p>
           <div class="forms">
-            <input  v-model="customerMessage.name" type="text" class="contact_form_inputs" placeholder="Name"/>
-            <input v-model="customerMessage.email" type="email" class="contact_form_inputs" placeholder="Email" required/>
+            <input v-model="customerMessage.name" type="text" class="contact_form_inputs" placeholder="Name"/>
+            <input v-model="customerMessage.email" type="email" class="contact_form_inputs" placeholder="Email"
+                   required/>
             <input v-model="customerMessage.phone" type="text" class="contact_form_inputs" placeholder="Phone Number"/>
-            <textarea  v-model="customerMessage.comment" style="height: 280px" class="contact_form_inputs" placeholder="Comment" required/>
+            <textarea v-model="customerMessage.comment" style="height: 280px" class="contact_form_inputs"
+                      placeholder="Comment" required/>
           </div>
           <div class="contact_btn">
             <button class="contact_send_btn" @click="onClickSendEmail">Send</button>
@@ -57,7 +65,7 @@ import ContactsService from "../../../services/ContactsService";
 
 export default {
   name: "ContactPage",
-  components: { ActivePageTemplate },
+  components: {ActivePageTemplate},
 
   data() {
     return {
@@ -79,34 +87,34 @@ export default {
     }
   },
 
-   mounted() {
-     this.getContacts()
-   },
+  mounted() {
+    this.getContacts()
+  },
 
-   methods: {
+  methods: {
     async getContacts() {
       const contacts = await new ContactsService().get()
       this.contacts = contacts.data.contacts
     },
 
-     onClickSendEmail() {
-        if (!(this.customerMessage.email || this.customerMessage.comment)) return
+    onClickSendEmail() {
+      if (!(this.customerMessage.email || this.customerMessage.comment)) return
 
-        new ContactsService().customerSendEmail(this.customerMessage)
+      new ContactsService().customerSendEmail(this.customerMessage)
 
-       this.customerMessage = {
-         name: '',
-         email: '',
-         phone: '',
-         comment: ''
-       }
-     }
+      this.customerMessage = {
+        name: '',
+        email: '',
+        phone: '',
+        comment: ''
+      }
+    }
   }
 }
 </script>
 
-<style>
-.map{
+<style scoped>
+.map {
   width: 100%;
   height: 600px;
 }
@@ -124,9 +132,13 @@ export default {
 
 .contact_form_icon {
   background-color: #2490EB;
-  padding: 3%;
+  padding: 15px 3% 3%;
+  text-align: center;
+  width: 60px;
   border-radius: 5px;
   height: 60px;
+  font-size: 23px;
+  color: white;
 }
 
 .contact_content_icon {
@@ -144,7 +156,7 @@ export default {
   font-size: 23px;
 }
 
-.contact_content_text   {
+.contact_content_text {
   color: #9EA2AF;
   font-weight: 600;
   margin: 0 0 5px;
@@ -191,61 +203,61 @@ export default {
   font-size: 17px;
 }
 
-.contact_form{
+.contact_form {
   width: 60%;
 }
 
-.contact_btn{
+.contact_btn {
   display: flex;
   justify-content: flex-end;
 }
 
 @media only screen and (max-width: 1430px) {
-  .contact_content{
+  .contact_content {
     padding: 4% 7%;
   }
 }
 
 @media only screen and (max-width: 1390px) {
-  .contact_info{
+  .contact_info {
     width: 35%;
   }
 
-  .contact_content{
+  .contact_content {
     padding: 4% 4%;
   }
 
-  .contact_content_icon{
+  .contact_content_icon {
     padding: 13% 4%;
     gap: 20px;
   }
 }
 
 @media only screen and (max-width: 990px) {
-  .contact_part{
+  .contact_part {
     flex-direction: column;
   }
 
-  .contact_info{
+  .contact_info {
     width: 100%;
   }
 
-  .contact_content_icon{
+  .contact_content_icon {
     padding: 4% 4%;
     gap: 35px;
   }
 
-  .contact_form_icon{
-    padding: 2%;
+  .contact_form_icon {
+    padding: 13px 2% 2%;
   }
 
-  .contact_form{
+  .contact_form {
     width: 100%;
   }
 }
 
 @media only screen and (max-width: 990px) {
-  .map{
+  .map {
     height: 300px;
   }
 }

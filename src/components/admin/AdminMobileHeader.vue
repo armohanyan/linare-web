@@ -1,11 +1,13 @@
 <template>
   <header class="admin_header">
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between align-items-center">
       <img style="width: 100px" src="../../assets/logos/linare_logo.png" alt="Logo"/>
-      <img src="@/assets/icons/menu_icon.png" alt="" class="adminMobileIcon" @click="toggleMenuList"/>
+      <div class="adminMobileIcon" @click="toggleMenuList">
+        <i class="fa-solid fa-bars"></i>
+      </div>
     </div>
 
-    <div  v-if="getCurrentUser" class="sidebar-header">
+    <div v-if="getCurrentUser" class="sidebar-header">
       <div class="sidebar_hide">
         <div class="admin_sideBar" :class="{ showAdminMenu: isMenuVisible }">
           <div class="sidebar_images">
@@ -118,13 +120,6 @@ export default {
   align-items: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-.hide-logo {
-  height: 85% !important;
-}
-
-.hideMenuList {
-  display: none;
-}
 
 .show-icons-only .link_texts {
   display: none;
@@ -152,13 +147,13 @@ a {
   align-items: center;
 }
 
-.images {
-  flex-direction: column;
-  row-gap: 25px;
+.fa-bars::before{
+  font-size: 20px;
+  color: #13457A;
 }
 
 .adminMobileIcon {
-  display: block; /* Ensure the mobile icon is initially visible */
+  display: block;
 }
 
 .lists {
@@ -180,7 +175,7 @@ a {
   transition: 0.3s ease-in-out;
 }
 
-.admin_sideBar .widthChange {
+.admin_sideBar {
   width: 120px;
   text-align: center;
 }
@@ -193,11 +188,6 @@ a {
   padding: 10px 15px;
   transition: 0.3s ease-in-out;
 }
-
-li label .hideMenuList {
-  display: none;
-}
-
 .admin_sideBar li i {
   margin-right: 8px;
 }
@@ -205,10 +195,6 @@ li label .hideMenuList {
 .admin_sideBar li:hover {
   background-color: #14457B;
   border-radius: 10px;
-}
-
-.selected {
-  background-color: #0092ff;
 }
 
 .admin_sideBar span {
@@ -294,10 +280,6 @@ header h1 {
 }
 
 @media (max-width: 900px) {
-  #adminDesktop {
-    display: none;
-  }
-
   #adminMobile {
     display: block;
   }
@@ -312,19 +294,6 @@ header h1 {
 
   .admin_sideBar .cross-icon {
     display: block;
-  }
-
-
-  .backdrop {
-    position: absolute;
-    top: 0;
-    left: -100%;
-    height: 100vh;
-    width: 100%;
-  }
-
-  .backdrop.showBackdrop {
-    left: 0;
   }
 }
 

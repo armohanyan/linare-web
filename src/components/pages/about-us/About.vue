@@ -1,6 +1,6 @@
 <template>
   <div>
-    <active-page-template page="ABOUT US" />
+    <active-page-template page="ABOUT US"/>
 
     <div class="about_content">
       <div class="about_part">
@@ -10,29 +10,9 @@
             <p class="about_content_text">We create advance technology health and social care products</p>
           </div>
           <div style="margin-top: 4%;">
-            <div class="check_with_text">
-              <img class="check_icon" src="../../../assets/icons/check_icon.png" alt=""/>
-              <p class="check_text">Our technology-driven health and social care products are designed to elevate the
-                quality of patient care</p>
-            </div>
-            <div class="check_with_text">
-              <img class="check_icon" src="../../../assets/icons/check_icon.png" alt=""/>
-              <p class="check_text">Embracing the digital era, our products leverage the power of data and
-                connectivity to create intelligent and intuitive solutions.</p>
-            </div>
-            <div class="check_with_text">
-              <img class="check_icon" src="../../../assets/icons/check_icon.png" alt=""/>
-              <p class="check_text">We are committed to making advanced health technologies accessible to a wide range
-                of users. </p>
-            </div>
-            <div class="check_with_text">
-              <img class="check_icon" src="../../../assets/icons/check_icon.png" alt=""/>
-              <p class="check_text">Staying ahead of the curve requires ongoing commitment to research and
-                development.</p>
-            </div>
-            <div class="check_with_text">
-              <img class="check_icon" src="../../../assets/icons/check_icon.png" alt=""/>
-              <p class="check_text">We recognize the importance of collaboration with healthcare professionals.</p>
+            <div class="check_with_text" v-for="(item, index) in about" :key="index">
+              <i class="check_icon" :class="['fas', item.class]"></i>
+              <p class="check_text">{{ item.text }}</p>
             </div>
           </div>
         </div>
@@ -71,13 +51,13 @@
         <div v-for="(testimonial, index) in testimonials" :key="index" class="testimonials_desc">
           <div class="testimonial_img_name">
             <img class="testimonial_img" :src="testimonial.avatar" alt=""/>
-            <h5>{{ testimonial.position}}</h5>
+            <h5>{{ testimonial.position }}</h5>
           </div>
           <p>{{ testimonial.comment }}</p>
         </div>
       </div>
     </div>
-    <div  v-if="collaborators.length" class="partners">
+    <div v-if="collaborators.length" class="partners">
       <div v-for="(collaborator, index) in collaborators" :key="index">
         <img class="about_partner_img" src="../../../assets/logos/logo1.png" alt=""/>
       </div>
@@ -97,7 +77,33 @@ export default {
   data() {
     return {
       testimonials: [],
-      collaborators: []
+      collaborators: [],
+      about: [
+        {
+          class: "fa-check",
+          text: "Our technology-driven health and social care products are designed to elevate the\n" +
+              "                quality of patient care"
+        },
+        {
+          class: "fa-check",
+          text: "Embracing the digital era, our products leverage the power of data and\n" +
+              "                connectivity to create intelligent and intuitive solutions."
+        },
+        {
+          class: "fa-check",
+          text: "We are committed to making advanced health technologies accessible to a wide range\n" +
+              "                of users."
+        },
+        {
+          class: "fa-check",
+          text: "Staying ahead of the curve requires ongoing commitment to research and\n" +
+              "                development."
+        },
+        {
+          class: "fa-check",
+          text: "We recognize the importance of collaboration with healthcare professionals."
+        },
+      ]
     }
   },
 
@@ -158,7 +164,7 @@ export default {
 
 .check_icon {
   background-color: #E7F2F0;
-  padding: 0.7%;
+  padding: 2%;
   border-radius: 3px;
 }
 
