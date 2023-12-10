@@ -4,8 +4,8 @@
     <div class="sidebar-header">
       <div v-if="getCurrentUser" class="sidebar_hide">
         <div class="sideBar" :class="{ showMenu: isMenuVisible, widthChange: isMenuVisible }">
-          <div class="sidebar_images" :class="{ 'images': hideList }">
-            <img :class="{ 'hide-logo': hideList }" class="sidebar_img" src="@/assets/logos/linare_white.png" alt=""/>
+          <div class="sidebar_images">
+            <img class="sidebar_img" src="@/assets/logos/linare_white.png" alt=""/>
             <img src="@/assets/dashboard/menu.png" alt="" id="desktop" @click="toggleMenuList"/>
           </div>
           <ul style="padding-top: 4%; padding-left: 0" :class="{ 'show-icons-only': isMenuVisible }">

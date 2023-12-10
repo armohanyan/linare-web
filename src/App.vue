@@ -12,7 +12,6 @@
 </template>
 
 <script>
-
 import BackToTopButton from "@/components/pages/backToTopButton/BackToTopButton.vue";
 import FooterComponent from "./components/pages/footer/FooterComponent.vue";
 import HeaderComponent from "./components/pages/header/HeaderComponent.vue";
