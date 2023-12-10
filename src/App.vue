@@ -27,7 +27,6 @@ export default {
     },
 
     isRouteBelongsToUser() {
-      console.log(this.$route)
       return !!( this.$route.name !=='NotFound' &&  this.$route.meta && this.$route.meta.userRoute);
 
     }

@@ -45,6 +45,8 @@
                                      alt=""/><label
                   class="link_texts" :class="{ hideMenuList: hideList }">Partners</label></li>
             </router-link>
+
+            <li class="lists" @click="logout"><label class="link_texts" :class="{ hideMenuList: hideList }">Logout</label></li>
           </ul>
           <span class="cross-icon" @click="hideMenu"></span>
         </div>
@@ -59,6 +61,7 @@
 
 <script>
 import AdminMobileHeader from "@/components/admin/AdminMobileHeader.vue";
+import AccountService from "../../services/AccountService";
 
 export default {
   components: {AdminMobileHeader},
@@ -88,6 +91,11 @@ export default {
     },
     toggleMenuList() {
       this.hideList = !this.hideList;
+    },
+    logout() {
+      new AccountService().reset()
+      this.$router.push({ name: 'sign-in'})
+      this.$store.dispatch('setCurrentUser', null);
     },
     selectItem(index) {
       this.selectedIndex = index;
@@ -143,6 +151,7 @@ a {
   list-style: none;
   display: flex;
   gap: 20px;
+  cursor: pointer;
   align-items: center;
   border-radius: 0 !important;
 }

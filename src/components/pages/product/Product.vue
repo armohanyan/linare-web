@@ -80,11 +80,8 @@ export default {
 
       if (id) {
         const data = await new ProductsService().getProduct(id)
-        console.log(data)
         this.product = data.data || {}
       }
-
-      console.log(this.products)
     }
   },
 }

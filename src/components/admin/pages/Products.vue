@@ -44,6 +44,7 @@
         @selectProduct="chooseProduct"
         @deleteProduct="deleteProduct"
     />
+
   </div>
 </div>
 </template>
@@ -59,6 +60,7 @@ export default {
   data() {
     return {
       categoriesOptions: [],
+      totalCount: 0,
       refresh: true,
       product: {
         title: "",

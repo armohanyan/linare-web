@@ -3,7 +3,6 @@ import axios from 'axios';
 const url = process.env.VUE_APP_SERVER_URL + '/products';
 
 class ProductsService {
-
   get(params) {
     return new Promise((resolve, reject) => {
       axios.get(url, { params: params })
@@ -19,7 +18,6 @@ class ProductsService {
           .catch(err => reject(err));
     });
   }
-
 
   post(formData) {
     return new Promise((resolve, reject) => {

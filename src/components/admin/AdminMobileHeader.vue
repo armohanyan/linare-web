@@ -50,6 +50,14 @@
                                      alt=""/><label
                   class="link_texts" :class="{ hideMenuList: hideList }">Partners</label></li>
             </router-link>
+
+            <router-link to="/admin/dashboard/settings" :class="{ selected: selectedIndex === 5 }"
+                         @click="selectItem(7)">
+              <li class="lists"><label class="link_texts" :class="{ hideMenuList: hideList }" @click="logout">Settings</label></li>
+            </router-link>
+
+
+            <li class="lists"><label class="link_texts" :class="{ hideMenuList: hideList }" @click="logout">Logout</label></li>
           </ul>
           <span class="cross-icon" @click="hideMenu"></span>
         </div>
@@ -61,6 +69,7 @@
 </template>
 
 <script>
+import AccountService from "../../services/AccountService";
 
 const tabs = [
   {
@@ -113,6 +122,11 @@ export default {
     hideMenu() {
       this.showAdminMenu = false;
       this.showBackdrop = false;
+    },
+    logout() {
+      new AccountService().reset()
+      this.$router.push({ name: 'sign-in'})
+      this.$store.dispatch('setCurrentUser', null);
     },
     selectItem(index) {
         this.selectedIndex = index;
@@ -179,6 +193,7 @@ a {
   list-style: none;
   display: flex;
   gap: 20px;
+  cursor: pointer;
   border-radius: 0 !important;
   align-items: center;
 }

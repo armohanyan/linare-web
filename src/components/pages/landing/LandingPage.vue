@@ -210,7 +210,10 @@ export default {
     },
 
     async getProducts() {
-      const products = await new ProductsService().get()
+      const products = await new ProductsService().get({
+        page: 1,
+        limit: 6
+      })
       this.products = products.data.products
     },
 

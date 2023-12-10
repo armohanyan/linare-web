@@ -39,7 +39,9 @@
               </button>
             </div>
           </div>
-          <a :href="'/product/' + product.id"><img class="card-product-img" :src="product.images[0]" alt=""/></a>
+
+          <router-link :to="'/product/' + product.id" class="text-primary btn"><img class="card-product-img" :src="product.images[0]" alt=""/></router-link>
+
           <div class="card-product--card--footer">
             <p>{{ product.title }}</p>
             <p class="product-price">{{ product.price }}</p>
@@ -51,6 +53,16 @@
         </div>
       </div>
     </div>
+
+
+    <div class="d-flex  mt-5 justify-content-center">
+      <b-pagination
+          v-model="currentPage"
+          :total-rows="totalCount"
+          per-page="3"
+      ></b-pagination>
+    </div>
+
   </div>
 </template>
 
@@ -71,11 +83,23 @@ export default {
   },
   data() {
     return {
+      selectedCategory: null,
+      currentPage: 1,
+      totalCount: 0,
       products: [],
       currentGridClass: 'product_cards',
     }
   },
 
+  watch: {
+    currentPage: function () {
+      if (this.selectedCategory) {
+        this.getProductsFiltertedByCategory(this.selectedCategory)
+      } else {
+        this.getProducts()
+      }
+    }
+  },
 
   mounted() {
     this.getProducts()
@@ -87,17 +111,31 @@ export default {
     },
 
     async getProducts() {
-      const products = await new ProductsService().get()
+      const products = await new ProductsService().get({
+        page: this.currentPage,
+        limit: 3
+      })
+
       this.products = products.data.products
+      this.totalCount = products.data.count
     },
 
     async getProductsFiltertedByCategory(categoryName) {
-      const products = await new ProductsService().get({category: categoryName})
+      const products = await new ProductsService().get({
+        category: categoryName,
+        page: this.currentPage,
+        limit: 3
+      })
+
       this.products = products.data.products
+      this.totalCount = products.data.count
     },
 
     onChangeCategory(value) {
-      if (value) {
+      this.selectedCategory = value ? value.name : null
+      this.currentPage = 1
+
+      if (this.selectedCategory) {
         this.getProductsFiltertedByCategory(value.name)
       } else {
         this.getProducts()
@@ -185,7 +223,6 @@ export default {
 
 .card-product--card {
   cursor: pointer;
-  box-shadow: 0 4px 15px 0 rgba(40, 44, 53, 0.06), 0 2px 2px 0 rgba(40, 44, 53, 0.08);
   background-color: #fff;
   border-radius: 4px;
   z-index: 3;

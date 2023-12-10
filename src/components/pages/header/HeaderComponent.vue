@@ -28,8 +28,7 @@
           </div>
         </div>
       </transition>
-    </div>
-
+    </div>+
   </header>
 </template>
 
