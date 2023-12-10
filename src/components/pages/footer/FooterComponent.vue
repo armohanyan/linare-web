@@ -6,12 +6,12 @@
         <div class="contact_social_icons">
           <div class="contact_icons">
             <a :href="contacts.facebook" target="_blank">
-              <img src="../../../assets/social/facebook.png" alt=""/>
+              <i class="fa-brands fa-facebook-f"></i>
             </a>
           </div>
           <div class="contact_icons">
             <a :href="contacts.instagram" target="_blank">
-              <img src="../../../assets/social/instagram.png" alt=""/>
+              <i class="fa-brands fa-instagram"></i>
             </a>
           </div>
         </div>
@@ -75,7 +75,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .footer {
   background-color: #14457B;
   color: #FFFFFF;
@@ -109,6 +109,10 @@ export default {
   display: flex;
   gap: 10px;
   margin-top: 25%;
+}
+
+.fa-facebook-f:before, .fa-instagram:before{
+  color: white;
 }
 
 @media only screen and (max-width: 550px) {

@@ -27,10 +27,10 @@
         <div class="testimonials_desc" v-for="item in partners" :key="item.id">
           <div class="d-flex justify-content-end">
             <button class="icon_btn" @click="deletePartners(item.id)">
-              <img class="test_close_icon" src="@/assets/admin_panel/delete.png" alt="" />
+              <i class="fa-solid fa-trash"></i>
             </button>
             <button class="icon_btn" @click="choosePartner(item)">
-              <img class="test_close_icon" src="@/assets/admin_panel/edit.png" alt="" />
+              <i class="fa-solid fa-pen-to-square"></i>
             </button>
           </div>
           <div class="testimonial_img_name">
@@ -182,10 +182,4 @@ export default {
   border: none;
   background: none;
 }
-
-.test_close_icon{
-  width: 30px;
-  height: 30px;
-}
-
 </style>

@@ -27,10 +27,10 @@
         <div class="testimonials_desc" v-for="item in testimonials" :key="item.id">
           <div class="d-flex justify-content-end gap-2">
             <button class="icon_btn" @click="deleteTestimonials(item.id)">
-              <img class="test_close_icon" src="@/assets/admin_panel/delete.png" alt="" />
+              <i class="fa-solid fa-trash"></i>
             </button>
             <button class="icon_btn" @click="chooseTestimonial(item)">
-              <img class="test_close_icon" src="@/assets/admin_panel/edit.png" alt="" />
+              <i class="fa-solid fa-pen-to-square"></i>
             </button>
           </div>
           <div class="testimonial_img_name">
@@ -57,7 +57,11 @@ export default {
         position: '',
         comment: ''
       },
-      testimonials: []
+      testimonials: [{
+        avatar: 'https://i.pinimg.com/originals/b7/1f/d1/b71fd13f1ebd496a3bd546284aaa0ad8.jpg',
+        position: 'tets',
+        comment: 'test'
+      }]
     }
   },
 
@@ -182,10 +186,4 @@ export default {
   border: none;
   background: none;
 }
-
-.test_close_icon{
-  width: 30px;
-  height: 30px;
-}
-
 </style>

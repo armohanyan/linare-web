@@ -12,9 +12,11 @@
         <div class="admin_sideBar" :class="{ showAdminMenu: isMenuVisible }">
           <div class="sidebar_images">
             <img class="sidebar_img" src="@/assets/logos/linare_white.png" alt=""/>
-            <img src="@/assets/dashboard/menu.png" alt="" id="adminMobile" @click="toggleMenuList"/>
+            <div class="menu_icon">
+              <i id="desktop" @click="toggleMenuList" class="fa-solid fa-bars"></i>
+            </div>
           </div>
-          <ul style="padding-top: 4%; padding-left: 0" >
+          <ul style="padding-top: 4%; padding-left: 0">
             <li v-for="tab in tabs" :key="tab.name" class="lists" @click="navigate(tab.name, tab.path)">
               <label class="link_texts">{{ tab.label }}</label>
             </li>
@@ -147,9 +149,14 @@ a {
   align-items: center;
 }
 
-.fa-bars::before{
+.fa-bars::before {
   font-size: 20px;
   color: #13457A;
+}
+
+.menu_icon > .fa-bars::before{
+  font-size: 35px;
+  color: white;
 }
 
 .adminMobileIcon {
@@ -188,6 +195,7 @@ a {
   padding: 10px 15px;
   transition: 0.3s ease-in-out;
 }
+
 .admin_sideBar li i {
   margin-right: 8px;
 }
@@ -221,10 +229,6 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-#adminMobile {
-  display: none;
 }
 
 .menu-button div:nth-child(1) {
@@ -280,11 +284,6 @@ header h1 {
 }
 
 @media (max-width: 900px) {
-  #adminMobile {
-    display: block;
-  }
-
-
   .admin_sideBar {
     position: absolute;
     width: 30%;
@@ -314,7 +313,7 @@ header h1 {
     width: 100%;
   }
 
-  .sidebar_img{
+  .sidebar_img {
     height: 65px;
     width: 45%;
   }

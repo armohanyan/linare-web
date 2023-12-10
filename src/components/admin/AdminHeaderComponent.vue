@@ -6,14 +6,16 @@
         <div class="sideBar" :class="{ showMenu: isMenuVisible, widthChange: isMenuVisible }">
           <div class="sidebar_images">
             <img class="sidebar_img" src="@/assets/logos/linare_white.png" alt=""/>
-            <img src="@/assets/dashboard/menu.png" alt="" id="desktop" @click="toggleMenuList"/>
+            <i id="desktop" @click="toggleMenuList" class="fa-solid fa-bars"></i>
           </div>
           <ul style="padding-top: 4%; padding-left: 0" :class="{ 'show-icons-only': isMenuVisible }">
             <li v-for="tab in tabs" :key="tab.name" class="lists" @click="navigate(tab.name, tab.path)">
+              <i :class="['fas', tab.class]"></i>
               <label class="link_texts">{{ tab.label }}</label>
             </li>
 
             <li class="lists" @click="logout">
+              <i class="fa-solid fa-right-from-bracket"></i>
               <label class="link_texts">Logout</label>
             </li>
           </ul>
@@ -33,41 +35,49 @@ import AccountService from "../../services/AccountService";
 const tabs = [
   {
     label: 'Dashboard',
+    class: 'fa-chart-line',
     path: '/admin/dashboard',
     name: 'dashboard'
   },
   {
     label: 'Categories',
+    class: 'fa-layer-group',
     path: '/admin/dashboard/categories',
     name: 'categories'
   },
   {
     label: 'Products',
+    class: 'fa-store',
     path: '/admin/dashboard/products',
     name: 'products'
   },
   {
     label: 'Contacts',
+    class: 'fa-address-book',
     path: '/admin/dashboard/contacts',
     name: 'contacts'
   },
   {
     label: 'Testimonials',
+    class: 'fa-address-card',
     path: '/admin/dashboard/testimonials',
     name: 'testimonials'
   },
   {
     label: 'Partners',
+    class: 'fa-handshake',
     path: '/admin/dashboard/partners',
     name: 'partners'
   },
   {
     label: 'Users',
+    class: 'fa-users',
     path: '/admin/dashboard/users',
     name: 'users'
   },
   {
     label: 'Settings',
+    class: 'fa-gear',
     path: '/admin/dashboard/settings',
     name: 'settings'
   },
@@ -112,12 +122,8 @@ export default {
 
 <style scoped>
 
-.hide-logo {
-  height: 85% !important;
-}
-
-.hideMenuList {
-  display: none;
+.fa-bars::before{
+  font-size: 35px;
 }
 
 .show-icons-only .link_texts {
@@ -144,11 +150,6 @@ a {
   justify-content: space-between;
   display: flex;
   align-items: center;
-}
-
-.images {
-  flex-direction: column;
-  row-gap: 25px;
 }
 
 .lists {
@@ -184,10 +185,6 @@ a {
   transition: 0.3s ease-in-out;
 }
 
-li label .hideMenuList {
-  display: none;
-}
-
 .sideBar li i {
   margin-right: 8px;
 }
@@ -195,10 +192,6 @@ li label .hideMenuList {
 .sideBar li:hover {
   background-color: #14457B;
   border-radius: 10px;
-}
-
-.selected {
-  background-color: #0092ff;
 }
 
 .sideBar span {
@@ -233,12 +226,6 @@ header {
 }
 
 #desktop {
-  cursor: pointer;
-}
-
-
-#mobile {
-  display: none;
   cursor: pointer;
 }
 
@@ -313,10 +300,6 @@ header h1 {
     display: none;
   }
 
-  #mobile {
-    display: block;
-  }
-
   .sideBar {
     position: absolute;
     width: 30%;
@@ -326,19 +309,6 @@ header h1 {
 
   .sideBar .cross-icon {
     display: block;
-  }
-
-
-  .backdrop {
-    position: absolute;
-    top: 0;
-    left: -100%;
-    height: 100vh;
-    width: 100%;
-  }
-
-  .backdrop.showBackdrop {
-    left: 0;
   }
 }
 
@@ -355,10 +325,6 @@ header h1 {
 
   header h1 {
     font-size: 20px;
-  }
-
-  #mobile {
-    height: 25px;
   }
 }
 

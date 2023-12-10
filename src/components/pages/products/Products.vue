@@ -32,10 +32,10 @@
           <div v-if="admin" class="d-flex justify-content-end">
             <div class="d-flex justify-content-end gap-2">
               <button class="icon_btn" @click="deleteProduct(product.id)">
-                <img class="test_close_icon" src="@/assets/admin_panel/delete.png" alt="" />
+                <i class="fa-solid fa-trash"></i>
               </button>
               <button class="icon_btn" @click="chooseProduct(product)">
-                <img class="test_close_icon" src="@/assets/admin_panel/edit.png" alt="" />
+                <i class="fa-solid fa-pen-to-square"></i>
               </button>
             </div>
           </div>
@@ -86,7 +86,14 @@ export default {
       selectedCategory: null,
       currentPage: 1,
       totalCount: 0,
-      products: [],
+      products: [{
+        title: "df",
+        images: ["https://meds-theme.myshopify.com/cdn/shop/collections/shop-26.jpg?v=1591863371&width=535"],
+        price: "df",
+        description: "df",
+        shortDescription: "df",
+        categories: []
+      }],
       currentGridClass: 'product_cards',
     }
   },

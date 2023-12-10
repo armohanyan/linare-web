@@ -4,7 +4,7 @@
         <div class="dashboard_items">
           <div class="dashboard_img_text">
             <div class="dashboard_img">
-              <img width="27" height="27" :src="item.src" alt=""/>
+              <i :class="['fas', item.src]"></i>
             </div>
             <div>
               <p class="dashboard_items_name">{{ item.name }}</p>
@@ -30,29 +30,29 @@ export default {
         {
           name: "Users",
           count: 0,
-          src: "https://img.icons8.com/ios-filled/50/FFFFFF/product.png"
+          src: "fa-users"
         },
         {
           name: "Products",
           count: 0,
-          src: "https://img.icons8.com/ios-filled/50/FFFFFF/product.png"
+          src: "fa-store"
         },
         {
           name: "Testimonials",
           count: 0,
-          src: "https://img.icons8.com/external-prettycons-solid-prettycons/60/FFFFFF/external-testimonial-user-interface-vol-3-prettycons-solid-prettycons.png"
+          src: "fa-address-card"
         },
 
         {
           name: "Partners",
           count: 0,
-          src: "https://img.icons8.com/ios/50/FFFFFF/collaborating-in-circle.png"
+          src: "fa-handshake"
         },
 
         {
           name: "Categories",
           count: 0,
-          src: "https://img.icons8.com/ios-filled/50/FFFFFF/opened-folder.png"
+          src: "fa-layer-group"
         },
       ]
     }
@@ -130,6 +130,8 @@ export default {
   margin-left: 10px;
   text-align: center;
   padding-top: 5.5%;
+  color: white;
+  font-size: 20px;
 }
 
 .dashboard_img_text{
