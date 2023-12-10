@@ -28,26 +28,30 @@ export default {
     return {
       dashItems: [
         {
-          name: "Products",
-          count: 5,
+          name: "Users",
+          count: 0,
           src: "https://img.icons8.com/ios-filled/50/FFFFFF/product.png"
         },
-
+        {
+          name: "Products",
+          count: 0,
+          src: "https://img.icons8.com/ios-filled/50/FFFFFF/product.png"
+        },
         {
           name: "Testimonials",
-          count: 3,
+          count: 0,
           src: "https://img.icons8.com/external-prettycons-solid-prettycons/60/FFFFFF/external-testimonial-user-interface-vol-3-prettycons-solid-prettycons.png"
         },
 
         {
           name: "Partners",
-          count: 8,
+          count: 0,
           src: "https://img.icons8.com/ios/50/FFFFFF/collaborating-in-circle.png"
         },
 
         {
           name: "Categories",
-          count: 13,
+          count: 0,
           src: "https://img.icons8.com/ios-filled/50/FFFFFF/opened-folder.png"
         },
       ]
@@ -88,6 +92,10 @@ export default {
 
         if (item.name === 'Products') {
           item.count = data.products
+        }
+
+        if (item.name === 'Users') {
+          item.count = data.users
         }
       })
     }

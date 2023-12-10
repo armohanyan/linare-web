@@ -63,7 +63,11 @@
                         <p class="types">Categories</p>
                         <p  v-for="(category, index) in product.categories" :key="index" class="modal_type">{{ category.name }}</p>
                       </div>
-                      <p class="full_details">View full details ></p>
+                      <router-link :to="'/product/' + product.id" class="text-primary btn p-0">
+                        <p class="full_details">View full details</p>
+                      </router-link>
+
+
                     </div>
                   </div>
                 </b-modal>
