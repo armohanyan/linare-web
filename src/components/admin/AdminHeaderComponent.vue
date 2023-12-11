@@ -108,7 +108,6 @@ export default {
       this.selectedTab = name
 
       this.$router.push({path})
-      this.isMenuVisible = false;
     },
 
     logout() {
@@ -141,6 +140,7 @@ a {
 }
 
 .link_texts {
+  cursor: pointer;
   color: white;
   font-size: 23px;
 }
@@ -156,6 +156,7 @@ a {
   list-style: none;
   display: flex;
   gap: 20px;
+  font-size: 25px;
   cursor: pointer;
   align-items: center;
   border-radius: 0 !important;

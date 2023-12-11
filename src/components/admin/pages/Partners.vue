@@ -5,7 +5,7 @@
         <div class="card admin_testimonials_content">
           <div class="card-body admin_testimonials">
 
-            <input type="file" class="form-control mb-3">
+            <input type="file" onfocusin="" class="form-control mb-3"  @change="previewFiles">
 
             <input v-model="partner.name" class="form-control mb-3" type="text" placeholder="Name">
 
@@ -46,12 +46,14 @@
 
 <script>
 import CollaboratorsService from "../../../services/CollaboratorsService";
+import {generateFormData} from "../../../../helper/generateFormData";
 
 export default {
   name: "AdminPartnersPage",
 
   data() {
     return {
+      file: [],
       partner: {
         logo: 'https://i.pinimg.com/originals/b7/1f/d1/b71fd13f1ebd496a3bd546284aaa0ad8.jpg',
         name: '',
@@ -75,10 +77,12 @@ export default {
     async createPartner() {
       if (!this.partner.name) return
 
-      await new CollaboratorsService().post(this.partner)
+      const formData = generateFormData(this.partner)
+
+      await new CollaboratorsService().post(formData)
 
       this.partner = {
-          logo: 'https://i.pinimg.com/originals/b7/1f/d1/b71fd13f1ebd496a3bd546284aaa0ad8.jpg',
+          logo: '',
           name: '',
           description: ''
       }
@@ -98,15 +102,19 @@ export default {
       this.partner = {...partner}
     },
 
+    previewFiles(event) {
+      this.partner.logo = event.target.files[0];
+    },
+
     async updatePartner() {
       if (!this.partner.id) return
-
       if (!this.partner.name) return
 
-      await new CollaboratorsService().put(this.partner)
+      const formData = generateFormData(this.partner)
+      await new CollaboratorsService().put(formData)
 
       this.partner = {
-        logo: 'https://i.pinimg.com/originals/b7/1f/d1/b71fd13f1ebd496a3bd546284aaa0ad8.jpg',
+        logo: '',
         name: '',
         description: ''
       }

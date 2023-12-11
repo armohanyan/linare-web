@@ -15,6 +15,9 @@ class TestimonialsService {
   post(formData) {
     return new Promise((resolve, reject) => {
       axios.post(url, formData,{
+        headers: {
+          "Content-Type": "multipart/form-data"
+        },
         withCredentials: true
       },
         { withCredentials: true })
@@ -29,6 +32,9 @@ class TestimonialsService {
         url,
         formData,
         {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          },
           withCredentials: true
         }
       )

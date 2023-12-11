@@ -22,6 +22,9 @@ class ProductsService {
   post(formData) {
     return new Promise((resolve, reject) => {
       axios.post(url, formData,{
+            headers: {
+              "Content-Type": "multipart/form-data"
+            },
             withCredentials: true
           },
           { withCredentials: true })
@@ -30,12 +33,15 @@ class ProductsService {
     });
   }
 
-  put(formData) {
+  put(formData, id) {
     return new Promise((resolve, reject) => {
       axios.put(
-          url + '/' + formData.id,
+          url + '/' + id,
           formData,
           {
+            headers: {
+              "Content-Type": "multipart/form-data"
+            },
             withCredentials: true
           }
       )

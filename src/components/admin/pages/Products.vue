@@ -6,7 +6,7 @@
           <div class="card admin_products_content">
             <div class="card-body admin_products">
 
-              <input type="file" class="form-control mb-3">
+              <input v-if="product.id" type="file" class="form-control mb-3" multiple @change="previewFiles">
 
               <input v-model="product.title" class="form-control mb-3" type="text" placeholder="Name">
 
@@ -54,6 +54,7 @@ import Products from "../../pages/products/Products.vue";
 import ProductsService from "../../../services/ProductsService";
 import Treeselect from "@riophae/vue-treeselect";
 import CategoriesService from "../../../services/CategoriesService";
+import {generateFormData} from "../../../../helper/generateFormData";
 
 export default {
   components: {Treeselect, Products},
@@ -94,9 +95,13 @@ export default {
     async createProduct() {
       try {
         if (!this.product.title) return
+        if (!this.product.images.length) return
 
         this.refresh = false
-        await new ProductsService().post(this.product)
+
+        const formData = generateFormData(this.product)
+
+        await new ProductsService().post(formData)
 
         this.product = {
           title: "",
@@ -127,6 +132,10 @@ export default {
       this.product = {...product, categories: product.categories.map(el => el.name)}
     },
 
+    previewFiles(event) {
+      this.product.images = event.target.files;
+    },
+
     async updateProduct() {
       try {
         if (!this.product.id) return
@@ -135,7 +144,13 @@ export default {
 
         this.refresh = false
 
-        await new ProductsService().put(this.product)
+        const formData = generateFormData(this.product)
+
+        for (const i of Object.keys(this.product.images)) {
+          formData.append('images', this.product.images[i])
+        }
+
+        await new ProductsService().put(formData, this.product.id)
 
         this.product = {
           title: "",

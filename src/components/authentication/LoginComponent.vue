@@ -35,7 +35,7 @@
               v-model="$v.form.password.$model"
               :state="validateState('password')"
               type="password"
-              placeholder="password"
+              placeholder="Password"
           ></b-form-input>
 
           <b-form-invalid-feedback id="password">
@@ -62,9 +62,9 @@
       <div class="text-center"><h3>Email verification</h3></div>
       <b-form @submit.prevent="onEmailVerification">
         <!-- email -->
-        <b-form-group id="email" label="email" label-for="input-1">
+        <b-form-group id="email" label="Email" label-for="input-1">
           <b-form-input
-              id="email"
+              id="Email"
               v-model="$v.form.email.$model"
               :state="validateState('email')"
               type="text"

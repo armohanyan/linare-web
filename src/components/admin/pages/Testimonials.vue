@@ -5,7 +5,7 @@
         <div class="card admin_testimonials_content">
           <div class="card-body admin_testimonials">
 
-            <input type="file" class="form-control mb-3">
+            <input type="file" class="form-control mb-3" @change="previewFiles">
 
             <input v-model="testimonial.position" class="form-control mb-3" type="text" placeholder="Position">
 
@@ -46,6 +46,7 @@
 
 <script>
 import TestimonialsService from "../../../services/TestimonialsService";
+import {generateFormData} from "../../../../helper/generateFormData";
 
 export default {
   name: "AdminTestimonialsPage",
@@ -79,10 +80,11 @@ export default {
     async createTestimonial() {
       if (!this.testimonial.position) return
 
-      await new TestimonialsService().post(this.testimonial)
+      const formData = generateFormData(this.testimonial)
+      await new TestimonialsService().post(formData)
 
       this.testimonial = {
-        avatar: 'https://i.pinimg.com/originals/b7/1f/d1/b71fd13f1ebd496a3bd546284aaa0ad8.jpg',
+        avatar: '',
         position: '',
         comment: ''
       }
@@ -102,15 +104,20 @@ export default {
       this.testimonial = {...testimonial}
     },
 
+    previewFiles(event) {
+      this.testimonial.avatar = event.target.files[0];
+    },
+
     async updateTestimonial() {
       if (!this.testimonial.id) return
 
-      if (!this.testimonial.name) return
+      if (!this.testimonial.position) return
 
-      await new TestimonialsService().put(this.testimonial)
+      const formData = generateFormData(this.testimonial)
+      await new TestimonialsService().put(formData)
 
       this.testimonial = {
-        avatar: 'https://i.pinimg.com/originals/b7/1f/d1/b71fd13f1ebd496a3bd546284aaa0ad8.jpg',
+        avatar: '',
         position: '',
         comment: ''
       }
