@@ -1,6 +1,6 @@
 <template>
   <div class="settings_page_content container mt-4">
-    <b-form @submit="onSubmit">
+    <b-form @submit="onSubmit" class="settings_form">
       <!-- firstname -->
       <b-form-group
           id="Firstname"
@@ -228,66 +228,23 @@ export default {
 
 <style scoped>
 
+.settings_form{
+  width: 80%;
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  padding: 30px;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
 .btn-primary {
   background-color: #2490EB !important;
 }
 
 .settings_page_content {
   padding: 2%;
-}
-
-.admin_settings_content {
-  padding: 2%;
-}
-
-.admin_settings {
-  border: 2px solid #2490EB;
-  border-radius: 7px;
-  padding: 2%;
-}
-
-.settings_message {
-  margin-top: 25px;
-  width: 100%;
-}
-
-.add_settings {
-  margin-top: 3%;
-  border: none;
-  border-radius: 5px;
-  padding: 1.5% 2%;
-  font-size: 18px;
-}
-
-.settings_desc {
-  background-color: #F4F6F9;
-  width: 45%;
-  font-size: 15px;
-  padding: 3%;
-  color: #5A6268;
-}
-
-.settings_content {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 3%;
-}
-
-.settings_img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50px;
-  object-fit: cover;
-}
-
-.settings_img_name {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 4%;
-}
-
-.icon_btn {
-  border: none;
-  background: none;
 }
 </style>

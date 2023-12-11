@@ -194,7 +194,7 @@ export default {
 
   methods: {
     async getUsers() {
-      const { data } = await new UsersService().get()
+      const {data} = await new UsersService().get()
 
       this.users = data
     },
@@ -283,7 +283,7 @@ export default {
 
 .users_desc {
   background-color: #F4F6F9;
-  width: 45%;
+  width: 480px;
   font-size: 15px;
   padding: 3%;
   color: #5A6268;
@@ -293,6 +293,8 @@ export default {
   display: flex;
   justify-content: space-around;
   margin-top: 3%;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
 .users_img {

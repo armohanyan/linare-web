@@ -201,7 +201,7 @@ const router = new VueRouter({
   routes
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, dfrom, next) => {
   if(to.matched.some(record => record.meta.requiresAdmin)) {
     new AccountService().getCurrent().then(({ data }) => {
       if (data.data.currentAccount.role === "superAdmin"){

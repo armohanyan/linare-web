@@ -24,6 +24,7 @@
     "vue-bootstrap-sidebar": "^1.0.9",
     "vue-cookies": "^1.7.4",
     "vue-event-bus": "^1.0.2",
+    "vue-i18n": "^8.24.4",
     "vue-material": "^1.0.0-beta-16",
     "vue-router": "^3.5.3",
     "vue-sidebar-menu": "^4.8.1",

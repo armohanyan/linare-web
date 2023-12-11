@@ -24,6 +24,7 @@
                 {{ tab.label }}
               </router-link>
             </div>
+            <LanguageComponent />
           </div>
         </div>
       </transition>
@@ -32,6 +33,8 @@
 </template>
 
 <script>
+
+import LanguageComponent from "@/components/language/LanguageComponent.vue";
 
 const tabs = [
   {
@@ -52,6 +55,7 @@ const tabs = [
   }
 ]
 export default {
+  components: {LanguageComponent},
   data() {
     return {
       showMenu: false,

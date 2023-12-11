@@ -1,5 +1,5 @@
 <template>
-  <b-container class="mt-5 w-25">
+  <b-container class="sign_in_form mt-5">
     <div v-if="!isShowVerifyEmailContent">
       <div class="text-center"><h3>Sign in</h3></div>
       <b-form @submit.prevent="onSubmit">
@@ -271,3 +271,23 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+  .sign_in_form{
+    width: 450px;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    padding: 30px;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+  }
+
+  @media (max-width: 490px) {
+    .sign_in_form{
+      width: 90%;
+    }
+  }
+</style>

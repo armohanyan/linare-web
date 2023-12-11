@@ -164,7 +164,7 @@ export default {
 
 .testimonials_desc {
   background-color: #F4F6F9;
-  width: 45%;
+  width: 480px;
   font-size: 15px;
   padding: 3%;
   color: #5A6268;
