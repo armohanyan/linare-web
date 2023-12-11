@@ -173,6 +173,7 @@ a {
 }
 
 .adminMobileIcon {
+  cursor: pointer;
   display: block;
 }
 

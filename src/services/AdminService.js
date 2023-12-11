@@ -7,7 +7,9 @@ class AdminService {
 
   statics() {
     return new Promise((resolve, reject) => {
-      axios.get(url + 'statics')
+      axios.get(url + 'statics', {
+        withCredentials: true
+      })
           .then(res => resolve(res.data))
           .catch(err => reject(err));
     });
