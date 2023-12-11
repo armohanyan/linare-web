@@ -131,7 +131,7 @@ export default {
   text-align: center;
   padding-top: 5.5%;
   color: white;
-  font-size: 20px;
+  font-size: 23px;
 }
 
 .dashboard_img_text{

@@ -18,6 +18,7 @@
           </div>
           <ul style="padding-top: 4%; padding-left: 0">
             <li v-for="tab in tabs" :key="tab.name" class="lists" @click="navigate(tab.name, tab.path)">
+              <i :class="['fas', tab.class]"></i>
               <label class="link_texts">{{ tab.label }}</label>
             </li>
 
@@ -38,45 +39,54 @@ import AccountService from "../../services/AccountService";
 const tabs = [
   {
     label: 'Dashboard',
+    class: 'fa-chart-line',
     path: '/admin/dashboard',
     name: 'dashboard'
   },
   {
     label: 'Categories',
+    class: 'fa-layer-group',
     path: '/admin/dashboard/categories',
     name: 'categories'
   },
   {
     label: 'Products',
+    class: 'fa-store',
     path: '/admin/dashboard/products',
     name: 'products'
   },
   {
     label: 'Contacts',
+    class: 'fa-address-book',
     path: '/admin/dashboard/contacts',
     name: 'contacts'
   },
   {
     label: 'Testimonials',
+    class: 'fa-address-card',
     path: '/admin/dashboard/testimonials',
     name: 'testimonials'
   },
   {
     label: 'Partners',
+    class: 'fa-handshake',
     path: '/admin/dashboard/partners',
     name: 'partners'
   },
   {
     label: 'Users',
+    class: 'fa-users',
     path: '/admin/dashboard/users',
     name: 'users'
   },
   {
     label: 'Settings',
+    class: 'fa-gear',
     path: '/admin/dashboard/settings',
     name: 'settings'
   },
 ]
+
 export default {
   name: "AdminMobileHeader",
   data() {
@@ -113,6 +123,9 @@ export default {
 </script>
 
 <style scoped>
+.lists > .fas{
+  font-size: 23px;
+}
 
 .admin_header {
   display: none;

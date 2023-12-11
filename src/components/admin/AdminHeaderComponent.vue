@@ -120,6 +120,9 @@ export default {
 </script>
 
 <style scoped>
+.lists > .fas{
+  font-size: 30px;
+}
 
 .fa-bars::before{
   font-size: 35px;
@@ -182,7 +185,7 @@ a {
 }
 
 .sideBar li {
-  padding: 10px 20px;
+  padding: 15px 20px;
   transition: 0.3s ease-in-out;
 }
 
