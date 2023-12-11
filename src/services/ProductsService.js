@@ -13,7 +13,9 @@ class ProductsService {
 
   getProduct(id) {
     return new Promise((resolve, reject) => {
-      axios.get(url + '/' + id)
+      axios.get(url + '/' + id, {
+          withCredentials: true
+      })
           .then(res => resolve(res.data))
           .catch(err => reject(err));
     });

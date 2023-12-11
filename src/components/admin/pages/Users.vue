@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import UsersService from "../../../services/UsersService";
 
 export default {
   name: "AdminUsersPage",
@@ -63,6 +64,46 @@ export default {
       }]
     }
   },
+  mounted() {
+    this.getUsers()
+  },
+
+  methods: {
+    async getUsers() {
+      const { data } = await new UsersService().get()
+
+      this.users = data.users
+    },
+
+    async createUser() {
+      if (!this.user.email) return
+      if (!this.user.firstName) return
+      if (!this.user.lastName) return
+
+      try {
+        await new UsersService().post(this.user)
+      } catch (err) {
+        const error = err.response.data
+        if (error.message) {
+          this.error = error.message
+        } else {
+          this.error = `${error.validationError.property}:  ${error.validationError.message}`
+        }
+
+        throw err
+      }
+      await this.getUsers()
+    },
+
+    async deleteUser(id) {
+      if (!id) return
+
+      await new UsersService().delete(id)
+
+      await this.getUsers()
+    }
+
+  }
 };
 </script>
 
