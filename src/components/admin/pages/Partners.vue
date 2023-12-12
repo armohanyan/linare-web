@@ -161,7 +161,7 @@ export default {
 
 .testimonials_desc {
   background-color: #F4F6F9;
-  width: 45%;
+  width: 420px;
   font-size: 15px;
   padding: 3%;
   color: #5A6268;
@@ -171,6 +171,7 @@ export default {
   display: flex;
   justify-content: space-around;
   margin-top: 3%;
+  row-gap: 10px;
 }
 
 .testimonial_img {

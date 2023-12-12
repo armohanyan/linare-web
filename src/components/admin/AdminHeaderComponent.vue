@@ -2,7 +2,7 @@
   <div class="menu-wrapper">
     <MobileHeader class="admin_mobile_header" :tabs="tabs" :isAdmin="true"/>
     <div class="sidebar-header">
-      <div v-if="!getCurrentUser" class="sidebar_hide">
+      <div v-if="getCurrentUser" class="sidebar_hide">
         <div class="sideBar" :class="{ showMenu: isMenuVisible, widthChange: isMenuVisible }">
           <div class="sidebar_images">
             <img class="sidebar_img" src="@/assets/logos/linare_white.png" alt=""/>
