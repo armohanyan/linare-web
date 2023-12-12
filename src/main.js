@@ -12,7 +12,7 @@ import VueEventBus from  "vue-event-bus"
 import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 import '@fortawesome/fontawesome-free/css/all.css';
 import VueMaterial from 'vue-material'
-// import i18n from './i18n';
+import i18n from './i18n';
 
 Vue.use(VueMaterial)
 Vue.use(require('vue-cookies'))
@@ -28,7 +28,7 @@ Vue.config.productionTip = false;
 new Vue({
   store,
   router,
-  // i18n,
+  i18n,
   render: h => h(App),
 }).$mount('#app')
 

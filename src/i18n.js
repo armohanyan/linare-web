@@ -9,9 +9,7 @@ const messages = {
     am: require('./locales/am.json'),
 };
 
-const i18n = new VueI18n({
-    locale: 'en',
-    messages,
+export  default  new VueI18n({
+    locale: "en",
+    messages
 });
-
-module.exports = i18n;

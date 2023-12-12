@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <HeaderComponent v-if="isRouteBelongsToUser" />
+
     <admin-header-component  v-if="!isNotFound  && !isRouteBelongsToUser" />
 
     <back-to-top-button></back-to-top-button>
