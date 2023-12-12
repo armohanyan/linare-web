@@ -1,6 +1,6 @@
 <template>
   <div class="menu-wrapper">
-    <AdminMobileHeader class="admin_mobile_header"/>
+    <AdminMobileHeader class="admin_mobile_header" :tabs="tabs"/>
     <div class="sidebar-header">
       <div v-if="getCurrentUser" class="sidebar_hide">
         <div class="sideBar" :class="{ showMenu: isMenuVisible, widthChange: isMenuVisible }">

@@ -15,47 +15,59 @@
       <div class="burger" @click="toggleMenu">
         <i v-if="!showMenu" class="fa-solid fa-bars"></i>
       </div>
-      <transition name="fade">
-        <div v-if="showMenu" class="mobile_menu">
-          <i v-if="showMenu" @click="() => showMenu = false" class="fa-solid fa-xmark"></i>
-          <div class="mt-2">
-            <div v-for="tab in tabs" :key="tab.value" class="mt-3">
-              <router-link :to="tab.path" class="menu_item">
-                {{ tab.label }}
-              </router-link>
-            </div>
-            <LanguageComponent />
-          </div>
-        </div>
-      </transition>
+
+      <AdminMobileHeader ref="mobileHeaderRef" class="admin_mobile_header" :tabs="tabs" />
+
+<!--      <transition name="fade">-->
+<!--        <div v-if="showMenu" class="mobile_menu">-->
+<!--          <i v-if="showMenu" @click="() => showMenu = false" class="fa-solid fa-xmark"></i>-->
+<!--          <div class="mt-2">-->
+<!--            <div v-for="tab in tabs" :key="tab.value" class="mt-3">-->
+<!--              <router-link :to="tab.path" class="menu_item">-->
+<!--                {{ tab.label }}-->
+<!--              </router-link>-->
+<!--            </div>-->
+<!--            <LanguageComponent />-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </transition>-->
     </div>
   </header>
 </template>
 
 <script>
 
-import LanguageComponent from "@/components/language/LanguageComponent.vue";
+
+import AdminMobileHeader from "@/components/admin/AdminMobileHeader.vue";
 
 const tabs = [
   {
-    label: 'HOME',
-    path: '/'
+    label: 'Home',
+    path: '/',
+    class: 'fa-chart-line',
+    name: 'dashboard'
   },
   {
-    label: 'PRODUCTS',
-    path: '/products'
+    label: 'Products',
+    path: '/products',
+    class: 'fa-chart-line',
+    name: 'products'
   },
   {
-    label: 'ABOUT US',
-    path: '/about-us'
+    label: 'About us',
+    path: '/about-us',
+    class: 'fa-chart-line',
+    name: 'about-us'
   },
   {
-    label: 'CONTACTS',
-    path: '/contacts'
+    label: 'Contacts',
+    path: '/contacts',
+    class: 'fa-chart-line',
+    name: 'contacts'
   }
 ]
 export default {
-  components: {LanguageComponent},
+  components: {AdminMobileHeader},
   data() {
     return {
       showMenu: false,
@@ -64,13 +76,28 @@ export default {
   },
   methods: {
     toggleMenu() {
-      this.showMenu = !this.showMenu;
+      this.$refs.mobileHeaderRef.isMenuVisible = true
+      // this.showMenu = !this.showMenu;
     }
   }
 };
 </script>
 
 <style scoped>
+
+.admin_mobile_header {
+  display: none;
+}
+
+@media (max-width: 910px) {
+  .sideBar {
+    display: none;
+  }
+
+  .admin_mobile_header {
+    display: block;
+  }
+}
 
 .header {
   padding: 1% 2%;

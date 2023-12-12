@@ -1,17 +1,17 @@
 <template>
   <header class="admin_header">
-    <div class="d-flex justify-content-between align-items-center">
+    <div v-if="isAdmin" class="d-flex justify-content-between align-items-center">
       <img style="width: 100px" src="../../assets/logos/linare_logo.png" alt="Logo"/>
       <div class="adminMobileIcon" @click="toggleMenuList">
         <i class="fa-solid fa-bars"></i>
       </div>
     </div>
 
-    <div v-if="getCurrentUser" class="sidebar-header">
+    <div class="sidebar-header">
       <div class="sidebar_hide">
         <div class="admin_sideBar" :class="{ showAdminMenu: isMenuVisible }">
           <div class="sidebar_images">
-            <img class="sidebar_img" src="@/assets/logos/linare_white.png" alt=""/>
+            <div></div>
             <div class="menu_icon">
               <i id="desktop" @click="toggleMenuList" class="fa-solid fa-bars"></i>
             </div>
@@ -22,7 +22,7 @@
               <label class="link_texts">{{ tab.label }}</label>
             </li>
 
-            <li class="lists" @click="logout">
+            <li v-if="isAdmin" class="lists" @click="logout">
               <label class="link_texts">Logout</label>
             </li>
           </ul>
@@ -36,69 +36,18 @@
 <script>
 import AccountService from "../../services/AccountService";
 
-const tabs = [
-  {
-    label: 'Dashboard',
-    class: 'fa-chart-line',
-    path: '/admin/dashboard',
-    name: 'dashboard'
-  },
-  {
-    label: 'Categories',
-    class: 'fa-layer-group',
-    path: '/admin/dashboard/categories',
-    name: 'categories'
-  },
-  {
-    label: 'Products',
-    class: 'fa-store',
-    path: '/admin/dashboard/products',
-    name: 'products'
-  },
-  {
-    label: 'Contacts',
-    class: 'fa-address-book',
-    path: '/admin/dashboard/contacts',
-    name: 'contacts'
-  },
-  {
-    label: 'Testimonials',
-    class: 'fa-address-card',
-    path: '/admin/dashboard/testimonials',
-    name: 'testimonials'
-  },
-  {
-    label: 'Partners',
-    class: 'fa-handshake',
-    path: '/admin/dashboard/partners',
-    name: 'partners'
-  },
-  {
-    label: 'Users',
-    class: 'fa-users',
-    path: '/admin/dashboard/users',
-    name: 'users'
-  },
-  {
-    label: 'Settings',
-    class: 'fa-gear',
-    path: '/admin/dashboard/settings',
-    name: 'settings'
-  },
-]
-
 export default {
   name: "AdminMobileHeader",
+  props: ['tabs', 'isAdmin'],
   data() {
     return {
-      tabs: tabs,
       isMenuVisible: false,
       selectedTab: 'dashboard'
     };
   },
   computed: {
-    getCurrentUser() {
-      return this.$store.getters.getCurrentUser;
+    displayTabs() {
+      return  this.$store.getters.getCurrentUser
     }
   },
   methods: {
