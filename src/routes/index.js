@@ -1,8 +1,5 @@
 import VueRouter from 'vue-router';
 import LoginComponent from '@/components/authentication/LoginComponent';
-import RegisterComponent from '@/components/authentication/RegisterComponent';
-import VerifyEmail from '@/components/authentication/VerifyEmail';
-import ResetPassword from '@/components/authentication/ResetPassword';
 import Dashboard from "@/components/admin/Dashboard.vue";
 import NotFound from "@/app/NotFound.vue";
 import LandingPage from "../components/pages/landing/LandingPage.vue";
@@ -30,33 +27,6 @@ const routes = [
     path: '/admin/sign-in',
     name: 'sign-in',
     component: LoginComponent,
-    meta: {
-      requiresAuth: false,
-      userRoute: false
-    }
-  },
-  {
-    path: '/admin/sign-up',
-    name: 'sign-up',
-    component: RegisterComponent,
-    meta: {
-      requiresAuth: false,
-      userRoute: false
-    }
-  },
-  {
-    path: '/admin/verify-email', // query email and token
-    name: 'verify-email',
-    component: VerifyEmail,
-    meta:{
-      requiresAuth: false,
-      userRoute: false
-    }
-  },
-  {
-    path: '/admin/on-reset-password',
-    name: 'on-reset-password',
-    component: ResetPassword,
     meta: {
       requiresAuth: false,
       userRoute: false
@@ -131,15 +101,6 @@ const routes = [
     name: 'admin-settings',
     meta: {
       requiresAuth: true,
-      userRoute: false
-    }
-  },
-  {
-    path: '/reset-password',
-    name: 'reset-password',
-    component: ResetPassword,
-    meta: {
-      requiresAuth: false,
       userRoute: false
     }
   },

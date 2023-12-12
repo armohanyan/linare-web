@@ -1,7 +1,7 @@
 <template>
-  <header class="admin_header">
+  <header v-if="displayTabs" class="admin_header">
     <div v-if="isAdmin" class="d-flex justify-content-between align-items-center">
-      <img style="width: 100px" src="../../assets/logos/linare_logo.png" alt="Logo"/>
+      <img style="width: 100px" src="../assets/logos/linare_logo.png" alt="Logo"/>
       <div class="adminMobileIcon" @click="toggleMenuList">
         <i class="fa-solid fa-bars"></i>
       </div>
@@ -34,10 +34,10 @@
 </template>
 
 <script>
-import AccountService from "../../services/AccountService";
+import AccountService from "../services/AccountService";
 
 export default {
-  name: "AdminMobileHeader",
+  name: "MobileHeader",
   props: ['tabs', 'isAdmin'],
   data() {
     return {
@@ -47,7 +47,7 @@ export default {
   },
   computed: {
     displayTabs() {
-      return  this.$store.getters.getCurrentUser
+      return this.$route.name !== 'sign-in';
     }
   },
   methods: {

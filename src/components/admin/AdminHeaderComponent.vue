@@ -1,6 +1,6 @@
 <template>
   <div class="menu-wrapper">
-    <AdminMobileHeader class="admin_mobile_header" :tabs="tabs"/>
+    <MobileHeader class="admin_mobile_header" :tabs="tabs" :isAdmin="true"/>
     <div class="sidebar-header">
       <div v-if="getCurrentUser" class="sidebar_hide">
         <div class="sideBar" :class="{ showMenu: isMenuVisible, widthChange: isMenuVisible }">
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import AdminMobileHeader from "@/components/admin/AdminMobileHeader.vue";
+import MobileHeader from "@/components/MobileHeader.vue";
 import AccountService from "../../services/AccountService";
 
 const tabs = [
@@ -84,7 +84,7 @@ const tabs = [
 ]
 
 export default {
-  components: {AdminMobileHeader},
+  components: {MobileHeader},
   data() {
     return {
       tabs: tabs,

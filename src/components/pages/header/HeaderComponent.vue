@@ -16,21 +16,7 @@
         <i v-if="!showMenu" class="fa-solid fa-bars"></i>
       </div>
 
-      <AdminMobileHeader ref="mobileHeaderRef" class="admin_mobile_header" :tabs="tabs" />
-
-<!--      <transition name="fade">-->
-<!--        <div v-if="showMenu" class="mobile_menu">-->
-<!--          <i v-if="showMenu" @click="() => showMenu = false" class="fa-solid fa-xmark"></i>-->
-<!--          <div class="mt-2">-->
-<!--            <div v-for="tab in tabs" :key="tab.value" class="mt-3">-->
-<!--              <router-link :to="tab.path" class="menu_item">-->
-<!--                {{ tab.label }}-->
-<!--              </router-link>-->
-<!--            </div>-->
-<!--            <LanguageComponent />-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </transition>-->
+      <MobileHeader ref="mobileHeaderRef" class="admin_mobile_header" :tabs="tabs" :isAdmin="false"/>
     </div>
   </header>
 </template>
@@ -38,7 +24,7 @@
 <script>
 
 
-import AdminMobileHeader from "@/components/admin/AdminMobileHeader.vue";
+import MobileHeader from "@/components/MobileHeader.vue";
 
 const tabs = [
   {
@@ -67,7 +53,7 @@ const tabs = [
   }
 ]
 export default {
-  components: {AdminMobileHeader},
+  components: {MobileHeader},
   data() {
     return {
       showMenu: false,
