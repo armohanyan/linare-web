@@ -11,7 +11,7 @@
       <div class="sidebar_hide">
         <div class="admin_sideBar" :class="{ showAdminMenu: isMenuVisible }">
           <div class="sidebar_images">
-            <div></div>
+            <img src="../assets/logos/linare_white.png" alt="Logo"/>
             <div class="menu_icon">
               <i id="desktop" @click="toggleMenuList" class="fa-solid fa-bars"></i>
             </div>
@@ -23,6 +23,7 @@
             </li>
 
             <li v-if="isAdmin" class="lists" @click="logout">
+              <i class="fa-solid fa-right-from-bracket"></i>
               <label class="link_texts">Logout</label>
             </li>
           </ul>
@@ -72,7 +73,7 @@ export default {
 </script>
 
 <style scoped>
-.lists > .fas{
+.lists > .fas, .fa-right-from-bracket{
   font-size: 23px;
 }
 
@@ -148,10 +149,6 @@ a {
 .admin_sideBar {
   width: 120px;
   text-align: center;
-}
-
-.sidebar_img {
-  width: 50%;
 }
 
 .admin_sideBar li {
@@ -274,11 +271,6 @@ header h1 {
 @media (max-width: 450px) {
   .admin_sideBar {
     width: 100%;
-  }
-
-  .sidebar_img {
-    height: 65px;
-    width: 45%;
   }
 }
 

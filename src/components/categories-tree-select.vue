@@ -75,4 +75,10 @@ export default {
 .vue-treeselect div{
   padding-top: 1%;
 }
+
+@media (max-width: 390px) {
+  .vue-treeselect{
+    width: 220px;
+  }
+}
 </style>

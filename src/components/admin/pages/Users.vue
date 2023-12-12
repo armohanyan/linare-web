@@ -1,6 +1,6 @@
 <template>
   <div class="users_page_content container mt-4">
-    <b-form @submit="onSubmit">
+    <b-form @submit="onSubmit" class="users_form">
       <!-- firstname -->
       <b-form-group
           id="Firstname"
@@ -258,27 +258,16 @@ export default {
   padding: 2%;
 }
 
-.admin_users_content {
-  padding: 2%;
-}
-
-.admin_users {
-  border: 2px solid #2490EB;
-  border-radius: 7px;
-  padding: 2%;
-}
-
-.users_message {
-  margin-top: 25px;
-  width: 100%;
-}
-
-.add_users {
-  margin-top: 3%;
-  border: none;
-  border-radius: 5px;
-  padding: 1.5% 2%;
-  font-size: 18px;
+.users_form{
+  width: 80%;
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  padding: 30px;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
 }
 
 .users_desc {
@@ -295,19 +284,6 @@ export default {
   margin-top: 3%;
   gap: 15px;
   flex-wrap: wrap;
-}
-
-.users_img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50px;
-  object-fit: cover;
-}
-
-.users_img_name {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 4%;
 }
 
 .icon_btn {

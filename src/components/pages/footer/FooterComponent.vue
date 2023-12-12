@@ -2,7 +2,7 @@
   <footer class="footer">
     <div class="footer_content">
       <div>
-        <img style="width: 100px" src="../../../assets/logos/linare_white.png" alt=""/>
+        <img style="width: 90px" src="../../../assets/logos/linare_white.png" alt=""/>
         <div class="contact_social_icons">
           <div class="contact_icons">
             <a :href="contacts.facebook" target="_blank">

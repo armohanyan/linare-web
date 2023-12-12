@@ -30,25 +30,25 @@ const tabs = [
   {
     label: 'Home',
     path: '/',
-    class: 'fa-chart-line',
+    class: 'fa-house',
     name: 'dashboard'
   },
   {
     label: 'Products',
     path: '/products',
-    class: 'fa-chart-line',
+    class: 'fa-store',
     name: 'products'
   },
   {
     label: 'About us',
     path: '/about-us',
-    class: 'fa-chart-line',
+    class: 'fa-address-card',
     name: 'about-us'
   },
   {
     label: 'Contacts',
     path: '/contacts',
-    class: 'fa-chart-line',
+    class: 'fa-id-card-clip',
     name: 'contacts'
   }
 ]
