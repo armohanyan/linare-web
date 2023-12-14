@@ -1,6 +1,6 @@
 <template>
   <div>
-    <active-page-template page="PRODUCT" />
+    <active-page-template page="PRODUCTS" />
 
     <div class="product_container">
       <div class="product_info">
@@ -22,12 +22,12 @@
           <p class="product_desc">{{ product.shortDescription }}</p>
           <p class="product_price">{{ product.price }}</p>
           <div style="display: flex; gap: 10px; align-items: center">
-            Categories: <div v-for="(category, index) in product.categories"  :key="index"  class="product_type_text">{{ category.name  }} <span v-if="index !== product.categories.length - 1">,</span></div>
+            {{$t('products.categories')}} <div v-for="(category, index) in product.categories"  :key="index"  class="product_type_text">{{ category.name  }} <span v-if="index !== product.categories.length - 1">,</span></div>
           </div>
         </div>
       </div>
       <div style="margin-top: 5%">
-        <button class="desc_btn">Description</button>
+        <button class="desc_btn">{{$t('products.description')}}</button>
         <div>
           {{  product.description }}
         </div>

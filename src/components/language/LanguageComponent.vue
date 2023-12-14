@@ -1,15 +1,14 @@
 <template>
   <div>
-    <label for="language-select">Select Language:</label>
-    <select id="language-select" v-model="selectedLanguage" @change="changeLanguage">
-      <option v-for="(value, key) in supportedLanguages" :key="key" :value="key">{{ value }}</option>
-    </select>
+    <b-dropdown v-model="selectedLanguage" @change="changeLanguage" id="dropdown-left" text="Select language" variant="primary" class="m-2">
+      <b-dropdown-item v-for="(value, key) in supportedLanguages" :key="key" :value="key">{{ value }}</b-dropdown-item>
+    </b-dropdown>
   </div>
 </template>
 
 <script>
 export default {
-  name: "LanguageComponent",
+  name: 'LanguageComponent',
   data() {
     return {
       selectedLanguage: 'en',
@@ -20,10 +19,27 @@ export default {
       },
     };
   },
+
   methods: {
-    changeLanguage() {
-      this.$i18n.locale = this.selectedLanguage;
+    changeLanguage(selectedLanguage) {
+      this.$i18n.setLocaleMessage('en', require('../../locales/en.json'));
+      this.$i18n.setLocaleMessage('ru', require('../../locales/ru.json'));
+      this.$i18n.setLocaleMessage('am', require('../../locales/am.json'));
+
+      this.$i18n.locale = selectedLanguage;
     },
   },
 };
 </script>
+
+<style scoped>
+>>> .btn-group > .btn {
+  padding: 8% 8%;
+  gap: 12px;
+}
+
+>>> .dropdown-menu {
+  min-width: 11rem;
+  margin-left: 10px;
+}
+</style>

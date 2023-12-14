@@ -6,7 +6,9 @@
 
     <back-to-top-button></back-to-top-button>
 
-    <router-view v-if="isRouteBelongsToUser || isNotFound" ></router-view>
+    <div class="content">
+      <router-view v-if="isRouteBelongsToUser || isNotFound" ></router-view>
+    </div>
 
     <FooterComponent v-if=" isRouteBelongsToUser" />
   </div>
@@ -39,8 +41,8 @@ export default {
 }
 </script>
 
-<style>
-*{
-  font-family: ui-monospace;
+<style scoped>
+.content {
+  padding-top: 70px;
 }
 </style>

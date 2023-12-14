@@ -15,7 +15,7 @@
               <i class="fa-solid fa-phone"></i>
             </div>
             <div>
-              <p class="contact_content_heading">Phone</p>
+              <p class="contact_content_heading">{{$t('contacts.phone')}}</p>
               <p class="contact_content_text">{{ this.contacts.phone_1 }}</p>
               <p class="contact_content_text">{{ this.contacts.phone_2 }}</p>
             </div>
@@ -25,7 +25,7 @@
               <i class="fa-solid fa-envelope"></i>
             </div>
             <div>
-              <p class="contact_content_heading">Email</p>
+              <p class="contact_content_heading">{{$t('contacts.email')}}</p>
               <p class="contact_content_text">{{ this.contacts.email }}</p>
             </div>
           </div>
@@ -34,14 +34,14 @@
               <i class="fa-solid fa-paper-plane"></i>
             </div>
             <div>
-              <p class="contact_content_heading">Address</p>
+              <p class="contact_content_heading">{{$t('contacts.address')}}</p>
               <p class="contact_content_text">{{ this.contacts.address }}</p>
             </div>
           </div>
         </div>
 
         <div class="contact_form">
-          <p class="contact_form_heading">Contacts</p>
+          <p class="contact_form_heading">{{$t('contacts.contacts')}}</p>
           <div class="forms">
             <input v-model="customerMessage.name" type="text" class="contact_form_inputs" placeholder="Name"/>
             <input v-model="customerMessage.email" type="email" class="contact_form_inputs" placeholder="Email"
@@ -51,7 +51,7 @@
                       placeholder="Comment" required/>
           </div>
           <div class="contact_btn">
-            <button class="contact_send_btn" @click="onClickSendEmail">Send</button>
+            <button class="contact_send_btn" @click="onClickSendEmail">{{$t('contacts.send')}}</button>
           </div>
         </div>
       </div>

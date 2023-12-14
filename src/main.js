@@ -12,7 +12,20 @@ import VueEventBus from  "vue-event-bus"
 import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 import '@fortawesome/fontawesome-free/css/all.css';
 import VueMaterial from 'vue-material'
-import i18n from './i18n';
+import VueI18n from 'vue-i18n';
+
+Vue.use(VueI18n);
+
+const messages = {
+  en: require('./locales/en.json'),
+  ru: require('./locales/ru.json'),
+  am: require('./locales/am.json'),
+};
+
+const i18n = new VueI18n({
+  locale: 'en',
+  messages,
+});
 
 Vue.use(VueMaterial)
 Vue.use(require('vue-cookies'))

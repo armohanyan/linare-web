@@ -1,14 +1,14 @@
 <template>
   <div class="product_page">
 
-    <active-page-template v-if="!admin" page="PRODUCTS"/>
+    <active-page-template v-if="!admin" page="PRODUCTS" />
 
     <div class="product_content" :class="admin ? 'p-3' : ''">
       <div class="grid_content">
         <div class="filter_products">
           <div class="filter_category_text">
             <p class="filter_text">
-              Filter by category
+              {{$t('products.filter_category')}}
             </p>
             <div>
               <categories-tree-select @onChangeValue="onChangeCategory"/>
@@ -49,7 +49,7 @@
         </div>
 
         <div v-if="!products.length">
-          Products not found
+          {{$t('products.not_found')}}
         </div>
       </div>
     </div>

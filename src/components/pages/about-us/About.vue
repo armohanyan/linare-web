@@ -6,13 +6,13 @@
       <div class="about_part">
         <div>
           <div>
-            <p class="about_content_heading">Who We Are</p>
-            <p class="about_content_text">We create advance technology health and social care products</p>
+            <p class="about_content_heading">{{$t('about.who_we_are')}}</p>
+            <p class="about_content_text">{{$t('about.create_technology')}}</p>
           </div>
           <div style="margin-top: 4%;">
             <div class="check_with_text" v-for="(item, index) in about" :key="index">
               <i class="check_icon" :class="['fas', item.class]"></i>
-              <p class="check_text">{{ item.text }}</p>
+              <p class="check_text">{{ $t(item.text) }}</p>
             </div>
           </div>
         </div>
@@ -22,31 +22,27 @@
       </div>
     </div>
     <div class="services">
-      <p class="services_heading">Explore Our Main Service</p>
+      <p class="services_heading">{{$t('about.main_service')}}</p>
       <div class="about_services">
         <div class="services_content">
           <img src="../../../assets/icons/cardiology_icon.png" alt=""/>
-          <p class="service_name">Cardiology</p>
-          <p class="service_desc">Cardiology is the branch of medicine that focuses on the study, diagnosis, and
-            treatment of disorders related to the heart and the circulatory system. </p>
+          <p class="service_name">{{$t('about.cardiology')}}</p>
+          <p class="service_desc">{{$t('about.cardiology_text')}}</p>
         </div>
         <div class="services_content">
           <img src="../../../assets/icons/endocrinology_icon.png" alt=""/>
-          <p class="service_name">Endocrinology</p>
-          <p class="service_desc">
-            Endocrinology is a specialized field of medicine that focuses on the study and management of the endocrine
-            system, which consists of glands that produce hormones. </p>
+          <p class="service_name">{{$t('about.endocrinology')}}</p>
+          <p class="service_desc">{{$t('about.endocrinology_text')}}</p>
         </div>
         <div class="services_content">
           <img style="width: 50px" src="../../../assets/icons/angioplasty_icon.png" alt=""/>
-          <p class="service_name">Angioplasty</p>
-          <p class="service_desc">Angioplasty is a medical procedure used to treat narrowed or blocked blood vessels,
-            typically arteries, by widening the vessel and restoring blood flow. </p>
+          <p class="service_name">{{$t('about.angioplasty')}}</p>
+          <p class="service_desc">{{$t('about.angioplasty_text')}}</p>
         </div>
       </div>
     </div>
     <div v-if="testimonials.length" class="testimonials">
-      <p class="testimonials_heading">Our Clients Happy To Say About Us</p>
+      <p class="testimonials_heading">{{$t('about.happy_to_say')}}</p>
       <div class="testimonials_content">
         <div v-for="(testimonial, index) in testimonials" :key="index" class="testimonials_desc">
           <div class="testimonial_img_name">
@@ -81,27 +77,23 @@ export default {
       about: [
         {
           class: "fa-check",
-          text: "Our technology-driven health and social care products are designed to elevate the\n" +
-              "                quality of patient care"
+          text: "about.about_text1"
         },
         {
           class: "fa-check",
-          text: "Embracing the digital era, our products leverage the power of data and\n" +
-              "                connectivity to create intelligent and intuitive solutions."
+          text: "about.about_text2"
         },
         {
           class: "fa-check",
-          text: "We are committed to making advanced health technologies accessible to a wide range\n" +
-              "                of users."
+          text: "about.about_text3"
         },
         {
           class: "fa-check",
-          text: "Staying ahead of the curve requires ongoing commitment to research and\n" +
-              "                development."
+          text: "about.about_text4"
         },
         {
           class: "fa-check",
-          text: "We recognize the importance of collaboration with healthcare professionals."
+          text: "about.about_text5"
         },
       ]
     }

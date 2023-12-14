@@ -6,11 +6,11 @@
     <div class="menu_items">
       <div v-for="tab in tabs" :key="tab.value">
         <router-link :to="tab.path" class="menu_item">
-          {{ tab.label }}
+         {{ tab.label }}
         </router-link>
       </div>
+      <LanguageComponent />
     </div>
-
     <div class="menu_burger">
       <div class="burger" @click="toggleMenu">
         <i v-if="!showMenu" class="fa-solid fa-bars"></i>
@@ -25,6 +25,7 @@
 
 
 import MobileHeader from "@/components/MobileHeader.vue";
+import LanguageComponent from "@/components/language/LanguageComponent.vue";
 
 const tabs = [
   {
@@ -53,7 +54,7 @@ const tabs = [
   }
 ]
 export default {
-  components: {MobileHeader},
+  components: {LanguageComponent, MobileHeader},
   data() {
     return {
       showMenu: false,
@@ -86,6 +87,10 @@ export default {
 }
 
 .header {
+  height: 70px;
+  width: 100%;
+  position: fixed;
+  z-index: 9999999;
   padding: 1% 2%;
   background-color: #FFFFFF;
   display: flex;
@@ -97,6 +102,7 @@ export default {
 .menu_items {
   display: flex;
   gap: 30px;
+  align-items: center;
 }
 
 .menu_item {

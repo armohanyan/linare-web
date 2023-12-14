@@ -3,7 +3,6 @@
     <div class="landing_slide">
       <b-carousel
           id="carousel-fade"
-          style="text-shadow: 0 0 2px #000"
           fade
           indicators
           img-width="100%"
@@ -21,7 +20,7 @@
           </template>
           <div class="text_content">
             <div class="slide-left">
-              <p>{{ item.title }}</p>
+              <p>{{ $t(item.title) }}</p>
             </div>
           </div>
         </b-carousel-slide>
@@ -35,7 +34,7 @@
     </div>
 
     <div class="products">
-      <h1 class="products_heading">Products</h1>
+      <h1 class="products_heading">{{$t('landing.products')}}</h1>
 
       <div v-if="products.length" class="card-carousel-wrapper">
         <div class="card-carousel--nav__left" @click="moveCarousel(-1)"></div>
@@ -45,7 +44,7 @@
               <div class="card-carousel--card" v-for="product in products" :key="product.id">
                 <img class="card-carousel-img" :src="product.images[0]" alt=""/>
 
-                <button v-b-modal="'modal-center-' + product.id" class="quick_view">Quick View</button>
+                <button v-b-modal="'modal-center-' + product.id" class="quick_view">{{$t('landing.quick_view')}}</button>
                 <div class="card-carousel--card--footer">
                   <p>{{ product.title }}</p>
                   <p class="price">{{ product.price }}</p>
@@ -60,12 +59,12 @@
                       <p class="modal_price">{{ product.price }}</p>
 
                       <div style="display: flex; gap: 30px; align-items: center">
-                        <p class="types">Categories</p>
+                        <p class="types">{{$t('landing.categories')}}</p>
                         <p v-for="(category, index) in product.categories" :key="index" class="modal_type">
                           {{ category.name }}</p>
                       </div>
                       <router-link :to="'/product/' + product.id" class="text-primary btn p-0">
-                        <p class="full_details">View full details</p>
+                        <p class="full_details">{{$t('landing.full_details')}}</p>
                       </router-link>
 
                     </div>
@@ -78,7 +77,7 @@
         <div class="card-carousel--nav__right" @click="moveCarousel(1)"></div>
       </div>
       <div v-else>
-        No data to show
+        {{$t('landing.no_data')}}
       </div>
     </div>
 
@@ -86,30 +85,30 @@
       <div class="icons_part" v-for="(item, index) in about" :key="index">
         <i class="fa_icons" :class="['fas', item.class]"></i>
         <div>
-          <p>{{ item.text1 }}</p>
-          <p>{{ item.text2 }}</p>
+          <p>{{ $t(item.text1) }}</p>
+          <p>{{ $t(item.text2) }}</p>
         </div>
       </div>
     </div>
 
     <div class="contact_us">
-      <h1 class="contact_us_heading">Welcome To Our Support. We're Here To Help.</h1>
-      <p class="contact_us_text">ALWAYS ON YOUR SIDE WHEN YOU NEED HELP</p>
+      <h1 class="contact_us_heading">{{$t('landing.welcome_support')}}</h1>
+      <p class="contact_us_text">{{$t('landing.need_help')}}</p>
 
       <div class="contact_us_info">
         <i class="fa-solid fa-phone-volume"></i>
         <div class="info_text">
           <div class="info_text_column">
             <div>
-              <p>Contact Us</p>
-              <h2 class="info_heading">Have Any Doubts?</h2>
+              <p>{{$t('landing.contact_us')}}</p>
+              <h2 class="info_heading">{{$t('landing.doubts')}}</h2>
             </div>
             <div>
               <p>{{ contacts.phone_1 }}</p>
               <p>{{ contacts.phone_2 }}</p>
             </div>
           </div>
-          <button class="know_more">Know More</button>
+          <button class="know_more">{{$t('know_more')}}</button>
         </div>
       </div>
     </div>
@@ -125,33 +124,33 @@ import ProductsService from "../../../services/ProductsService";
 const introCarousel = [
   {
     src: 'https://www.niso.com.tr/wp-content/uploads/2023/03/hardware_SD.jpg',
-    title: 'Your Journey to Better Health Starts Here'
+    title: 'landing.carousel_text1'
   },
   {
     src: 'https://www.aamc.org/sites/default/files/styles/scale_and_crop_1200_x_666/public/workforce-feature.jpg__992x558_q85_crop-smart_subsampling-2_upscale.jpg?itok=xrYKAvV0',
-    title: 'Your Health, Our Priority'
+    title: 'landing.carousel_text2'
   },
   {
     src: 'https://img.freepik.com/premium-photo/doctor-hold-icon-health-electronic-medical-record-interface-digital-healthcare-network_34200-712.jpg',
-    title: 'Rigorous Standards, Unwavering Quality'
+    title: 'landing.carousel_text3'
   }
 ]
 
 const about = [
   {
     class: "fa-hotel",
-    text1: "24/7 helpline",
-    text2: "Care till the end"
+    text1: "landing.helpline",
+    text2: "landing.till_end"
   },
   {
     class: "fa-truck-fast",
-    text1: "Free Shipping",
-    text2: "For orders over $50"
+    text1: "landing.free_shipping",
+    text2: "landing.orders"
   },
   {
     class: "fa-percent",
-    text1: "Official Discounts",
-    text2: "Save big on the next product"
+    text1: "landing.discounts",
+    text2: "landing.save_big"
   }
 ]
 

@@ -1,3 +1,58 @@
 {
-  "greeting": "eee"
+  "landing": {
+    "carousel_text1": "Your Journey to Better Health Starts Here",
+    "carousel_text2": "Your Health, Our Priority",
+    "carousel_text3": "Rigorous Standards, Unwavering Quality",
+    "products": "Products",
+    "no_data": "No data to show",
+    "helpline": "24/7 helpline",
+    "till_end": "Care till the end",
+    "free_shipping": "Free Shipping",
+    "orders": "For orders over $50",
+    "discounts": "Official Discounts",
+    "save_big": "Save big on the next product",
+    "welcome_support": "Welcome To Our Support. We're Here To Help.",
+    "need_help": "ALWAYS ON YOUR SIDE WHEN YOU NEED HELP",
+    "contact_us": "Contact Us",
+    "doubts": "Have Any Doubts?",
+    "know_more": "Know More",
+    "quick_view": "Quick View",
+    "categories": "Categories",
+    "full_details": "View full details"
+  },
+  "products": {
+    "products": "PRODUCTS",
+    "filter_category": "Filter by category",
+    "select": "Select...",
+    "not_found": "Products not found",
+    "categories": "Categories:",
+    "description": "Description"
+  },
+
+  "about": {
+    "about": "ABOUT US",
+    "who_we_are": "Who We Are",
+    "create_technology": "We create advance technology health and social care products",
+    "main_service": "Explore Our Main Service",
+    "cardiology": "Cardiology",
+    "cardiology_text": "Cardiology is the branch of medicine that focuses on the study, diagnosis, and treatment of disorders related to the heart and the circulatory system.",
+    "endocrinology": "Endocrinology",
+    "endocrinology_text": " Endocrinology is a specialized field of medicine that focuses on the study and management of the endocrine system, which consists of glands that produce hormones.",
+    "angioplasty": "Angioplasty",
+    "angioplasty_text": "Angioplasty is a medical procedure used to treat narrowed or blocked blood vessels, typically arteries, by widening the vessel and restoring blood flow.",
+    "happy_to_say": "Our Clients Happy To Say About Us",
+    "about_text1": "Our technology-driven health and social care products are designed to elevate the quality of patient care",
+    "about_text2": "Embracing the digital era, our products leverage the power of data and connectivity to create intelligent and intuitive solutions.",
+    "about_text3": "We are committed to making advanced health technologies accessible to a wide range of users.",
+    "about_text4": "Staying ahead of the curve requires ongoing commitment to research and development.",
+    "about_text5": "We recognize the importance of collaboration with healthcare professionals."
+  },
+
+  "contacts": {
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "contacts": "Contacts",
+    "send": "Send"
+  }
 }
