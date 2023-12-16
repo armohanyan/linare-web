@@ -59,7 +59,7 @@
       <b-pagination
           v-model="currentPage"
           :total-rows="totalCount"
-          per-page="3"
+          per-page="12"
       ></b-pagination>
     </div>
 
@@ -120,7 +120,7 @@ export default {
     async getProducts() {
       const products = await new ProductsService().get({
         page: this.currentPage,
-        limit: 3
+        limit: 12
       })
 
       this.products = products.data.products
@@ -131,7 +131,7 @@ export default {
       const products = await new ProductsService().get({
         category: categoryName,
         page: this.currentPage,
-        limit: 3
+        limit: 12
       })
 
       this.products = products.data.products

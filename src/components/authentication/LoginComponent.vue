@@ -1,16 +1,16 @@
 <template>
   <b-container class="sign_in_form mt-5">
-    <div v-if="!isShowVerifyEmailContent">
+    <div>
       <div class="text-center"><h3>Sign in</h3></div>
       <b-form @submit.prevent="onSubmit">
         <!-- email -->
-        <b-form-group id="email" label="email" label-for="input-1">
+        <b-form-group id="email" label="Email" label-for="input-1">
           <b-form-input
               id="email"
               v-model="$v.form.email.$model"
               :state="validateState('email')"
               type="text"
-              placeholder="email"
+              placeholder="Email"
           ></b-form-input>
 
           <b-form-invalid-feedback id="email">
@@ -57,87 +57,6 @@
         </div>
       </b-form>
     </div>
-
-    <div v-if="isShowVerifyEmailContent && !showEmailVerificationMessage">
-      <div class="text-center"><h3>Email verification</h3></div>
-      <b-form @submit.prevent="onEmailVerification">
-        <!-- email -->
-        <b-form-group id="email" label="Email" label-for="input-1">
-          <b-form-input
-              id="Email"
-              v-model="$v.form.email.$model"
-              :state="validateState('email')"
-              type="text"
-              placeholder="email"
-          ></b-form-input>
-
-          <b-form-invalid-feedback id="email">
-          <span v-if="!$v.form.email.required">
-            This is a required field.
-          </span>
-            <span v-else-if="!$v.form.email.minLength">
-            Must be at least 5 characters
-          </span>
-          </b-form-invalid-feedback>
-          <div>
-            <small class="text-danger" v-if="emailVerificationErrorMessage">
-              {{ emailVerificationErrorMessage }}
-            </small>
-          </div>
-        </b-form-group>
-
-        <div class="mt-4 text-center">
-          <b-button type="submit" variant="primary">Submit</b-button>
-        </div>
-      </b-form>
-    </div>
-    <div v-if="showEmailVerificationMessage">
-      <b-row class="mb-3">
-        <b-col class="text-center">
-          <b-icon
-              variant="success"
-              icon="check2-circle"
-              font-scale="5"
-          ></b-icon>
-
-          <div class="mt-3">
-            <h5 class="font-weight-bold">You're all set!</h5>
-          </div>
-        </b-col>
-      </b-row>
-      <b-row class="mb-3 justify-content-center text-center fs-1_2">
-        <p class="mx-3 w-100">
-          Your account has been created and a verification email has been sent
-          to your registered email address.
-        </p>
-        <p class="mx-3 w-100">
-          <b
-          >Please click on the verification link included in the email to
-            verify your account.</b
-          >
-        </p>
-      </b-row>
-      <div class="text-center">
-        <em class="font-weight-bold">Resend email token <span v-if="isDisableResendButton">
-            {{ currentTimer }}
-          </span>
-        </em>
-        <p>
-          <b-button v-if="!isDisableResendButton" size="sm" variant="primary" @click="resendToken()">Resend</b-button>
-          <b-button v-if="isDisableResendButton" disabled size="sm">Resend</b-button>
-        </p>
-      </div>
-    </div>
-    <div>
-      <div v-if="isShowVerifyEmail">
-        <b-button variant="primary" @click="onVerifyEmail()">Verify account</b-button>
-      </div>
-      <router-link :to="'/admin/sign-up'" class="text-primary btn">Sign up</router-link>
-      <p>
-        <router-link :to="'/admin/on-reset-password'" class="text-primary btn">Forgot Password</router-link>
-      </p>
-    </div>
-
   </b-container>
 </template>
 
@@ -152,18 +71,12 @@ export default {
     return {
       error: null,
       loading: false,
-      isShowVerifyEmail: false,
-      isShowVerifyEmailContent: false,
       showEmailVerificationMessage: false,
       emailVerificationErrorMessage: '',
       form: {
         email: '',
         password: ''
       },
-      isDisableResendButton: true,
-      currentTimer: '',
-      minute: 1,
-      sec: 60
     };
   },
   validations: {
@@ -200,13 +113,6 @@ export default {
         this.login();
       }
     },
-    onEmailVerification() {
-      if(this.$v.form.email.$invalid) {
-        this.$v.$touch();
-        return false;
-      }
-      this.requestVerifyEmail();
-    },
     login() {
       new AuthService().signIn(this.form)
                        .then(({ data }) => {
@@ -216,10 +122,6 @@ export default {
                        .catch((err) => {
                          const data = err.response.data;
 
-                         if(data.statusCode === 401) {
-                           return this.isShowVerifyEmail = true;
-                         }
-
                          if(data.message) {
                            this.error = data.message;
                          } else {
@@ -227,46 +129,6 @@ export default {
                          }
                          throw err;
                        });
-    },
-    requestVerifyEmail() {
-      new AuthService().requestVerifyEmail({ email: this.form.email })
-                       .then(() => {
-                         this.showEmailVerificationMessage = true;
-                         this.setTimer();
-                       })
-                       .catch((err) => {
-                         this.emailVerificationErrorMessage = err.response.data.message;
-                         throw err;
-                       });
-    },
-    onVerifyEmail() {
-      this.isShowVerifyEmailContent = true;
-      this.isShowVerifyEmail = false;
-    },
-    resendToken() {
-      new AuthService().resendToken(this.form.email);
-      this.isDisableResendButton = true;
-      this.currentTimer = '';
-      this.minute = 1;
-      this.sec = 60;
-    },
-    setTimer() {
-      setInterval(() => {
-        if(this.sec <= 10) {
-          this.currentTimer = this.minute + ' : ' + "0" + this.sec;
-        } else {
-          this.currentTimer = this.minute + ' : ' + this.sec;
-        }
-
-        if(this.sec !== 0) {
-          if(this.sec === 0 && this.minute !== 0) {
-            this.minute--;
-            this.sec = 60;
-          }
-        } else {
-          this.isDisableResendButton = false;
-        }
-      }, 1000);
     }
   }
 };

@@ -184,6 +184,7 @@ export default {
 }
 
 .testimonial_img_name {
+  overflow-y: scroll;
   display: flex;
   gap: 20px;
   margin-bottom: 4%;

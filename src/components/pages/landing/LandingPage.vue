@@ -37,8 +37,7 @@
       <h1 class="products_heading">{{$t('landing.products')}}</h1>
 
       <div v-if="products.length" class="card-carousel-wrapper">
-        <div class="card-carousel--nav__left" @click="moveCarousel(-1)"></div>
-        <div class="card-carousel">
+        <div class="">
           <div class="card-carousel--overflow-container">
             <div class="card-carousel-cards" :style="{ transform: 'translateX(' + currentOffset + 'px)'}">
               <div class="card-carousel--card" v-for="product in products" :key="product.id">
@@ -50,7 +49,7 @@
                   <p class="price">{{ product.price }}</p>
                 </div>
 
-                <b-modal :id="'modal-center-' + product.id">
+                <b-modal :id="'modal-center-' + product.id" centered>
                   <div class="modal_content">
                     <img class="modal_img" :src="product.images[0]" alt=""/>
                     <div class="modal_info">
@@ -74,7 +73,6 @@
             </div>
           </div>
         </div>
-        <div class="card-carousel--nav__right" @click="moveCarousel(1)"></div>
       </div>
       <div v-else>
         {{$t('landing.no_data')}}
@@ -178,7 +176,7 @@ export default {
 
   computed: {
     atEndOfList() {
-      return this.currentOffset <= (this.paginationFactor * -1) * (this.items.length - this.windowSize);
+      return this.currentOffset <= (this.paginationFactor * -1) * (this.products.length - this.windowSize);
     },
 
     atHeadOfList() {
@@ -194,6 +192,7 @@ export default {
 
   methods: {
     moveCarousel(direction) {
+      console.log(direction)
       if (direction === 1 && !this.atEndOfList) {
         this.currentOffset -= this.paginationFactor;
       } else if (direction === -1 && !this.atHeadOfList) {
@@ -370,6 +369,8 @@ export default {
 
 .card-carousel-cards {
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   transition: transform 150ms ease-out;
   transform: translatex(0px);
 }
