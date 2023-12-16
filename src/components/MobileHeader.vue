@@ -21,7 +21,7 @@
               <i :class="['fas', tab.class]"></i>
               <label class="link_texts">{{ tab.label }}</label>
             </li>
-
+            <LanguageComponent/>
             <li v-if="isAdmin" class="lists" @click="logout">
               <i class="fa-solid fa-right-from-bracket"></i>
               <label class="link_texts">Logout</label>
@@ -36,9 +36,11 @@
 
 <script>
 import AccountService from "../services/AccountService";
+import LanguageComponent from "@/components/language/LanguageComponent.vue";
 
 export default {
   name: "MobileHeader",
+  components: {LanguageComponent},
   props: ['tabs', 'isAdmin'],
   data() {
     return {
@@ -73,7 +75,7 @@ export default {
 </script>
 
 <style scoped>
-.lists > .fas, .fa-right-from-bracket{
+.lists > .fas, .fa-right-from-bracket {
   font-size: 23px;
 }
 
@@ -117,7 +119,7 @@ a {
   color: #13457A;
 }
 
-.menu_icon > .fa-bars::before{
+.menu_icon > .fa-bars::before {
   font-size: 35px;
   color: white;
 }

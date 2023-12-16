@@ -1,10 +1,10 @@
 <template>
   <div class="contact_page">
-    <active-page-template page="CONTACTS"/>
+    <active-page-template :page="$t('contacts.contact')"/>
 
     <div class="contact_content">
       <div style="margin: 0 auto; width: 92%">
-        <iframe class="map" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+        <iframe class="map"
                 loading="lazy"
                 src="https://maps.google.com/maps?width=100%25&amp;height=300&amp;hl=en&amp;q=Google, 14-12 Nersisyani poxoc,Yerevan, USA&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
       </div>
@@ -15,7 +15,7 @@
               <i class="fa-solid fa-phone"></i>
             </div>
             <div>
-              <p class="contact_content_heading">{{$t('contacts.phone')}}</p>
+              <p class="contact_content_heading">{{ $t('contacts.phone') }}</p>
               <p class="contact_content_text">{{ this.contacts.phone_1 }}</p>
               <p class="contact_content_text">{{ this.contacts.phone_2 }}</p>
             </div>
@@ -25,7 +25,7 @@
               <i class="fa-solid fa-envelope"></i>
             </div>
             <div>
-              <p class="contact_content_heading">{{$t('contacts.email')}}</p>
+              <p class="contact_content_heading">{{ $t('contacts.email') }}</p>
               <p class="contact_content_text">{{ this.contacts.email }}</p>
             </div>
           </div>
@@ -34,24 +34,27 @@
               <i class="fa-solid fa-paper-plane"></i>
             </div>
             <div>
-              <p class="contact_content_heading">{{$t('contacts.address')}}</p>
+              <p class="contact_content_heading">{{ $t('contacts.address') }}</p>
               <p class="contact_content_text">{{ this.contacts.address }}</p>
             </div>
           </div>
         </div>
 
         <div class="contact_form">
-          <p class="contact_form_heading">{{$t('contacts.contacts')}}</p>
+          <p class="contact_form_heading">{{ $t('contacts.contacts') }}</p>
           <div class="forms">
-            <input v-model="customerMessage.name" type="text" class="contact_form_inputs" placeholder="Name"/>
-            <input v-model="customerMessage.email" type="email" class="contact_form_inputs" placeholder="Email"
+            <input v-model="customerMessage.name" type="text" class="contact_form_inputs"
+                   :placeholder="$t('contacts.name')"/>
+            <input v-model="customerMessage.email" type="email" class="contact_form_inputs"
+                   :placeholder="$t('contacts.email')"
                    required/>
-            <input v-model="customerMessage.phone" type="text" class="contact_form_inputs" placeholder="Phone Number"/>
+            <input v-model="customerMessage.phone" type="text" class="contact_form_inputs"
+                   :placeholder="$t('contacts.phone')"/>
             <textarea v-model="customerMessage.comment" style="height: 280px" class="contact_form_inputs"
-                      placeholder="Comment" required/>
+                      :placeholder="$t('contacts.comment')" required/>
           </div>
           <div class="contact_btn">
-            <button class="contact_send_btn" @click="onClickSendEmail">{{$t('contacts.send')}}</button>
+            <button class="contact_send_btn" @click="onClickSendEmail">{{ $t('contacts.send') }}</button>
           </div>
         </div>
       </div>

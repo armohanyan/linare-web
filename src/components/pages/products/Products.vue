@@ -1,14 +1,14 @@
 <template>
   <div class="product_page">
 
-    <active-page-template v-if="!admin" page="PRODUCTS" />
+    <active-page-template v-if="!admin" :page="$t('products.products')"/>
 
     <div class="product_content" :class="admin ? 'p-3' : ''">
       <div class="grid_content">
         <div class="filter_products">
           <div class="filter_category_text">
             <p class="filter_text">
-              {{$t('products.filter_category')}}
+              {{ $t('products.filter_category') }}
             </p>
             <div>
               <categories-tree-select @onChangeValue="onChangeCategory"/>
@@ -40,7 +40,9 @@
             </div>
           </div>
 
-          <router-link :to="'/product/' + product.id" class="text-primary btn"><img class="card-product-img" :src="product.images[0]" alt=""/></router-link>
+          <router-link :to="'/product/' + product.id" class="text-primary btn"><img class="card-product-img"
+                                                                                    :src="product.images[0]" alt=""/>
+          </router-link>
 
           <div class="card-product--card--footer">
             <p>{{ product.title }}</p>
@@ -49,7 +51,7 @@
         </div>
 
         <div v-if="!products.length">
-          {{$t('products.not_found')}}
+          {{ $t('products.not_found') }}
         </div>
       </div>
     </div>
@@ -278,14 +280,9 @@ export default {
   margin-top: 6%;
 }
 
-.icon_btn{
+.icon_btn {
   border: none;
   background: none;
-}
-
-.test_close_icon{
-  width: 30px;
-  height: 30px;
 }
 
 @media only screen and (max-width: 1245px) {
@@ -295,7 +292,7 @@ export default {
 }
 
 @media only screen and (max-width: 1020px) {
-  .grid_part{
+  .grid_part {
     display: none;
   }
 }
@@ -308,7 +305,7 @@ export default {
     row-gap: 10px;
   }
 
-  .grid_content{
+  .grid_content {
     padding: 3%;
   }
 }

@@ -34,7 +34,7 @@
     </div>
 
     <div class="products">
-      <h1 class="products_heading">{{$t('landing.products')}}</h1>
+      <h1 class="products_heading">{{ $t('landing.products') }}</h1>
 
       <div v-if="products.length" class="card-carousel-wrapper">
         <div class="">
@@ -43,7 +43,8 @@
               <div class="card-carousel--card" v-for="product in products" :key="product.id">
                 <img class="card-carousel-img" :src="product.images[0]" alt=""/>
 
-                <button v-b-modal="'modal-center-' + product.id" class="quick_view">{{$t('landing.quick_view')}}</button>
+                <button v-b-modal="'modal-center-' + product.id" class="quick_view">{{ $t('landing.quick_view') }}
+                </button>
                 <div class="card-carousel--card--footer">
                   <p>{{ product.title }}</p>
                   <p class="price">{{ product.price }}</p>
@@ -58,12 +59,12 @@
                       <p class="modal_price">{{ product.price }}</p>
 
                       <div style="display: flex; gap: 30px; align-items: center">
-                        <p class="types">{{$t('landing.categories')}}</p>
+                        <p class="types">{{ $t('landing.categories') }}</p>
                         <p v-for="(category, index) in product.categories" :key="index" class="modal_type">
                           {{ category.name }}</p>
                       </div>
                       <router-link :to="'/product/' + product.id" class="text-primary btn p-0">
-                        <p class="full_details">{{$t('landing.full_details')}}</p>
+                        <p class="full_details">{{ $t('landing.full_details') }}</p>
                       </router-link>
 
                     </div>
@@ -75,7 +76,7 @@
         </div>
       </div>
       <div v-else>
-        {{$t('landing.no_data')}}
+        {{ $t('landing.no_data') }}
       </div>
     </div>
 
@@ -90,23 +91,23 @@
     </div>
 
     <div class="contact_us">
-      <h1 class="contact_us_heading">{{$t('landing.welcome_support')}}</h1>
-      <p class="contact_us_text">{{$t('landing.need_help')}}</p>
+      <h1 class="contact_us_heading">{{ $t('landing.welcome_support') }}</h1>
+      <p class="contact_us_text">{{ $t('landing.need_help') }}</p>
 
       <div class="contact_us_info">
         <i class="fa-solid fa-phone-volume"></i>
         <div class="info_text">
           <div class="info_text_column">
             <div>
-              <p>{{$t('landing.contact_us')}}</p>
-              <h2 class="info_heading">{{$t('landing.doubts')}}</h2>
+              <p>{{ $t('landing.contact_us') }}</p>
+              <h2 class="info_heading">{{ $t('landing.doubts') }}</h2>
             </div>
             <div>
               <p>{{ contacts.phone_1 }}</p>
               <p>{{ contacts.phone_2 }}</p>
             </div>
           </div>
-          <button class="know_more">{{$t('know_more')}}</button>
+          <button class="know_more">{{ $t('landing.know_more') }}</button>
         </div>
       </div>
     </div>

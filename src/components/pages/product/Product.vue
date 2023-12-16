@@ -1,6 +1,6 @@
 <template>
   <div>
-    <active-page-template page="PRODUCTS" />
+    <active-page-template :page="$t('products.products')"/>
 
     <div class="product_container">
       <div class="product_info">
@@ -9,11 +9,12 @@
             <div class="slides" :style="{ transform: 'translateX(' + -currentIndex * 100 + '%)' }">
               <div v-for="(image, index) in product.images" :key="index" class="slide">
                 <img :src="image" alt="Slide" style="width: 100%;">
-                </div>
+              </div>
             </div>
           </div>
           <div class="thumbnail-container">
-            <img v-for="(image, index) in product.images" :key="index" :src="image" alt="Thumbnail" @click="changeSlide(index)"
+            <img v-for="(image, index) in product.images" :key="index" :src="image" alt="Thumbnail"
+                 @click="changeSlide(index)"
                  class="thumbnail" :class="{ active: index === currentIndex }">
           </div>
         </div>
@@ -22,14 +23,17 @@
           <p class="product_desc">{{ product.shortDescription }}</p>
           <p class="product_price">{{ product.price }}</p>
           <div style="display: flex; gap: 10px; align-items: center">
-            {{$t('products.categories')}} <div v-for="(category, index) in product.categories"  :key="index"  class="product_type_text">{{ category.name  }} <span v-if="index !== product.categories.length - 1">,</span></div>
+            {{ $t('products.categories') }}
+            <div v-for="(category, index) in product.categories" :key="index" class="product_type_text">{{
+                category.name
+              }} <span v-if="index !== product.categories.length - 1">,</span></div>
           </div>
         </div>
       </div>
       <div style="margin-top: 5%">
-        <button class="desc_btn">{{$t('products.description')}}</button>
+        <button class="desc_btn">{{ $t('products.description') }}</button>
         <div>
-          {{  product.description }}
+          {{ product.description }}
         </div>
       </div>
     </div>
@@ -123,10 +127,6 @@ export default {
   font-size: 17px;
 }
 
-.product_type {
-  color: #A2A2A2;
-}
-
 .slider {
   max-width: 600px;
   margin: 0 auto;
@@ -170,50 +170,32 @@ export default {
   font-weight: 500;
 }
 
-.desc_content {
-  border: 1px solid #DDDDDD;
-  border-radius: 0 7px 7px 7px;
-  padding: 2%;
-  width: 85%;
-  color: #9EA7A8;
-}
-
-.desc_heading {
-  color: #2490EB;
-  font-weight: 500;
-  margin-top: 3%;
-}
-
-.product_content_info{
+.product_content_info {
   width: 59%;
   margin-top: 7%;
 }
 
 @media only screen and (max-width: 1500px) {
-  .product_container{
+  .product_container {
     padding: 3% 5%;
   }
 }
 
 @media only screen and (max-width: 1180px) {
-  .product_info{
+  .product_info {
     flex-direction: column;
   }
 
-  .desc_content{
+  .product_content_info {
     width: 100%;
   }
 
-  .product_content_info{
-    width: 100%;
-  }
-
-  .product_desc{
+  .product_desc {
     width: 100%;
     font-size: 22px;
   }
 
-  .product_img_name{
+  .product_img_name {
     margin-bottom: 5%;
     font-size: 30px;
   }

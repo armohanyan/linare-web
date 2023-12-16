@@ -28,7 +28,6 @@
     "categories": "Categories:",
     "description": "Description"
   },
-
   "about": {
     "about": "ABOUT US",
     "who_we_are": "Who We Are",
@@ -47,11 +46,13 @@
     "about_text4": "Staying ahead of the curve requires ongoing commitment to research and development.",
     "about_text5": "We recognize the importance of collaboration with healthcare professionals."
   },
-
   "contacts": {
+    "contact": "CONTACTS",
+    "name": "Name",
     "phone": "Phone",
     "email": "Email",
     "address": "Address",
+    "comment": "Comment",
     "contacts": "Contacts",
     "send": "Send"
   }

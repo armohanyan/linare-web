@@ -1,14 +1,12 @@
 <template>
-  <div>
+  <div style="margin-top: 7px">
     <div class="vue-select" @click="toggleDropdown">
       <span class="selected-option">{{ placeholder }}</span>
-      <transition name="slide">
         <div class="dropdown-options-container" v-show="showDropdown">
           <div class="dropdown-options" v-for="option in options" :key="option.value"  :class="{'selected': option === selected}">
             <div class="dropdown-options--cell" @click="selectOption(option)"><span class="option-text">{{ option.label }}</span></div>
           </div>
-        </div>`
-      </transition>
+        </div>
     </div>
   </div>
 </template>
@@ -40,17 +38,7 @@ export default {
   },
 
   methods: {
-    changeLanguage(selectedLanguage) {
-      console.log(selectedLanguage)
-      this.$i18n.setLocaleMessage('en', require('../../locales/en.json'));
-      this.$i18n.setLocaleMessage('ru', require('../../locales/ru.json'));
-      this.$i18n.setLocaleMessage('am', require('../../locales/am.json'));
-
-      this.$i18n.locale = selectedLanguage;
-    },
-
     toggleDropdown() {
-      console.log('yrsy')
       this.showDropdown = !this.showDropdown;
     },
 
@@ -67,19 +55,10 @@ export default {
 </script>
 
 <style scoped>
->>> .btn-group > .btn {
-  padding: 8% 8%;
-  gap: 12px;
-}
-
->>> .dropdown-menu {
-  min-width: 11rem;
-  margin-left: 10px;
-}
 
 .vue-select {
   text-align: center;
-  width: 300px;
+  width: 150px;
   background-color: #fff;
   margin: 20px auto;
   cursor: pointer;
@@ -88,34 +67,27 @@ export default {
   border: none;
   transition: all 200ms linear;
 }
+
 .vue-select .selected-option {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   display: inline-block;
   padding: 15px;
-  width: 100%;
   position: relative;
   box-sizing: border-box;
   transition: all 200ms linear;
+  font-weight: 700;
+  font-size: 18px;
 }
+
 .vue-select .selected-option:hover {
   color: rgba(0, 0, 0, 0.45);
 }
-.vue-select .selected-option svg {
-  fill: #42b883;
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  transition: fill 300ms linear;
-}
-.vue-select .selected-option svg:hover {
-  fill: #2e805b;
-}
 
 .dropdown-options-container {
-  height: 300px;
+  height: 171px;
+  margin-top: 47px;
 }
 
 .dropdown-options--cell {
@@ -124,7 +96,10 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-weight: 700;
+  font-size: 18px;
 }
+
 .dropdown-options--cell:hover {
   background-color: #f4fbf8;
   border: none;
@@ -135,14 +110,26 @@ export default {
   border: none;
 }
 
-.slide-enter-active,
-.slide-leave-active {
-  transition: height 150ms ease;
-}
+@media only screen and (max-width: 765px) {
+  .vue-select{
+    height: 55px;
+    width: 90%;
+  }
 
-.slide-enter,
-.slide-leave-to {
-  height: 0px;
-}
+  .dropdown-options-container{
+    margin-top: 0;
+  }
 
+  .vue-select .selected-option{
+    color: #2490EB;
+  }
+
+  .dropdown-options.selected .dropdown-options--cell{
+    color: #2490EB;
+  }
+
+  .dropdown-options--cell{
+    padding: 7px;
+  }
+}
 </style>
