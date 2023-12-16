@@ -9,7 +9,7 @@
               id="email"
               v-model="$v.form.email.$model"
               :state="validateState('email')"
-              type="text"
+              type="email"
               placeholder="Email"
           ></b-form-input>
 

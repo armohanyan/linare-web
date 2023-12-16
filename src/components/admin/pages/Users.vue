@@ -77,12 +77,12 @@
       </b-form-group>
 
       <!-- email -->
-      <b-form-group id="email" label="email" label-for="email" class="mt-3">
+      <b-form-group id="email" label="Email" label-for="email" class="mt-3">
         <b-form-input
             id="Email"
             v-model="$v.user.email.$model"
             :state="validateState('email')"
-            type="text"
+            type="email"
             placeholder="Email"
         ></b-form-input>
 
@@ -194,6 +194,7 @@ export default {
 
   methods: {
     async getUsers() {
+
       const {data} = await new UsersService().get()
 
       this.users = data
@@ -233,14 +234,15 @@ export default {
       return $dirty ? !$error : null
     },
 
-    onSubmit (event) {
+    async onSubmit(event) {
+      console.log("dfdfdf")
       event.preventDefault()
 
       if (this.$v.$invalid) {
         this.$v.$touch()
         return false
       } else {
-        this.createUser()
+        await this.createUser()
       }
     }
 

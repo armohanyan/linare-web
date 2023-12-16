@@ -77,7 +77,7 @@
       </b-form-group>
 
       <!-- email -->
-      <b-form-group id="email" label="email" label-for="email" class="mt-3">
+      <b-form-group id="email" label="Email" label-for="email" class="mt-3">
         <b-form-input
             id="Email"
             v-model="$v.setting.email.$model"
@@ -183,7 +183,7 @@ export default {
   methods: {
     async getSetting() {
       const {data} = await new UsersService().getUser(this.getCurrentUser.id)
-
+      console.log(data)
       this.setting = data
       this.setting.password = ''
     },

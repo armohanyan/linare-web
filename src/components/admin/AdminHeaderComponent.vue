@@ -2,7 +2,7 @@
   <div class="menu-wrapper">
     <MobileHeader class="admin_mobile_header" :tabs="tabs" :isAdmin="true"/>
     <div class="sidebar-header">
-      <div class="sidebar_hide">
+      <div  v-if="getCurrentUser && displayTabs" class="sidebar_hide">
         <div class="sideBar" :class="{ showMenu: isMenuVisible, widthChange: isMenuVisible }">
           <div class="sidebar_images">
             <img class="sidebar_img" src="@/assets/logos/linare_white.png" alt=""/>
@@ -95,6 +95,9 @@ export default {
     };
   },
   computed: {
+    displayTabs() {
+      return this.$route.name !== 'sign-in';
+    },
     getCurrentUser() {
       return this.$store.getters.getCurrentUser;
     }
