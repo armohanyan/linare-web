@@ -28,9 +28,6 @@
                 <button v-if="product.id" class="btn btn-primary add_testimonials" @click="updateProduct()">Update Product</button>
               </div>
             </div>
-
-            <div class="d-flex justify-content-end">
-            </div>
           </div>
         </div>
       </div>

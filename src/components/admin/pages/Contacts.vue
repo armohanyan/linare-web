@@ -87,10 +87,6 @@ export default {
 </script>
 
 <style scoped>
-.contact_page_content {
-  padding: 2%;
-}
-
 .admin_contact_form_heading {
   color: #2490EB;
   font-size: 35px;

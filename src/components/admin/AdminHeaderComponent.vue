@@ -123,6 +123,7 @@ export default {
 </script>
 
 <style scoped>
+
 .lists > .fas{
   font-size: 30px;
 }
@@ -265,7 +266,7 @@ header {
 }
 
 header img {
-  height: 40px;
+  height: 60px;
 }
 
 header h1 {

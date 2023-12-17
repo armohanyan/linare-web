@@ -72,7 +72,13 @@ export default {
   components: {ActivePageTemplate},
   data() {
     return {
-      testimonials: [],
+      testimonials: [
+        {
+          avatar: "https://upload.wikimedia.org/wikipedia/en/8/86/Avatar_Aang.png",
+          position: "ssdsd",
+          comment: "dsdsd"
+        }
+      ],
       collaborators: [],
       about: [
         {
@@ -174,7 +180,7 @@ export default {
   font-size: 15px;
 }
 
-.services {
+.services{
   padding: 3% 13%;
   background-color: #F4F6F9;
 }
@@ -287,9 +293,7 @@ export default {
   }
 }
 
-
 @media only screen and (max-width: 950px) {
-
   .about_services {
     flex-wrap: wrap;
     row-gap: 25px;
@@ -319,6 +323,16 @@ export default {
 
   .check_text {
     width: 100%;
+  }
+}
+
+@media only screen and (max-width: 495px) {
+  .services_heading{
+    font-size: 20px;
+  }
+
+  .about_content_heading{
+    font-size: 25px;
   }
 }
 

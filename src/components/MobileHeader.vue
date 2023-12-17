@@ -1,7 +1,7 @@
 <template>
   <header v-if="displayTabs" class="admin_header">
     <div v-if="isAdmin" class="d-flex justify-content-between align-items-center">
-      <img style="width: 100px" src="../assets/logos/linare-logo-blue.png" alt="Logo"/>
+      <img style="width: 70px" src="../assets/logos/linare-logo-blue.png" alt="Logo"/>
       <div class="adminMobileIcon" @click="toggleMenuList">
         <i class="fa-solid fa-bars"></i>
       </div>
@@ -222,7 +222,7 @@ header {
 }
 
 header img {
-  height: 40px;
+  height: 60px;
 }
 
 header h1 {

@@ -137,10 +137,6 @@ export default {
   background-color: #2490EB !important;
 }
 
-.testimonials_page_content {
-  padding: 2%;
-}
-
 .admin_testimonials_content {
   padding: 2%;
 }

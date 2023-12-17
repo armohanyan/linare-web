@@ -2,8 +2,8 @@
   <footer class="footer">
     <div class="footer_content">
       <div>
+        <img style="width: 90px" src="../../../assets/logos/linare-logo-white.png" alt=""/>
         <div class="contact_social_icons">
-          <img style="width: 90px" src="../../../assets/logos/linare-logo-white.png" alt=""/>
           <div class="contact_icons">
             <a :href="contacts.facebook" target="_blank">
               <i class="fa-brands fa-facebook-f"></i>
@@ -100,16 +100,17 @@ export default {
 
 .contact_icons {
   background-color: #2C5889;
-  width: 55%;
   text-align: center;
-  padding: 12%;
+  height: 50px;
+  width: 50px;
+  padding-top: 13px;
   border-radius: 5px;
 }
 
 .contact_social_icons {
   display: flex;
   gap: 10px;
-  margin-top: 25%;
+  align-items: center;
 }
 
 .fa-facebook-f:before, .fa-instagram:before{
@@ -123,10 +124,6 @@ export default {
 }
 
 @media only screen and (max-width: 455px) {
-  .contact_icons {
-    padding: 7%;
-  }
-
   .contact_social_icons {
     gap: 10px;
   }

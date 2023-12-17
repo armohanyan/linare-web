@@ -175,16 +175,6 @@ export default {
     }
   },
 
-  computed: {
-    atEndOfList() {
-      return this.currentOffset <= (this.paginationFactor * -1) * (this.products.length - this.windowSize);
-    },
-
-    atHeadOfList() {
-      return this.currentOffset === 0;
-    }
-  },
-
   mounted() {
     this.getContacts()
     this.getCollaborators()
@@ -192,15 +182,6 @@ export default {
   },
 
   methods: {
-    moveCarousel(direction) {
-      console.log(direction)
-      if (direction === 1 && !this.atEndOfList) {
-        this.currentOffset -= this.paginationFactor;
-      } else if (direction === -1 && !this.atHeadOfList) {
-        this.currentOffset += this.paginationFactor;
-      }
-    },
-
     async getProducts() {
       const products = await new ProductsService().get({
         page: 1,
@@ -324,48 +305,8 @@ export default {
   color: #666a73;
 }
 
-.card-carousel {
-  display: flex;
-  justify-content: center;
-  width: 78%;
-}
-
 .card-carousel--overflow-container {
   overflow: hidden;
-}
-
-.card-carousel--nav__left, .card-carousel--nav__right {
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  padding: 10px;
-  box-sizing: border-box;
-  border-top: 2px solid #42b883;
-  border-right: 2px solid #42b883;
-  cursor: pointer;
-  margin: 0 20px;
-  transition: transform 150ms linear;
-}
-
-.card-carousel--nav__left[disabled], .card-carousel--nav__right[disabled] {
-  opacity: 0.2;
-  border-color: black;
-}
-
-.card-carousel--nav__left {
-  transform: rotate(-135deg);
-}
-
-.card-carousel--nav__left:active {
-  transform: rotate(-135deg) scale(0.9);
-}
-
-.card-carousel--nav__right {
-  transform: rotate(45deg);
-}
-
-.card-carousel--nav__right:active {
-  transform: rotate(45deg) scale(0.9);
 }
 
 .card-carousel-cards {
@@ -708,9 +649,18 @@ export default {
   }
 }
 
+@media only screen and (max-width: 600px) {
+  .about {
+    row-gap: 20px;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 3% 3% 3% 10%;
+  }
+}
+
 @media only screen and (max-width: 495px) {
   .slide-left > p {
-    font-size: 25px;
+    font-size: 20px;
     max-height: 20%;
   }
 
@@ -718,9 +668,8 @@ export default {
     width: 73% !important;
   }
 
-  .about {
-    row-gap: 20px;
-    padding: 3%;
+  .products_heading{
+    font-size: 25px;
   }
 
   .contact_us {
@@ -728,7 +677,7 @@ export default {
   }
 
   .contact_us_heading {
-    font-size: 25px;
+    font-size: 20px;
   }
 
   .contact_us_text {

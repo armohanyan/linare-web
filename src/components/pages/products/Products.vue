@@ -163,7 +163,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+.btn{
+  padding: 0 !important;
+}
 
 .one-card-per-row .card-product--card {
   width: 100%;
@@ -246,6 +250,8 @@ export default {
   transition: opacity 150ms linear;
   user-select: none;
   width: 100%;
+  height: 283px;
+  object-fit: cover;
 }
 
 .card-product--card--footer {

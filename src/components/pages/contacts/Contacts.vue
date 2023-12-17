@@ -125,11 +125,6 @@ export default {
 </script>
 
 <style scoped>
-.map {
-  width: 100%;
-  height: 600px;
-}
-
 .contact_part {
   display: flex;
   gap: 30px;
@@ -267,9 +262,9 @@ export default {
   }
 }
 
-@media only screen and (max-width: 990px) {
-  .map {
-    height: 300px;
+@media only screen and (max-width: 495px) {
+  .contact_form_heading{
+    font-size: 25px;
   }
 }
 </style>
