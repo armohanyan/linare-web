@@ -150,7 +150,7 @@ export default {
   }
 
   .dropdown-options.selected .dropdown-options--cell, .lang_flags{
-    color: #FFFFFF`;
+    color: #FFFFFF;
   }
 
   .dropdown-options--cell{
