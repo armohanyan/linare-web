@@ -72,13 +72,7 @@ export default {
   components: {ActivePageTemplate},
   data() {
     return {
-      testimonials: [
-        {
-          avatar: "https://upload.wikimedia.org/wikipedia/en/8/86/Avatar_Aang.png",
-          position: "ssdsd",
-          comment: "dsdsd"
-        }
-      ],
+      testimonials: [],
       collaborators: [],
       about: [
         {
