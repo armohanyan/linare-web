@@ -5,7 +5,7 @@
         <div class="card admin_testimonials_content">
           <div class="card-body admin_testimonials">
 
-            <input type="file" class="form-control mb-3" @change="previewFiles">
+            <input type="file"  class="form-control mb-3" :disabled="testimonial.avatar" @change="previewFiles" :key="fileInputKey">
 
             <input v-model="testimonial.position" class="form-control mb-3" type="text" placeholder="Position">
 
@@ -53,16 +53,13 @@ export default {
 
   data() {
     return {
+      fileInputKey: 0,
       testimonial: {
-        avatar: 'https://i.pinimg.com/originals/b7/1f/d1/b71fd13f1ebd496a3bd546284aaa0ad8.jpg',
+        avatar: null,
         position: '',
         comment: ''
       },
-      testimonials: [{
-        avatar: 'https://i.pinimg.com/originals/b7/1f/d1/b71fd13f1ebd496a3bd546284aaa0ad8.jpg',
-        position: 'tets',
-        comment: 'test'
-      }]
+      testimonials: []
     }
   },
 
@@ -84,10 +81,12 @@ export default {
       await new TestimonialsService().post(formData)
 
       this.testimonial = {
-        avatar: '',
+        avatar: null,
         position: '',
         comment: ''
       }
+
+      this.fileInputKey++
 
       await this.getTestimonials()
     },
@@ -117,10 +116,12 @@ export default {
       await new TestimonialsService().put(formData)
 
       this.testimonial = {
-        avatar: '',
+        avatar: null,
         position: '',
         comment: ''
       }
+
+      this.fileInputKey++
 
       await this.getTestimonials()
     }

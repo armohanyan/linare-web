@@ -5,7 +5,7 @@
         <div class="card admin_testimonials_content">
           <div class="card-body admin_testimonials">
 
-            <input type="file" onfocusin="" class="form-control mb-3"  @change="previewFiles">
+            <input type="file" onfocusin="" class="form-control mb-3" :disabled="partner.logo" :key="fileInputKey" @change="previewFiles">
 
             <input v-model="partner.name" class="form-control mb-3" type="text" placeholder="Name">
 
@@ -54,8 +54,9 @@ export default {
   data() {
     return {
       file: [],
+      fileInputKey: 0,
       partner: {
-        logo: 'https://i.pinimg.com/originals/b7/1f/d1/b71fd13f1ebd496a3bd546284aaa0ad8.jpg',
+        logo: null,
         name: '',
         description: ''
       },
@@ -82,10 +83,12 @@ export default {
       await new CollaboratorsService().post(formData)
 
       this.partner = {
-          logo: '',
+          logo: null,
           name: '',
           description: ''
       }
+
+      this.fileInputKey++
 
       await this.getPartners()
     },
@@ -114,10 +117,12 @@ export default {
       await new CollaboratorsService().put(formData)
 
       this.partner = {
-        logo: '',
+        logo: null,
         name: '',
         description: ''
       }
+
+      this.fileInputKey++
 
       await this.getPartners()
     }

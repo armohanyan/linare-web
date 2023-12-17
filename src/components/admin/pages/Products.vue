@@ -6,7 +6,7 @@
           <div class="card admin_products_content">
             <div class="card-body admin_products">
 
-              <input v-if="product.id" type="file" class="form-control mb-3" multiple @change="previewFiles">
+              <input type="file" class="form-control mb-3" :disabled="product.images.length > 0"  :key="fileInputKey" multiple @change="previewFiles">
 
               <input v-model="product.title" class="form-control mb-3" type="text" placeholder="Name">
 
@@ -20,7 +20,6 @@
 
               <div class="mt-2">
                 Select Categories
-
                 <treeselect  v-model="product.categories"  :multiple="true" :options="categoriesOptions"/>
               </div>
 
@@ -60,12 +59,13 @@ export default {
   components: {Treeselect, Products},
   data() {
     return {
+      fileInputKey: 0,
       categoriesOptions: [],
       totalCount: 0,
       refresh: true,
       product: {
         title: "",
-        images: ["https://meds-theme.myshopify.com/cdn/shop/collections/shop-26.jpg?v=1591863371&width=535"],
+        images: [],
         price: "",
         description: "",
         shortDescription: "",
@@ -101,16 +101,22 @@ export default {
 
         const formData = generateFormData(this.product)
 
+        for (const i of Object.keys(this.product.images)) {
+          formData.append('images', this.product.images[i])
+        }
+
         await new ProductsService().post(formData)
 
         this.product = {
           title: "",
-          images: ["https://meds-theme.myshopify.com/cdn/shop/collections/shop-26.jpg?v=1591863371&width=535"],
           price: "",
           shortDescription: "",
           description: "",
+          images: [],
           categories: []
         }
+
+        this.fileInputKey++
       } finally {
         this.refresh = true
       }
@@ -154,13 +160,14 @@ export default {
 
         this.product = {
           title: "",
-          images: ["https://meds-theme.myshopify.com/cdn/shop/collections/shop-26.jpg?v=1591863371&width=535"],
+          images: [],
           price: "",
           description: "",
           shortDescription: "",
           categories: []
         }
 
+        this.fileInputKey++
       } finally {
         this.refresh = true
       }
