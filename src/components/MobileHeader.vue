@@ -1,7 +1,7 @@
 <template>
   <header v-if="displayTabs" class="admin_header">
     <div v-if="isAdmin" class="d-flex justify-content-between align-items-center">
-      <img style="width: 100px" src="../assets/logos/linare_logo.png" alt="Logo"/>
+      <img style="width: 100px" src="../assets/logos/linare-logo-blue.png" alt="Logo"/>
       <div class="adminMobileIcon" @click="toggleMenuList">
         <i class="fa-solid fa-bars"></i>
       </div>
@@ -11,7 +11,7 @@
       <div class="sidebar_hide">
         <div class="admin_sideBar" :class="{ showAdminMenu: isMenuVisible }">
           <div class="sidebar_images">
-            <img src="../assets/logos/linare_white.png" alt="Logo"/>
+            <img src="../assets/logos/linare-logo-white.png" alt="Logo"/>
             <div class="menu_icon">
               <i id="desktop" @click="toggleMenuList" class="fa-solid fa-bars"></i>
             </div>
@@ -21,11 +21,12 @@
               <i :class="['fas', tab.class]"></i>
               <label class="link_texts">{{ tab.label }}</label>
             </li>
-            <LanguageComponent/>
             <li v-if="isAdmin" class="lists" @click="logout">
               <i class="fa-solid fa-right-from-bracket"></i>
               <label class="link_texts">Logout</label>
             </li>
+
+            <LanguageComponent v-if="!isAdmin" />
           </ul>
         </div>
       </div>

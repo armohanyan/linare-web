@@ -55,7 +55,7 @@
     </div>
     <div v-if="collaborators.length" class="partners">
       <div v-for="(collaborator, index) in collaborators" :key="index">
-        <img class="about_partner_img" src="../../../assets/logos/logo1.png" alt=""/>
+        <img class="about_partner_img" :src="collaborator.logo" alt=""/>
       </div>
     </div>
   </div>

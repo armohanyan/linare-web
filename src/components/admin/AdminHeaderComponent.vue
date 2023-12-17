@@ -5,7 +5,7 @@
       <div  v-if="getCurrentUser && displayTabs" class="sidebar_hide">
         <div class="sideBar" :class="{ showMenu: isMenuVisible, widthChange: isMenuVisible }">
           <div class="sidebar_images">
-            <img class="sidebar_img" src="@/assets/logos/linare_white.png" alt=""/>
+            <img class="sidebar_img" src="@/assets/logos/linare-logo-white.png" alt=""/>
             <i id="desktop" @click="toggleMenuList" class="fa-solid fa-bars"></i>
           </div>
           <ul style="padding-top: 4%; padding-left: 0" :class="{ 'show-icons-only': isMenuVisible }">

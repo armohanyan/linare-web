@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <router-link to="/" class="menu_item">
-      <img style="width: 100px" src="../../../assets/logos/linare_logo.png" alt="Logo"/>
+      <img style="width: 100px" src="../../../assets/logos/linare-logo-blue.png" alt="Logo"/>
     </router-link>
     <div class="menu_items">
       <div v-for="tab in tabs" :key="tab.value">
