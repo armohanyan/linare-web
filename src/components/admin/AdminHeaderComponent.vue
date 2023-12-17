@@ -96,7 +96,7 @@ export default {
   },
   computed: {
     displayTabs() {
-      return this.$route.name !== 'sign-in';
+      return  !['sign-in', 'sign-up', 'reset-password', 'on-reset-password', 'verify-email'].includes(this.$route.name)
     },
     getCurrentUser() {
       return this.$store.getters.getCurrentUser;

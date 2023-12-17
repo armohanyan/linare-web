@@ -56,6 +56,9 @@
           <b-button type="submit" variant="primary">Submit</b-button>
         </div>
       </b-form>
+
+      <router-link :to="'on-reset-password'" class="text-primary btn">Forgot Password</router-link>
+
     </div>
   </b-container>
 </template>
