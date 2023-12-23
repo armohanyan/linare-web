@@ -88,14 +88,7 @@ export default {
       selectedCategory: null,
       currentPage: 1,
       totalCount: 0,
-      products: [{
-        title: "df",
-        images: ["https://meds-theme.myshopify.com/cdn/shop/collections/shop-26.jpg?v=1591863371&width=535"],
-        price: "df",
-        description: "df",
-        shortDescription: "df",
-        categories: []
-      }],
+      products: [],
       currentGridClass: 'product_cards',
     }
   },

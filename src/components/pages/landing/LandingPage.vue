@@ -107,7 +107,9 @@
               <p>{{ contacts.phone_2 }}</p>
             </div>
           </div>
-          <button class="know_more">{{ $t('landing.know_more') }}</button>
+          <router-link to="/contacts">
+            <button class="know_more">{{ $t('landing.know_more') }}</button>
+          </router-link>
         </div>
       </div>
     </div>
@@ -238,7 +240,7 @@ export default {
 }
 
 .slide-left > p {
-  font-size: 50px;
+  font-size: 42px;
   text-align: center;
   font-weight: 500;
   color: #14457B;
@@ -456,7 +458,7 @@ export default {
   font-weight: 500;
   position: absolute;
   margin-top: 0.5%;
-  width: 10%;
+  width: auto;
 }
 
 .quick_view {
@@ -551,7 +553,7 @@ export default {
 
 @media only screen and (max-width: 1635px) {
   .slide-left > p {
-    font-size: 40px;
+    font-size: 35px;
   }
 }
 
@@ -642,14 +644,7 @@ export default {
   }
 }
 
-@media only screen and (max-width: 655px) {
-  .slide-left > p {
-    font-size: 30px;
-    margin-top: 8%;
-  }
-}
-
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 668px) {
   .about {
     row-gap: 20px;
     justify-content: flex-start;
@@ -658,9 +653,16 @@ export default {
   }
 }
 
+@media only screen and (max-width: 655px) {
+  .slide-left > p {
+    font-size: 25px;
+    margin-top: 8%;
+  }
+}
+
 @media only screen and (max-width: 495px) {
   .slide-left > p {
-    font-size: 20px;
+    font-size: 17px;
     max-height: 20%;
   }
 
