@@ -152,6 +152,7 @@ export default {
 
   .burger {
     display: block;
+    margin-right: 10px;
   }
 
   .fa-xmark::before {

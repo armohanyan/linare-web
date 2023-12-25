@@ -457,7 +457,7 @@ export default {
   border-radius: 5px;
   font-weight: 500;
   position: absolute;
-  margin-top: 0.5%;
+  margin-top: 7px;
   width: auto;
 }
 
@@ -602,6 +602,7 @@ export default {
 @media only screen and (max-width: 920px) {
   .know_more {
     width: 15%;
+    margin-top: -7px;
   }
 
   .contact_us_info {
@@ -662,7 +663,7 @@ export default {
 
 @media only screen and (max-width: 495px) {
   .slide-left > p {
-    font-size: 17px;
+    font-size: 22px;
     max-height: 20%;
   }
 
