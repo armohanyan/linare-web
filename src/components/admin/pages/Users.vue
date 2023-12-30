@@ -235,7 +235,6 @@ export default {
     },
 
     async onSubmit(event) {
-      console.log("dfdfdf")
       event.preventDefault()
 
       if (this.$v.$invalid) {

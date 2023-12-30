@@ -1,5 +1,4 @@
 import axios from 'axios';
-import Cookie from 'js-cookie';
 
 const url = process.env.VUE_APP_SERVER_URL + '/account/';
 
@@ -7,7 +6,7 @@ class AccountService {
 
   getCurrent() {
     return new Promise((resolve, reject) => {
-      if(Cookie.get('accessToken')) {
+      if(localStorage.getItem('accessToken')) {
         this.get()
             .then(account => {
               resolve(account);
@@ -26,7 +25,10 @@ class AccountService {
   get() {
     return new Promise((resolve, reject) => {
       axios.get(`${url}current`, {
-        withCredentials: true
+        withCredentials: true,
+        headers: {
+          authorization: 'Bearer ' + localStorage.getItem('accessToken')
+        }
       })
            .then(res => resolve(res))
            .catch(err => reject(err));
@@ -34,7 +36,7 @@ class AccountService {
   }
 
   reset() {
-    Cookie.remove("accessToken")
+    localStorage.removeItem('accessToken')
   }
 }
 

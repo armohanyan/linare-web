@@ -1,7 +1,9 @@
 <template>
   <header v-if="displayTabs" class="admin_header">
     <div v-if="isAdmin" class="d-flex justify-content-between align-items-center">
-      <img style="width: 70px" src="../assets/logos/linare-logo-blue.png" alt="Logo"/>
+      <router-link to="/">
+        <img style="width: 70px" src="../assets/logos/linare-logo-blue.png" alt="Logo"/>
+      </router-link>
       <div class="adminMobileIcon" @click="toggleMenuList">
         <i class="fa-solid fa-bars"></i>
       </div>
@@ -11,9 +13,11 @@
       <div class="sidebar_hide">
         <div class="admin_sideBar" :class="{ showAdminMenu: isMenuVisible }">
           <div class="sidebar_images">
-            <img src="../assets/logos/linare-logo-white.png" alt="Logo"/>
+            <router-link to="/">
+              <img src="../assets/logos/linare-logo-white.png" alt="Logo"/>
+            </router-link>
             <div class="menu_icon">
-              <i id="desktop" @click="toggleMenuList" class="fa-solid fa-bars"></i>
+              <i id="desktop" style="font-size: 30px" @click="toggleMenuList" class="fa-solid fa-xmark"></i>
             </div>
           </div>
           <ul style="padding-top: 4%; padding-left: 0">
@@ -26,7 +30,7 @@
               <label class="link_texts">Logout</label>
             </li>
 
-            <LanguageComponent v-if="!isAdmin" />
+            <LanguageComponent v-if="!isAdmin"/>
           </ul>
         </div>
       </div>
@@ -51,7 +55,7 @@ export default {
   },
   computed: {
     displayTabs() {
-      return  !['sign-in', 'sign-up', 'reset-password', 'on-reset-password', 'verify-email'].includes(this.$route.name)
+      return !['sign-in', 'sign-up', 'reset-password', 'on-reset-password', 'verify-email'].includes(this.$route.name)
     }
   },
   methods: {
@@ -87,6 +91,15 @@ export default {
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 910px) {
+
+  .admin_header {
+    position: fixed;
+    z-index: 9999;
+    display: block;
+  }
 }
 
 .show-icons-only .link_texts {

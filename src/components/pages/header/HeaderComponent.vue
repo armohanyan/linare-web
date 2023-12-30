@@ -80,10 +80,6 @@ export default {
   .sideBar {
     display: none;
   }
-
-  .admin_mobile_header {
-    display: block;
-  }
 }
 
 .header {
@@ -152,6 +148,7 @@ export default {
 
   .burger {
     display: block;
+    margin-right: 10px;
   }
 
   .fa-xmark::before {

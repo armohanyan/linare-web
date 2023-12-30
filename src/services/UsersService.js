@@ -17,7 +17,10 @@ class UserService {
   post(formData) {
     return new Promise((resolve, reject) => {
       axios.post(url, formData,{
-        withCredentials: true
+        withCredentials: true,
+        headers: {
+          authorization: 'Bearer ' + localStorage.getItem('accessToken')
+        }
       },
         { withCredentials: true })
            .then(res => resolve(res.data))
@@ -28,7 +31,10 @@ class UserService {
   getUser(id) {
     return new Promise((resolve, reject) => {
       axios.get(url + '/' + id, {
-        withCredentials: true
+        withCredentials: true,
+        headers: {
+          authorization: 'Bearer ' + localStorage.getItem('accessToken')
+        }
       })
           .then(res => resolve(res.data))
           .catch(err => reject(err));
@@ -41,7 +47,10 @@ class UserService {
         url,
         formData,
         {
-          withCredentials: true
+          withCredentials: true,
+          headers: {
+            authorization: 'Bearer ' + localStorage.getItem('accessToken')
+          }
         }
       )
            .then(res => resolve(res.data))
@@ -53,7 +62,10 @@ class UserService {
     return new Promise((resolve, reject) => {
       axios.delete(url  + '/' + id, {
         data: { id },
-        withCredentials: true
+        withCredentials: true,
+        headers: {
+          authorization: 'Bearer ' + localStorage.getItem('accessToken')
+        }
       })
            .then(res => resolve(res.data))
            .catch(err => reject(err));

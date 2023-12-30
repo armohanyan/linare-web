@@ -35,7 +35,7 @@ export default {
   },
 
   mounted() {
-    if(!this.$cookies.get("accessToken")) this.$store.dispatch("setCurrentUser", null);
+    if(!localStorage.getItem('accessToken')) this.$store.dispatch("setCurrentUser", null);
   }
 
 }
