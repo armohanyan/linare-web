@@ -1,5 +1,4 @@
 import axios from 'axios';
-import Cookie from 'js-cookie';
 
 const url = process.env.VUE_APP_SERVER_URL + '/auth/';
 
@@ -21,7 +20,6 @@ class AuthService {
         withCredentials: true
       })
            .then(res => {
-             Cookie.set("accessToken", res.data.data.token, { expires: 1 });
              resolve(res);
            })
            .catch(err => reject(err));

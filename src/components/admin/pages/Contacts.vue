@@ -78,7 +78,7 @@ export default {
     },
 
     async createContact() {
-      await new ContactsService().post(this.category)
+      await new ContactsService().post(this.contacts)
 
       this.getContacts()
     }

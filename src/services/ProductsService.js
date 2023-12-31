@@ -25,11 +25,11 @@ class ProductsService {
     return new Promise((resolve, reject) => {
       axios.post(url, formData,{
             headers: {
-              "Content-Type": "multipart/form-data"
+              "Content-Type": "multipart/form-data",
+                authorization: 'Bearer ' + localStorage.getItem('accessToken')
             },
             withCredentials: true
-          },
-          { withCredentials: true })
+          })
           .then(res => resolve(res.data))
           .catch(err => reject(err));
     });
@@ -42,7 +42,8 @@ class ProductsService {
           formData,
           {
             headers: {
-              "Content-Type": "multipart/form-data"
+              "Content-Type": "multipart/form-data",
+                authorization: 'Bearer ' + localStorage.getItem('accessToken')
             },
             withCredentials: true
           }
@@ -55,7 +56,10 @@ class ProductsService {
   delete(id) {
     return new Promise((resolve, reject) => {
       axios.delete(url + '/' + id, {
-        withCredentials: true
+        withCredentials: true,
+          headers: {
+              authorization: 'Bearer ' + localStorage.getItem('accessToken')
+          }
       })
           .then(res => resolve(res.data))
           .catch(err => reject(err));

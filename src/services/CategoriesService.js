@@ -15,7 +15,10 @@ class CategoriesService {
   post(body) {
     return new Promise((resolve, reject) => {
       axios.post(url, body,{
-            withCredentials: true
+            withCredentials: true,
+            headers: {
+              authorization: 'Bearer ' + localStorage.getItem('accessToken')
+            }
           },
           { withCredentials: true })
           .then(res => resolve(res.data))
@@ -29,7 +32,10 @@ class CategoriesService {
           url + '/' + body.id ,
           body,
           {
-            withCredentials: true
+            withCredentials: true,
+            headers: {
+              authorization: 'Bearer ' + localStorage.getItem('accessToken')
+            }
           }
       )
           .then(res => resolve(res.data))
@@ -40,7 +46,10 @@ class CategoriesService {
   delete(id) {
     return new Promise((resolve, reject) => {
       axios.delete(url + '/' + id, {
-        withCredentials: true
+        withCredentials: true,
+        headers: {
+          authorization: 'Bearer ' + localStorage.getItem('accessToken')
+        }
       })
           .then(res => resolve(res.data))
           .catch(err => reject(err));

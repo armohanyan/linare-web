@@ -183,7 +183,6 @@ export default {
   methods: {
     async getSetting() {
       const {data} = await new UsersService().getUser(this.getCurrentUser.id)
-      console.log(data)
       this.setting = data
       this.setting.password = ''
     },

@@ -16,7 +16,8 @@ class ContactsService {
     return new Promise((resolve, reject) => {
       axios.post(url, formData,{
             headers: {
-              "Content-Type": "multipart/form-data"
+              "Content-Type": "multipart/form-data",
+               authorization: 'Bearer ' + localStorage.getItem('accessToken')
             },
             withCredentials: true
           },
@@ -32,7 +33,10 @@ class ContactsService {
           url,
           body,
           {
-            withCredentials: true
+            withCredentials: true,
+              headers: {
+                  authorization: 'Bearer ' + localStorage.getItem('accessToken')
+              }
           }
       )
           .then(res => resolve(res.data))
@@ -44,7 +48,10 @@ class ContactsService {
     return new Promise((resolve, reject) => {
       axios.delete(url, {
         data: { id },
-        withCredentials: true
+        withCredentials: true,
+          headers: {
+              authorization: 'Bearer ' + localStorage.getItem('accessToken')
+      },
       })
           .then(res => resolve(res.data))
           .catch(err => reject(err));
@@ -53,7 +60,12 @@ class ContactsService {
 
   customerSendEmail(body) {
         return new Promise((resolve, reject) => {
-            axios.post(url + '/send-email', body, {withCredentials: true})
+            axios.post(url + '/send-email', body, {
+                withCredentials: true,
+                headers: {
+                    authorization: 'Bearer ' + localStorage.getItem('accessToken')
+                }
+            })
                 .then(res => resolve(res.data))
                 .catch(err => reject(err));
         });

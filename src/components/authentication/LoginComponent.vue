@@ -120,9 +120,12 @@ export default {
       new AuthService().signIn(this.form)
                        .then(({ data }) => {
                          this.$store.dispatch('setCurrentUser', data.data.user);
+                         localStorage.setItem('accessToken', data.data.token)
+                         console.log(localStorage.getItem('accessToken'), 23)
                          this.$router.push({ name: 'admin-dashboard' });
                        })
                        .catch((err) => {
+                         console.log(err, 'data')
                          const data = err.response.data;
 
                          if(data.message) {

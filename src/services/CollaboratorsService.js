@@ -15,10 +15,11 @@ class ContactsService {
   post(formData) {
     return new Promise((resolve, reject) => {
       axios.post(url, formData,{
+            withCredentials: true,
             headers: {
-              "Content-Type": "multipart/form-data"
-            },
-            withCredentials: true
+              "Content-Type": "multipart/form-data",
+              authorization: 'Bearer ' + localStorage.getItem('accessToken')
+            }
           })
           .then(res => resolve(res.data))
           .catch(err => reject(err));
@@ -31,9 +32,10 @@ class ContactsService {
           url,
           formData,
           {
-            headers: {
-              "Content-Type": "multipart/form-data"
-            },
+          headers: {
+              "Content-Type": "multipart/form-data",
+              authorization: 'Bearer ' + localStorage.getItem('accessToken')
+          },
             withCredentials: true
           }
       )
@@ -45,7 +47,10 @@ class ContactsService {
   delete(id) {
     return new Promise((resolve, reject) => {
       axios.delete(url + '/' + id, {
-        withCredentials: true
+        withCredentials: true,
+          headers: {
+              authorization: 'Bearer ' + localStorage.getItem('accessToken')
+          }
       })
           .then(res => resolve(res.data))
           .catch(err => reject(err));
