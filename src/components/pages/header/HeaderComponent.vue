@@ -80,10 +80,6 @@ export default {
   .sideBar {
     display: none;
   }
-
-  .admin_mobile_header {
-    display: block;
-  }
 }
 
 .header {

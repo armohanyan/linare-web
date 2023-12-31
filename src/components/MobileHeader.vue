@@ -93,6 +93,15 @@ export default {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+@media (max-width: 910px) {
+
+  .admin_header {
+    position: fixed;
+    z-index: 9999;
+    display: block;
+  }
+}
+
 .show-icons-only .link_texts {
   display: none;
 }

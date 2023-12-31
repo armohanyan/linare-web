@@ -332,6 +332,10 @@ header h1 {
     width: 60%;
   }
 
+  .content {
+    overflow: unset;
+  }
+
   header h1 {
     font-size: 20px;
   }
