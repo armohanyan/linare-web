@@ -23,7 +23,8 @@
           <ul style="padding-top: 4%; padding-left: 0">
             <li v-for="tab in tabs" :key="tab.name" class="lists" @click="navigate(tab.name, tab.path)">
               <i :class="['fas', tab.class]"></i>
-              <label class="link_texts">{{ tab.label }}</label>
+              <label v-if="isAdmin" class="link_texts"> {{ tab.label }}</label>
+              <label v-if="!isAdmin" class="link_texts">{{ $t('tabs.' + tab.name) }}</label>
             </li>
             <li v-if="isAdmin" class="lists" @click="logout">
               <i class="fa-solid fa-right-from-bracket"></i>
@@ -101,6 +102,7 @@ export default {
 }
 
 .show-icons-only .link_texts {
+  cursor: pointer;
   display: none;
 }
 
@@ -115,6 +117,7 @@ a {
 }
 
 .link_texts {
+  cursor: pointer;
   color: white;
   font-size: 23px;
 }

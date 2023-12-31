@@ -20,6 +20,12 @@
     "categories": "Categories",
     "full_details": "View full details"
   },
+  "tabs": {
+    "home": "Home",
+    "products": "Products",
+    "about-us": "About us",
+    "contacts": "Contacts"
+  },
   "products": {
     "products": "PRODUCTS",
     "filter_category": "Filter by category",

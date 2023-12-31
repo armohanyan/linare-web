@@ -6,7 +6,7 @@
     <div class="menu_items">
       <div v-for="tab in tabs" :key="tab.value">
         <router-link :to="tab.path" class="menu_item">
-          {{ tab.label }}
+          {{ $t('tabs.' + tab.name) }}
         </router-link>
       </div>
       <LanguageComponent />
@@ -32,7 +32,7 @@ const tabs = [
     label: 'Home',
     path: '/',
     class: 'fa-house',
-    name: 'dashboard'
+    name: 'home'
   },
   {
     label: 'Products',

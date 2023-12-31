@@ -252,6 +252,7 @@ export default {
   background-color: #86BFEB;
   border-top: 0;
   text-align: center;
+  height: 125px;
 }
 
 .card-product--card--footer p {

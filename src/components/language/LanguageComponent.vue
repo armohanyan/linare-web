@@ -3,10 +3,10 @@
     <div class="vue-select" @click="toggleDropdown">
       <div class="selected-option">
         <img class="lang_flags" :src="selected.img" alt="" />
-        <span class="selected-text">{{ placeholder }}</span>
+        <span class="selected-text">{{ selected.label }}</span>
       </div>
       <div class="dropdown-options-container" v-show="showDropdown">
-        <div class="dropdown-options" v-for="option in options" :key="option.value" :class="{'selected': option === selected}">
+        <div class="dropdown-options" v-for="option in options" :key="option.value">
           <div class="text_flag">
             <img class="lang_flags" :src="option.img" alt="" />
             <div class="dropdown-options--cell" @click="selectOption(option)">
@@ -26,8 +26,6 @@ export default {
     return {
       selectedLanguage: 'en',
       showDropdown: false,
-      selected: { label: "English", img: require("../../assets/flags/en_flag.png"), value: "en" },
-      placeholder: 'English',
       options: [
         {
           label: 'English',
@@ -48,13 +46,18 @@ export default {
     };
   },
 
+  computed: {
+    selected() {
+      return this.options.find(option => option.value === this.$i18n.locale)
+    }
+  },
+
   methods: {
     toggleDropdown() {
       this.showDropdown = !this.showDropdown;
     },
 
     selectOption(option) {
-      this.selected = option
       this.placeholder = option.label;
       this.$i18n.locale = option.value
 
@@ -74,7 +77,6 @@ export default {
   margin: 20px auto;
   cursor: pointer;
   user-select: none;
-  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.06);
   border: none;
   transition: all 200ms linear;
 }
@@ -114,6 +116,7 @@ export default {
 
 .text_flag:hover {
   background-color: #f4fbf8;
+  color: #2490EB;
   border: none;
 }
 

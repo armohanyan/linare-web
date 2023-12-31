@@ -40,7 +40,7 @@
         <div class="">
           <div class="card-carousel--overflow-container">
             <div class="card-carousel-cards" :style="{ transform: 'translateX(' + currentOffset + 'px)'}">
-              <div class="card-carousel--card" v-for="product in products" :key="product.id">
+              <div class="card-carousel--card mt-2" v-for="product in products" :key="product.id">
                 <img class="card-carousel-img" :src="product.images[0]" alt=""/>
 
                 <button v-b-modal="'modal-center-' + product.id" class="quick_view">{{ $t('landing.quick_view') }}
@@ -321,6 +321,7 @@ export default {
 
 .card-carousel-cards .card-carousel--card {
   cursor: pointer;
+  width: 350px;
   box-shadow: 0 4px 15px 0 rgba(40, 44, 53, 0.06), 0 2px 2px 0 rgba(40, 44, 53, 0.08);
   background-color: #fff;
   border-radius: 4px;
@@ -350,7 +351,8 @@ export default {
 }
 
 .card-carousel-cards .card-carousel--card--footer {
-  padding: 10%;
+  height: 125px;
+  padding: 10px;
   background-color: #86BFEB;
   border-top: 0;
 }
