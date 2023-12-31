@@ -1,13 +1,16 @@
 <template>
   <div class="menu-wrapper">
     <MobileHeader class="admin_mobile_header" :tabs="tabs" :isAdmin="true"/>
+
     <div class="sidebar-header">
       <div  v-if="getCurrentUser && displayTabs" class="sidebar_hide">
         <div class="sideBar" :class="{ showMenu: isMenuVisible, widthChange: isMenuVisible }">
-          <div class="sidebar_images">
-            <img class="sidebar_img" src="@/assets/logos/linare-logo-white.png" alt=""/>
+        <div class="sidebar_images">
+          <img class="sidebar_img" src="@/assets/logos/linare-logo-white.png" @click="navigate('home', '/')" alt="Logo"/>
+          <div class="menu_icon">
             <i id="desktop" @click="toggleMenuList" class="fa-solid fa-bars"></i>
           </div>
+        </div>
           <ul style="padding-top: 4%; padding-left: 0" :class="{ 'show-icons-only': isMenuVisible }">
             <li v-for="tab in tabs" :key="tab.name" class="lists" @click="navigate(tab.name, tab.path)">
               <i :class="['fas', tab.class]"></i>
@@ -185,6 +188,7 @@ a {
 }
 
 .sidebar_img {
+  cursor: pointer;
   width: 35%;
 }
 
@@ -219,6 +223,7 @@ a {
 }
 
 .content {
+  padding-top: 60px;
   overflow-y: scroll;
   width: 100%;
   height: 100vh;

@@ -6,7 +6,7 @@
     <div class="menu_items">
       <div v-for="tab in tabs" :key="tab.value">
         <router-link :to="tab.path" class="menu_item">
-         {{ tab.label }}
+          {{ tab.label }}
         </router-link>
       </div>
       <LanguageComponent />
@@ -80,6 +80,10 @@ export default {
   .sideBar {
     display: none;
   }
+
+  .admin_mobile_header {
+    display: block;
+  }
 }
 
 .header {
@@ -138,6 +142,7 @@ export default {
 }
 
 .menu_burger {
+  cursor: pointer;
   display: none;
 }
 

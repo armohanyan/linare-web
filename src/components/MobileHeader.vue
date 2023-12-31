@@ -1,9 +1,9 @@
 <template>
-  <header v-if="displayTabs" class="admin_header">
+  <header v-if="displayTabs" class="header_content" :class="{admin_header: isAdmin}">
     <div v-if="isAdmin" class="d-flex justify-content-between align-items-center">
-      <router-link to="/">
-        <img style="width: 70px" src="../assets/logos/linare-logo-blue.png" alt="Logo"/>
-      </router-link>
+        <div @click="navigate(tabs[0].name, tabs[0].path)">
+          <img style="width: 70px" src="../assets/logos/linare-logo-blue.png" alt="Logo"/>
+        </div>
       <div class="adminMobileIcon" @click="toggleMenuList">
         <i class="fa-solid fa-bars"></i>
       </div>
@@ -13,9 +13,9 @@
       <div class="sidebar_hide">
         <div class="admin_sideBar" :class="{ showAdminMenu: isMenuVisible }">
           <div class="sidebar_images">
-            <router-link to="/">
+            <div @click="navigate(tabs[0].name, tabs[0].path)">
               <img src="../assets/logos/linare-logo-white.png" alt="Logo"/>
-            </router-link>
+            </div>
             <div class="menu_icon">
               <i id="desktop" style="font-size: 30px" @click="toggleMenuList" class="fa-solid fa-xmark"></i>
             </div>
@@ -84,17 +84,15 @@ export default {
   font-size: 23px;
 }
 
-.admin_header {
+.header_content {
   display: none;
   padding: 2% 2%;
   background-color: #FFFFFF;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 910px) {
-
   .admin_header {
     position: fixed;
     z-index: 9999;
