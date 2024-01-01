@@ -75,6 +75,7 @@
           </div>
         </div>
       </div>
+
       <div v-else>
         {{ $t('landing.no_data') }}
       </div>
@@ -326,15 +327,7 @@ export default {
   background-color: #fff;
   border-radius: 4px;
   z-index: 3;
-  margin: 0 10px 2px;
-}
-
-.card-carousel-cards .card-carousel--card:first-child {
-  margin-left: 0;
-}
-
-.card-carousel-cards .card-carousel--card:last-child {
-  margin-right: 0;
+  margin: 10px;
 }
 
 .card-carousel-img {
@@ -370,7 +363,6 @@ export default {
   font-size: 15px;
   font-weight: 500;
   padding: 4px;
-  margin-left: 4px;
   color: #FFFFFF;
 }
 

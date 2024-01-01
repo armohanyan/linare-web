@@ -27,6 +27,7 @@
           </button>
         </div>
       </div>
+
       <div class="product_cards" :class="currentGridClass">
         <div class="card-product--card" v-for="product in products" :key="product.id">
           <div v-if="admin" class="d-flex justify-content-end">
@@ -233,7 +234,7 @@ export default {
   border-radius: 4px;
   z-index: 3;
   margin: 0 10px 2px;
-  width: 285px;
+  width: 350px;
 }
 
 .card-product-img {
@@ -248,7 +249,7 @@ export default {
 }
 
 .card-product--card--footer {
-  padding: 10%;
+  padding: 10px;
   background-color: #86BFEB;
   border-top: 0;
   text-align: center;

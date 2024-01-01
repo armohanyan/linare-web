@@ -17,7 +17,7 @@
         </div>
       </div>
       <div>
-        <h3>Contact Us</h3>
+        <h3>{{ $t('contacts.contacts') }}</h3>
         <div class="text_icons">
           <i class="fa-solid fa-phone"></i>
           <span>{{ contacts.phone_1 }}</span>
@@ -90,6 +90,11 @@ export default {
   align-items: center;
   flex-wrap: wrap;
 }
+
+.footer_content > div {
+  padding: 10px;
+}
+
 
 .text_icons {
   display: flex;
