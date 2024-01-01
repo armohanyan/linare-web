@@ -1,6 +1,6 @@
 <template>
-  <b-container class="mt-5 w-25">
-    <div v-if="!showSuccessScreen && !isRouteResetPassword">
+  <b-container class="mt-5">
+    <div v-if="!showSuccessScreen && !isRouteResetPassword" class="forgot_pass_content">
       <div class="text-center"><h3>Forgot Password</h3></div>
       <b-form-group id="email" label="Email" label-for="email" class="mt-3">
         <b-form-input
@@ -250,3 +250,23 @@ export default {
   },
 }
 </script>
+
+<style>
+.forgot_pass_content{
+  width: 450px;
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  padding: 30px;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
+@media (max-width: 490px){
+  .forgot_pass_content{
+    width: 90%;
+  }
+}
+</style>

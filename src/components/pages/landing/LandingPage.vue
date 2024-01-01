@@ -166,7 +166,17 @@ export default {
       collaborators: [],
       introCarousel,
       about,
-      products: [],
+      products: [
+        {
+          id: 0,
+          title: 'test',
+          shortDescription: 'test',
+          description: 'test',
+          images: [],
+          categories: ['category'],
+          price: ''
+        }
+      ],
       contacts: {
         phone_1: '',
         phone_2: '',
@@ -532,12 +542,14 @@ export default {
 }
 
 >>> .close {
+  width: 30px;
+  height: 30px;
+  padding-bottom: 4px;
   border: none;
   background-color: #2490EB;
   color: white;
   border-radius: 3px;
   cursor: pointer;
-  width: 25px;
   text-align: center;
 }
 
@@ -683,6 +695,10 @@ export default {
 
   .contact_us_text {
     font-size: 17px;
+  }
+
+  .card-carousel-cards .card-carousel--card{
+    width: 100%;
   }
 }
 
